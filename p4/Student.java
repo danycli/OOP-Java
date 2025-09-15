@@ -21,6 +21,9 @@ public class Student{
         return name;
     }
     public double getMarks(double marks){
+    if(marks >= 49.5 && marks <= 49.9){
+        marks = 50;
+    }
         Marks = marks;
         return marks;
     }
