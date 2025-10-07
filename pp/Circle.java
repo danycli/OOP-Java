@@ -1,4 +1,4 @@
-package p11;
+package pp;
 
 public class Circle {
     private int radius;
@@ -39,7 +39,7 @@ public class Circle {
         return radius;
     }
 
-    float getarea() {
+    float getArea() {
         return area;
     }
 
@@ -51,24 +51,20 @@ public class Circle {
         System.out.println("Radius = " + radius);
         System.out.println("Area = " + area);
         System.out.println("Circumference = " + circumference);
-
     }
 
-    public static Circle AddCircles(Circle Cx, Circle Cy)
-{
-    int R= Cx.radius + Cy.radius;
-    float A=Cx.area + Cy. Area;
-    float Cir= Cx.Circumference + Cy.Circumference;
-    Circle C5 = new Circle(R);
-    C5.Area=A;
-    C5.Circumference=Cir;
-    return C5;
-}
+    public static Circle AddCircles(Circle Cx, Circle Cy) {
+        int R = Cx.radius + Cy.radius;
+        float A = Cx.area + Cy.area;
+        float Cir = Cx.circumference + Cy.circumference;
+
+        Circle C5 = new Circle(R);
+        C5.area = A;
+        C5.circumference = Cir;
+        return C5;
+    }
+
     public boolean equalRadius(Circle Cx, Circle Cy) {
-    if (this.radius == Cx.radius && this.radius == Cy.radius) {
-        return true;
-    } else {
-        return false;
+        return (this.radius == Cx.radius && this.radius == Cy.radius);
     }
-}
 }
