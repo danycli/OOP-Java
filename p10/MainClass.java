@@ -9,12 +9,14 @@ public class MainClass{
         
         b1.DisplayAccountInformation();
         
+        sc.nextLine();
         System.out.print("Enter Holders Name = ");
         String name = sc.nextLine();
         b1.setAccHolderName(name);
         
         System.out.print("Enter Account Type = ");
         String type = sc.nextLine();
+        b1.setAccType(type);
         
         System.out.print("Enter the amount you want to Deposit = ");
         double depoAmount = sc.nextDouble();
