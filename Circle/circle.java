@@ -24,6 +24,11 @@ public class circle {
     float getcircumference(){
         return circumference;
     }
+    circle (){
+        this.radius = 0;
+        this.area = 0.0f;
+        this.circumference = 0.0f;
+    }
 
     public static circle addCircle(circle c1, circle c2){
         int A = c1.radius+c2.radius;
@@ -42,5 +47,11 @@ public class circle {
         System.out.println("Radius = "+radius);
         System.out.println("Area ="+area);
         System.out.println("Circumference ="+circumference);
+    }
+
+    public circle(circle c){
+        this.radius = c.radius;
+        this.area = c.area;
+        this.circumference = c.circumference;
     }
 }
