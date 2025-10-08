@@ -8,6 +8,12 @@ public class circle {
     void setradius(int radius){
         this.radius = radius;
     }
+    void setarea(float area){
+        this.area = area;
+    }
+    void setcircumference(float circumference){
+        this.circumference = circumference;
+    }
     
     int getradius(){
         return radius;
@@ -30,5 +36,11 @@ public class circle {
         c3.circumference = C;
 
         return c3;
+    }
+
+    void displayinfo(){
+        System.out.println("Radius = "+radius);
+        System.out.println("Area ="+area);
+        System.out.println("Circumference ="+circumference);
     }
 }
