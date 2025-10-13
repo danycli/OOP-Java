@@ -10,10 +10,10 @@ public class square {
         this.area = 0.0f;
         this.perimeter = 0.0f;
     }
-    square(square sq1){
-        this.sideLength = sq1.sideLength;
-        this.area = sq1.area;
-        this.perimeter = sq1.perimeter;
+    square(square sq2){
+        this.sideLength = sq2.sideLength;
+        this.area = sq2.area;
+        this.perimeter = sq2.perimeter;
     }
     void setsideLenth(int length){
         this.sideLength = length;
@@ -48,7 +48,7 @@ public class square {
         }
     }
     public static float averageLength(square sq1, square sq2, square sq3){
-        float average = (sq1.sideLength + sq2.sideLength + sq3.sideLength)/3f;
+        float average = (sq1.sideLength + sq2.sideLength + sq3.sideLength)/3;
         return average;
     }
     
