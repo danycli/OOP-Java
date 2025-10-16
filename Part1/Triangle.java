@@ -21,6 +21,15 @@ public class Triangle{
         this.TypeOfATriangle = t1.TypeOfATriangle;
     }
 
+    void setLength1(float length1){
+        this.LengthOfSide1 = length1;
+    }
+    void setLength2(float length2){
+        this.LengthOfSide2 = length2;
+    }
+    void setLength3(float length3){
+        this.LengthOfSide3 = length3;
+    }
     float getSide1(){
         return LengthOfSide1;
     }
