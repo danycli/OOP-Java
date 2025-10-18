@@ -14,30 +14,21 @@ public class MainClass {
         float bill = 0;
         System.out.print("Choose Order Type \n1.Dine-In\n2.Home Delivery\nChoose :");
         int orderType = sc.nextInt();
+        FoodOrder.invalidCheck(1, 2, orderType,sc);
         sc.nextLine();
-        while(orderType < 1 || orderType > 2){
-            System.out.print("Invalid Choice!\nTry Again (1-2):");
-            orderType = sc.nextInt();
-        }
         System.out.print("Enter your Name :");
         String name = sc.nextLine();
         System.out.print("Enter your Phone Number :");
         String number = sc.nextLine();
 
-        // Changed: allow choosing both Drink and Food
         System.out.print("Choose Food Type \n1.Drink\n2.Food\n3.Both\nChoose :");
         int FoodType = sc.nextInt();
-        while (FoodType < 1 || FoodType > 3) {
-            System.out.print("Invalid Choice!\nTry Again (1-3) :");
-            FoodType = sc.nextInt();
-        }
+        FoodOrder.invalidCheck(1, 3, FoodType,sc);
+        //For Drinks
         if(FoodType == 1){
             System.out.print("Choose the Drink Of your Choice \n1.Coca Cola\n2.Pepsi\n3.Sprite\n4.7up\n5.Marinda\nChoose :");
             int drink = sc.nextInt();
-            while (drink < 1 || drink > 5) {
-                System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                drink = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(1, 2, drink,sc);
             if(drink == 1){
                 DrinkName = "Coca Cola";
             }else if(drink == 2){
@@ -53,10 +44,7 @@ public class MainClass {
             int litre = sc.nextInt();
             System.out.print("Choose the number of drinks (Max 10):");
             numOfDrinks = sc.nextInt();
-            while (numOfDrinks < 1 || numOfDrinks > 10) {
-                System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                numOfDrinks = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(1, 2, numOfDrinks,sc);
             if (litre == 1) {
                 bill = numOfDrinks * 120f;
                 DrinkSize = 1.0f;
@@ -70,27 +58,19 @@ public class MainClass {
                 bill = numOfDrinks * 280f;
                 DrinkSize = 2.25f;
             }
+            // For Food
         } else if (FoodType == 2) {
             System.out.print("Choose the Food Of your Choice \n1.Burger\n2.Pizza\n3.Pasta\n4.Biryani\n5.Chowmin\n0.Exit\nChoose :");
             int food = sc.nextInt();
-            while (food < 0 || food > 5) {
-                System.out.print("Invalid Choice!\nTry Again (0-5) :");
-                food = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(1, 2, food,sc);
             switch (food) {
                 case 1:
                     System.out.print("Which burger you want to Order \n1.Beef Burger\n2.Chicken Burger\n3.Fish Burger\n4.Veggie Burger\n5.Egg Burger\nChoose:");
                     int burger = sc.nextInt();
-                    while (burger < 1 || burger > 5) {
-                        System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                        burger = sc.nextInt();
-                    }   
+                    FoodOrder.invalidCheck(1, 5, burger,sc);   
                     System.out.print("Now Choose the Size of the Burger\n1.Junior\n2.Classic\n3.King Size\nChoose :");
                     int size = sc.nextInt();
-                    while (size < 1 || size > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        size = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, size,sc);
                     if(size == 1){
                         FoodSize = "Junior";
                     }else if(size == 2){
@@ -100,10 +80,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Burgers you want to Order\nChoose (Max 15):");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 15) {
-                        System.out.print("Invalid Choice!\nTry Again (1-15) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 15, FoodNum,sc);
                     if (burger == 1) {
                         FoodName = "Beef Burger";
                         if (size == 1) {
@@ -154,16 +131,10 @@ public class MainClass {
                 case 2:
                     System.out.print("Which pizza you want to Order \n1.Cheese Pizza\n2.Pepperoni Pizza\n3.BBQ Chicken Pizza\n4.Veggie Pizza\n5.Spicy Pizza\nChoose:");
                     int pizza = sc.nextInt();
-                    while (pizza < 1 || pizza > 5) {
-                        System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                        pizza = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 2, pizza,sc);
                     System.out.println("Now Choose the Size of the Pizza\n1.Small\n2.Medium\n3.Large\n4.Extra Large\nChoose :");
                     int PizzaSize = sc.nextInt();
-                    while (PizzaSize < 1 || PizzaSize > 4) {
-                        System.out.print("Invalid Choice!\nTry Again (1-4) :");
-                        PizzaSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 4, PizzaSize,sc);
                     if(PizzaSize == 1){
                         FoodSize = "Small";
                     }else if(PizzaSize == 2){
@@ -175,10 +146,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Pizzas you want to Order\nChoose (Max 10):");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (pizza == 1) {
                         FoodName = "Cheese Pizza";
                         if (PizzaSize == 1) {
@@ -239,16 +207,10 @@ public class MainClass {
                 case 3:
                     System.out.print("Which Pasta you want to Order \n1.Spaghetti\n2.Macaroni\n3.Fusilli\nChoose:");
                     int pasta = sc.nextInt();
-                    while (pasta < 1 || pasta > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        pasta = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, pasta,sc);
                     System.out.print("Select Pasta size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int pastaSize = sc.nextInt();
-                    while (pastaSize < 1 || pastaSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        pastaSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, pastaSize,sc);
                     if(pastaSize == 1){
                         FoodSize = "Small Plate";
                     }else if(pastaSize == 2){
@@ -258,10 +220,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Pastas you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (pasta == 1) {
                         FoodName = "Spaghetti";
                         if (pastaSize == 1) {
@@ -294,16 +253,10 @@ public class MainClass {
                 case 4:
                     System.out.print("Which Biryani you want to Order \n1.Simple Biryani\n2.Chicken Biryani\nChoose:");
                     int biryani = sc.nextInt();
-                    while (biryani < 1 || biryani > 2) {
-                        System.out.print("Invalid Choice!\nTry Again (1-2): ");
-                        biryani = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 2, biryani,sc);
                     System.out.print("Select Biryani Plate Size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int biryaniSize = sc.nextInt();
-                    while (biryaniSize < 1 || biryaniSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3):");
-                        biryaniSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, biryaniSize,sc);
                     if(biryaniSize == 1){
                         FoodSize = "Small Plate";
                     }else if(biryaniSize == 2){
@@ -313,10 +266,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Biryani Plates you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10):");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (biryani == 1) {
                         FoodName = "Simple Biryani";
                         if (biryaniSize == 1) {
@@ -340,16 +290,10 @@ public class MainClass {
                 case 5:
                     System.out.print("Which Chowmin you want to Order \n1.Chicken Chowmein\n2.Beef Chowmein\n3.Vegetable Chowmein\nChoose:");
                     int chowmin = sc.nextInt();
-                    while (chowmin < 1 || chowmin > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3):");
-                        chowmin = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, chowmin,sc);
                     System.out.print("Select Chowmin Plate Size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int chowminSize = sc.nextInt();
-                    while (chowminSize < 1 || chowminSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3): ");
-                        chowminSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, chowminSize,sc);
                     if(chowminSize == 1){
                         FoodSize = "Small Plate";
                     }else if(chowminSize == 2){
@@ -359,10 +303,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Chowmin Plates you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10):");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (chowmin == 1) {
                         FoodName = "Chicken Chowmin";
                         if (chowminSize == 1) {
@@ -396,16 +337,13 @@ public class MainClass {
                     System.out.println("Come Again WhenEver you Like!");
                     break;
             }
-        } else { // FoodType == 3 -> Both
-            float billDrink = 0f;
-            float billFood = 0f;
-            // --- Drink selection (same as drink-only branch) ---
+            // For both Food & Drinks
+        } else {
+            float billDrink = 0.0f;
+            float billFood = 0.0f;
             System.out.print("Choose the Drink Of your Choice \n1.Coca Cola\n2.Pepsi\n3.Sprite\n4.7up\n5.Marinda\nChoose :");
             int drink = sc.nextInt();
-            while (drink < 1 || drink > 5) {
-                System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                drink = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(1, 5, drink,sc);
             if(drink == 1){
                 DrinkName = "Coca Cola";
             }else if(drink == 2){
@@ -421,10 +359,7 @@ public class MainClass {
             int litre = sc.nextInt();
             System.out.print("Choose the number of drinks (Max 10):");
             numOfDrinks = sc.nextInt();
-            while (numOfDrinks < 1 || numOfDrinks > 10) {
-                System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                numOfDrinks = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(1, 10, numOfDrinks,sc);
             if (litre == 1) {
                 billDrink = numOfDrinks * 120f;
                 DrinkSize = 1.0f;
@@ -439,27 +374,17 @@ public class MainClass {
                 DrinkSize = 2.25f;
             }
 
-            // --- Food selection (same as food-only branch) ---
             System.out.print("Choose the Food Of your Choice \n1.Burger\n2.Pizza\n3.Pasta\n4.Biryani\n5.Chowmin\n0.Exit\nChoose :");
             int food = sc.nextInt();
-            while (food < 0 || food > 5) {
-                System.out.print("Invalid Choice!\nTry Again (0-5) :");
-                food = sc.nextInt();
-            }
+            FoodOrder.invalidCheck(0, 5, food,sc);
             switch (food) {
                 case 1:
                     System.out.print("Which burger you want to Order \n1.Beef Burger\n2.Chicken Burger\n3.Fish Burger\n4.Veggie Burger\n5.Egg Burger\nChoose:");
-                    int burger = sc.nextInt();
-                    while (burger < 1 || burger > 5) {
-                        System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                        burger = sc.nextInt();
-                    }   
+                    int burger = sc.nextInt();  
+                    FoodOrder.invalidCheck(1, 5, burger,sc);
                     System.out.print("Now Choose the Size of the Burger\n1.Junior\n2.Classic\n3.King Size\nChoose :");
                     int size = sc.nextInt();
-                    while (size < 1 || size > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        size = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, size,sc);
                     if(size == 1){
                         FoodSize = "Junior";
                     }else if(size == 2){
@@ -469,10 +394,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Burgers you want to Order\nChoose (Max 15):");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 15) {
-                        System.out.print("Invalid Choice!\nTry Again (1-15) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 15, FoodNum,sc);
                     if (burger == 1) {
                         FoodName = "Beef Burger";
                         if (size == 1) {
@@ -523,16 +445,10 @@ public class MainClass {
                 case 2:
                     System.out.print("Which pizza you want to Order \n1.Cheese Pizza\n2.Pepperoni Pizza\n3.BBQ Chicken Pizza\n4.Veggie Pizza\n5.Spicy Pizza\nChoose:");
                     int pizza = sc.nextInt();
-                    while (pizza < 1 || pizza > 5) {
-                        System.out.print("Invalid Choice!\nTry Again (1-5) :");
-                        pizza = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 5, pizza,sc);
                     System.out.println("Now Choose the Size of the Pizza\n1.Small\n2.Medium\n3.Large\n4.Extra Large\nChoose :");
                     int PizzaSize = sc.nextInt();
-                    while (PizzaSize < 1 || PizzaSize > 4) {
-                        System.out.print("Invalid Choice!\nTry Again (1-4) :");
-                        PizzaSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 4, PizzaSize,sc);
                     if(PizzaSize == 1){
                         FoodSize = "Small";
                     }else if(PizzaSize == 2){
@@ -544,10 +460,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Pizzas you want to Order\nChoose (Max 10):");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (pizza == 1) {
                         FoodName = "Cheese Pizza";
                         if (PizzaSize == 1) {
@@ -608,16 +521,10 @@ public class MainClass {
                 case 3:
                     System.out.print("Which Pasta you want to Order \n1.Spaghetti\n2.Macaroni\n3.Fusilli\nChoose:");
                     int pasta = sc.nextInt();
-                    while (pasta < 1 || pasta > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        pasta = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, pasta,sc);
                     System.out.print("Select Pasta size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int pastaSize = sc.nextInt();
-                    while (pastaSize < 1 || pastaSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3) :");
-                        pastaSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, pastaSize,sc);
                     if(pastaSize == 1){
                         FoodSize = "Small Plate";
                     }else if(pastaSize == 2){
@@ -627,10 +534,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Pastas you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10) :");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (pasta == 1) {
                         FoodName = "Spaghetti";
                         if (pastaSize == 1) {
@@ -663,16 +567,10 @@ public class MainClass {
                 case 4:
                     System.out.print("Which Biryani you want to Order \n1.Simple Biryani\n2.Chicken Biryani\nChoose:");
                     int biryani = sc.nextInt();
-                    while (biryani < 1 || biryani > 2) {
-                        System.out.print("Invalid Choice!\nTry Again (1-2): ");
-                        biryani = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 2, biryani,sc);
                     System.out.print("Select Biryani Plate Size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int biryaniSize = sc.nextInt();
-                    while (biryaniSize < 1 || biryaniSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3):");
-                        biryaniSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, biryaniSize,sc);
                     if(biryaniSize == 1){
                         FoodSize = "Small Plate";
                     }else if(biryaniSize == 2){
@@ -682,10 +580,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Biryani Plates you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10):");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (biryani == 1) {
                         FoodName = "Simple Biryani";
                         if (biryaniSize == 1) {
@@ -709,16 +604,10 @@ public class MainClass {
                 case 5:
                     System.out.print("Which Chowmin you want to Order \n1.Chicken Chowmein\n2.Beef Chowmein\n3.Vegetable Chowmein\nChoose:");
                     int chowmin = sc.nextInt();
-                    while (chowmin < 1 || chowmin > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3):");
-                        chowmin = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, chowmin,sc);
                     System.out.print("Select Chowmin Plate Size\n1.Small Plate\n2.Medium Plate\n3.Large Plate\nChoose :");
                     int chowminSize = sc.nextInt();
-                    while (chowminSize < 1 || chowminSize > 3) {
-                        System.out.print("Invalid Choice!\nTry Again (1-3): ");
-                        chowminSize = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 3, chowminSize,sc);
                     if(chowminSize == 1){
                         FoodSize = "Small Plate";
                     }else if(chowminSize == 2){
@@ -728,10 +617,7 @@ public class MainClass {
                     }
                     System.out.print("Enter the Number of Chowmin Plates you want to order\nChoose (Max 10): ");
                     FoodNum = sc.nextInt();
-                    while (FoodNum < 1 || FoodNum > 10) {
-                        System.out.print("Invalid Choice!\nTry Again (1-10):");
-                        FoodNum = sc.nextInt();
-                    }
+                    FoodOrder.invalidCheck(1, 10, FoodNum,sc);
                     if (chowmin == 1) {
                         FoodName = "Chicken Chowmin";
                         if (chowminSize == 1) {
@@ -794,10 +680,7 @@ public class MainClass {
                 String delivery;
                 System.out.print("Enter Delivery Type \n1.Standard \n2.Fast\nChoose :");
                 int DeliveryType = sc.nextInt();
-                while (DeliveryType < 1 || DeliveryType > 2) {
-                    System.out.print("Invalid Choice!\nTry Again (1-2):");
-                    DeliveryType = sc.nextInt();
-                }
+                FoodOrder.invalidCheck(1, 2, DeliveryType,sc);
                 if (DeliveryType == 1) {
                     delivery = "Standard";
                 } else {
