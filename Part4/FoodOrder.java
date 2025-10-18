@@ -10,8 +10,8 @@ public class FoodOrder {
     private String OrderType;//DineIn, Site Order
     private float TableTax;
     private float deliveryCharges; 
-    private float litre;
-    private int numOfDrinks;
+    // private float litre;
+    // private int numOfDrinks;
     private float Tax;
     private float Bill;
     static private int totalOrders = 0;
@@ -99,13 +99,13 @@ public class FoodOrder {
     //Method for delicery Charges
     void DeliveryCharges(){
         if(TotalDistance <= 2.5){
-            deliveryCharges = 250;
+            deliveryCharges = 250f;
         }else{
-            deliveryCharges = 450;
+            deliveryCharges = 450f;
         }
     }
     //Method For TableTax
-    private void tableTax(int bill){
+    private void tableTax(float bill){
         if(bill < 2500){
             TableTax = (4.2f/100)*bill;
         }else{
@@ -113,7 +113,7 @@ public class FoodOrder {
         }
     }
     //Method for regular Tax
-    private void tax(int bill){
+    private void tax(float bill){
         if(bill < 1500){
             Tax = (1.2f/100)*bill;            
         }else{
@@ -121,14 +121,14 @@ public class FoodOrder {
         }
     }
     //Method for Total Bill
-    // void TotalBill(){
-    //     int bill;
-    //     if(OrderType == "Dine-In"){
-
-    //         bill = 
-    //     }else{
-
-    //     }
-    // }
+    void TotalBill(float bill){
+        tax(bill);
+        if(OrderType == "Dine-In"){
+            tableTax(bill);
+            Bill = bill + Tax + TableTax;
+        }else{
+            Bill = deliveryCharges + Tax;
+        }
+    }
 
 }
