@@ -190,17 +190,10 @@ public class FoodOrder {
             System.out.println("Type of Drink = "+DrinkName);
             System.out.println("Size of Drink = "+litre+"L");
             System.out.println("Number of Drinks Ordered = "+numOfDrinks);
-        }else if(foodType.equals("Food")){
-            System.out.println("Food Ordered = "+Foodname);
-            System.out.println("Size = "+foodSize);
-            System.out.println("Number of "+Foodname+" ordered ="+foodNum);
         }else{
             System.out.println("Food Ordered = "+Foodname);
             System.out.println("Size = "+foodSize);
             System.out.println("Number of "+Foodname+" ordered ="+foodNum);
-            System.out.println("Type of Drink = "+DrinkName);
-            System.out.println("Size of Drink = "+litre+"L");
-            System.out.println("Number of Drinks Ordered = "+numOfDrinks);
         }
         if(OrderType == "Dine-In"){ 
             System.out.println("Table Tax = Rs:"+TableTax);
@@ -210,4 +203,5 @@ public class FoodOrder {
         System.out.println("Tax = Rs:"+Tax);
         System.out.println("Total Bill = Rs:"+Bill);
     }
+
 }
