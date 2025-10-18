@@ -82,10 +82,14 @@ public class VehicleReservation {
         System.out.println("Name of the Owner = "+VehicleOwnerName);
         System.out.println("Time spend in Parking = "+TotalTimeInMinutesForParking);
         System.out.println("Parking Slot Id = "+ParkingSlotId);
-        System.out.println("Tax = Rs: "+Tax);
-        System.out.println("Total bill along with Tax = Rs: "+Bill);
+        if(Bill != 0.0f){
+            System.out.println("Tax = Rs: "+Tax);
+            System.out.println("Total bill along with Tax = Rs: "+Bill);
+        }else{
+            System.out.println("Car is still in the ParkingLot");
+        }
     }
-    void DisplayCurrentlyTotalVehcilesInTheParking(){
+    public static void DisplayCurrentlyTotalVehcilesInTheParking(){
         System.out.println("The number of Vehichles Currently in the Parking are = "+CurrentlyTotalVehcilesInTheParking);
     }
 }

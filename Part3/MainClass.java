@@ -19,7 +19,6 @@ public class MainClass {
 
             V[0] = new VehicleReservation(id, name, type, slot);
             V[0].setTime(time);
-            V[0].VehicleExitAndCalculateBill();
             V[0].DisplayInfo();
 
             //Second Vehichle
@@ -47,6 +46,7 @@ public class MainClass {
             }else{
                 System.out.println("The Vehichles are not beside eachother");
             }
+            VehicleReservation.DisplayCurrentlyTotalVehcilesInTheParking();
 
             sc.close();
     }
