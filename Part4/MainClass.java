@@ -703,6 +703,5 @@ public class MainClass {
                 F2.TotalBill(bill);
                 F2.displayInfo();
             }
-        sc.close();
     }
 }
