@@ -155,11 +155,12 @@ public class FoodOrder {
         }
         
     }
-    public static void invalidCheck(int min, int max,int count, Scanner sc){
+    public static int invalidCheck(int min, int max,int count, Scanner sc){
         while(count < min || count > max){
             System.out.print("Invalid Choice!\nTry Again ("+min+"-"+max+"):");
             count = sc.nextInt();
         }
+        return count;
     }
     //Method For TableTax
     private void tableTax(float bill){
