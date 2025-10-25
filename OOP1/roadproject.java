@@ -93,4 +93,43 @@ public class roadproject {
         System.out.println("Total tax applied on the project = " + RoadProjectTax + "Million");
         System.out.println();
     }
+
+    public static double sum(roadproject r1, roadproject r2){
+        int alt1 = r1.RoadProject_ID;
+        int comp1 = 0;
+        int last1 = alt1%10;
+    while(alt1 != 0){
+        int n = alt1 % 10;
+        if(n != last1){
+            comp1 = 0;
+            break;
+        }else{
+            comp1 = 1;
+        }
+        comp1 = 1;
+        alt1 = alt1/10;
+        }
+
+        int alt2 = r2.RoadProject_ID;
+        int comp2 = 0;
+        int last2 = alt2%10;
+        while(alt2 != 0){
+            int n = alt2 % 10;
+            if(n != last2){
+                comp2 = 0;
+                break;
+            }else{
+                comp2 = 1;
+            }
+            comp2 = 1;
+            alt2 = alt2/10;
+        }
+
+        if(comp1 == comp2){
+            double total = r1.RoadCost + r2.RoadCost;
+            return total;
+        }else{
+            return 0.0;
+        }
+    }
 }
