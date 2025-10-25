@@ -4,6 +4,13 @@ public class circle {
     private int radius;
     private float area;
     private float circumference;
+    //make a copy constructor
+    //make one argument constructor for int radius
+    //make getters and setters
+    //void calculate area
+    //void calculate circumference
+    //public static circle addCircle(circle c1, circle c2)
+    //void displayinfo()
     
     void setradius(int radius){
         this.radius = radius;
