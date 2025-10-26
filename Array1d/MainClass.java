@@ -1,5 +1,7 @@
 package Array1d;
 
+import java.util.Arrays;
+
 public class MainClass {
     public static void main(String [] args){
         // int[] marks = {2,3,1,4};
@@ -11,5 +13,9 @@ public class MainClass {
         array a1 = new array();
         float[] marks = {2,5,1,45};
         a1.setMarks(marks.length, marks);
+        marks[0] = 9;
+
+        System.out.println(Arrays.toString(marks));
+        a1.display();
     }
 }
