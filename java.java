@@ -1,6 +1,8 @@
 import java.util.Arrays;
+import java.util.Scanner;
 public class java {
     public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
         String x = "Danial";
         int a = -5;
         int b = Math.abs(a);
@@ -22,5 +24,23 @@ public class java {
         System.out.println(Arrays.toString(i));
         Arrays.sort(p);
         System.out.println(Arrays.toString(p));
+
+        System.out.print("Enter prime :");
+        int num = sc.nextInt();
+        boolean prime = true;
+
+        if(num <= 1){
+            prime = false;
+        }
+        for(int q = 2; q < num; q++){
+            if(num % q == 0){
+                prime = false;
+            }
+        }
+        if(prime == true){
+            System.out.println("Num is prime");
+        }else{
+            System.out.println("Num is not prime");
+        }
     }
 }
