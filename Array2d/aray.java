@@ -3,11 +3,18 @@ package Array2d;
 import java.util.Arrays;
 
 public class aray {
+    private static int cv;
     private int[][] a1;
     private int[][] a2;
     private int[][] sum;
     private int[][] mult;
 
+
+    public aray(){
+        for(int i = 0; i < 5; i++){
+                ++cv;
+        }
+    }
     void seta(int[][] b,int r,int c){
         a1 = new int[r][c];
         this.a1 = b.clone();
@@ -66,14 +73,19 @@ public class aray {
         for(int i = 0; i < r; i++){
             for(int j = 0; j < r; j++){
                 for(int k = 0; k < r; k++){
-                    mult[i][j] += a1[k][i] * a2[j][k]; 
+                    mult[i][j] += a1[i][k] * a2[k][j]; 
                 }
             }
         }
     }
 
+    int getCV(){
+        return cv;
+    }   
+
     void display(){
         System.out.println("Sum = "+Arrays.deepToString(sum));
         System.out.println("Multiplication = "+Arrays.deepToString(mult));
+        System.out.println("CV = "+cv);
     }
 }

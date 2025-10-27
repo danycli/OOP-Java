@@ -3,6 +3,9 @@ package Array2d;
 public class MainClass {
     public static void main(String [] args){
         aray a1 = new aray();
+        aray a2 = new aray();
+        aray a3 = new aray();
+        aray a4 = new aray();
         int[][] r = {{1,1},{1,1}};
         int[][] c = {{2,2},{2,2}};
 
