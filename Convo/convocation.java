@@ -5,6 +5,7 @@ public class convocation {
     // ----------------------------
     // Data Members
     // ----------------------------
+    private final String Name; 
     private int convocationId;
     private String convocationYear; // e.g. "2025"
     private int[] studentIds = new int[100]; // can store up to 100 students
@@ -16,10 +17,11 @@ public class convocation {
     // ----------------------------
     // Constructors
     // ----------------------------
-    public convocation(int convocationId, String convocationYear) {
+    public convocation(int convocationId, String convocationYear, String Name) {
         this.convocationId = convocationId;
         this.convocationYear = convocationYear;
         totalConvocationObjectsCreated++; // increment count when object is created
+        this.Name = Name;
     }
 
     // ----------------------------
