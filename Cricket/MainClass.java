@@ -1,4 +1,5 @@
 package Cricket;
+import java.util.Arrays;
 import java.util.Scanner;
 public class MainClass {
     public static void main(String [] args){
@@ -24,11 +25,8 @@ public class MainClass {
         {0, 2, -1, 4, 1, 0},    // Over 19
         {6, 0, 1, 1, 4, 2}      // Over 20
     };
-        Scanner sc = new Scanner(System.in);
-        Match M1 = new Match(match);
-        System.out.print("What Information do you Want to extract ?\n1.\nChoose :");
-        int info = sc.nextInt();
-        
-
+    Scanner sc = new Scanner(System.in);
+    System.out.println(Arrays.deepToString(match));
+    sc.close();
     }
 }

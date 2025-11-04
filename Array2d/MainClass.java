@@ -14,5 +14,8 @@ public class MainClass {
         a1.calSum(r.length, r.length);
         a1.calMult(r.length);
         a1.display();
+        a2.display();
+        a3.display();
+        a4.display();
     }   
 }

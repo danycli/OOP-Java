@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class java {
     public static void main(String [] args){
         Scanner sc = new Scanner(System.in);
-        String x = "Danial";
+        // String x = "Danial";
         int a = -5;
         int b = Math.abs(a);
         System.out.println(a+" "+b);
@@ -42,5 +42,6 @@ public class java {
         }else{
             System.out.println("Num is not prime");
         }
+        sc.close();
     }
 }
