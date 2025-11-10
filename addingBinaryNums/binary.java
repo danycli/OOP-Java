@@ -7,7 +7,9 @@ public class binary {
         int carryIn = 0;
         int carryOut = 0;
 
-        
+        for(int i = 0; i < n.length; i++){
+            
+        }
 
     }
 }
