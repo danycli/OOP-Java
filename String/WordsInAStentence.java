@@ -1,7 +1,7 @@
 package String;
 import java.util.Scanner;
 public class WordsInAStentence {
-    public static void mani(String [] args){
+    public static void main(String [] args){
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         String[] sp = s.split(" ");
