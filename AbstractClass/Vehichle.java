@@ -2,17 +2,17 @@ package AbstractClass;
 import java.util.Scanner;
 public abstract class Vehichle {
     private int InspectionId;
-    private String VehichleType;
-    private int VehichleModel;
+    protected String VehichleType;
+    protected int VehichleModel;
     private double BaseFee;
     private double FinalFee;
-    private float average;
+    protected float average;
     //Constructor
     protected Vehichle(int inspectionId, double baseFee, int vehichleModel, String vehichleType){
-        setBaseFee(BaseFee);
+        setBaseFee(baseFee);
         setVehichleType(vehichleType);
-        setVehichleModel(VehichleModel);
-        setInspectionId(InspectionId);
+        setVehichleModel(vehichleModel);
+        setInspectionId(inspectionId);
     }
 
     Scanner sc = new Scanner(System.in);
@@ -69,22 +69,9 @@ public abstract class Vehichle {
     public float getAverage() {
         return average;
     }
+    //OilLevel
+    protected abstract void checkOilLevel();
     //Health Check
-    public void checkEngineHealth(int ave){
-        if(VehichleType.equals("Truck") && ave > 7.2){
-            System.out.println("Engine Health is Good");
-        }else{
-            System.out.println("Engine Health is not good");
-        }
-        if(VehichleType.equals("Car") && ave > 11.4){
-            System.out.println("Engine Health is Good");
-        }else{
-            System.out.println("Engine Health is not good");
-        }
-        if(VehichleType.equals("Motorcycle") && ave > 13.8){
-            System.out.println("Engine Health is Good");
-        }else{
-            System.out.println("Engine Health is not good");
-        }
-    }
+    protected abstract void checkEngineHealth();
+        
 }   
