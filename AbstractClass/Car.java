@@ -14,6 +14,11 @@ public class Car extends Vehichle{
         }
     }
     public void checkOilLevel(){
-        
+        int count 
+        for(int i = 1985; i <= 2025; i++){
+            if(VehichleModel == i){
+
+            }
+        }
     }
 }
