@@ -1,8 +1,11 @@
 package AbstractionInterface;
 
 public class JazzCash extends Payment{
+    public JazzCash(int amm){
+        super(amm);
+    }
     @Override
-    public void makePayment(int amount){
-        System.out.println("Payment through Jazz Cash of amount : "+amount);
+    public void makePayment(){
+        System.out.println("Payment through Jazz Cash of amount : "+ammount);
     }
 }
