@@ -8,9 +8,8 @@ public abstract class Vehichle {
     private double FinalFee;
     protected float average;
     //Constructor
-    protected Vehichle(int inspectionId, double baseFee, int vehichleModel, String vehichleType){
+    protected Vehichle(int inspectionId, double baseFee, int vehichleModel){
         setBaseFee(baseFee);
-        setVehichleType(vehichleType);
         setVehichleModel(vehichleModel);
         setInspectionId(inspectionId);
     }
@@ -44,12 +43,13 @@ public abstract class Vehichle {
         }
         InspectionId = inspectionId;
     }  
-    public void setVehichleType(String vehichleType) {
-        if(!vehichleType.equals("Truck") || !vehichleType.equals("Car") || !vehichleType.equals("Motorcycle")){
-            System.out.println("We dont service "+vehichleType+" we only service 'Truck','Car' & 'Motorcycle'\nTry again If you miss spelled the Vehichle Type");
-        }
-        VehichleType = vehichleType;
-    }
+    // public void setVehichleType(String vehichleType) {
+    //     if(!vehichleType.equals("Truck") || !vehichleType.equals("Car") || !vehichleType.equals("Motorcycle")){
+    //         System.out.println("We dont service "+vehichleType+" we only service 'Truck','Car' & 'Motorcycle'\nTry again If you miss spelled the Vehichle Type");
+    //     }
+    //     VehichleType = vehichleType;
+    // }
+
     //Getters
     public int getInspectionId() {
         return InspectionId;
@@ -73,5 +73,11 @@ public abstract class Vehichle {
     protected abstract void checkOilLevel();
     //Health Check
     protected abstract void checkEngineHealth();
+
+    public void displayInfo(){
+        System.out.println("Inspection Id number = "+InspectionId);
+        System.out.println("Vehichle type = "+VehichleType);
+        System.out.println("Vehichle Model = "+VehichleModel);
+    }
         
 }   
