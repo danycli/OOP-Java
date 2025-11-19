@@ -7,14 +7,17 @@ public abstract class Vehichle {
     private double BaseFee;
     private double FinalFee;
     private float average;
-
-    protected Vehichle(int InspectionId, double BaseFee, int VehichleModel){
+    //Constructor
+    protected Vehichle(int inspectionId, double baseFee, int vehichleModel, String vehichleType){
         setBaseFee(BaseFee);
+        setVehichleType(vehichleType);
         setVehichleModel(VehichleModel);
         setInspectionId(InspectionId);
     }
 
     Scanner sc = new Scanner(System.in);
+
+    //Setters
     public void setBaseFee(double baseFee) {
         while(baseFee < 0){
             System.out.print("Invalid Input!\nThe base fee cant be negative\nTry Again...");
@@ -47,6 +50,26 @@ public abstract class Vehichle {
         }
         VehichleType = vehichleType;
     }
+    //Getters
+    public int getInspectionId() {
+        return InspectionId;
+    }
+    public String getVehichleType() {
+        return VehichleType;
+    }
+    public int getVehichleModel() {
+        return VehichleModel;
+    }
+    public double getBaseFee() {
+        return BaseFee;
+    }
+    public double getFinalFee() {
+        return FinalFee;
+    }
+    public float getAverage() {
+        return average;
+    }
+    //Health Check
     public void checkEngineHealth(int ave){
         if(VehichleType.equals("Truck") && ave > 7.2){
             System.out.println("Engine Health is Good");
