@@ -1,11 +1,12 @@
 package AbstractClass;
+import java.text.NumberFormat;
 import java.util.Scanner;
 public abstract class Vehichle {
     private int InspectionId;
     protected String VehichleType;
     protected int VehichleModel;
-    private double BaseFee;
-    private double FinalFee;
+    protected double BaseFee;
+    protected double FinalFee;
     protected float average;
     //Constructor
     protected Vehichle(int inspectionId, double baseFee, int vehichleModel){
@@ -70,15 +71,28 @@ public abstract class Vehichle {
         return average;
     }
     //OilLevel
-    protected abstract void checkOilLevel();
+    protected void checkOilLevel(float ave){
+        
+    }
     //Health Check
-    protected abstract void checkEngineHealth();
+    protected void checkEngineHealth(float ave){
+        if(average > ave){
+            System.out.println("Engine Health is Good");
+        }else{
+            System.out.println("Engine Health is not good");
+        }
+    }
+    //Final Fee
+    protected abstract void calFinalFee ();
 
     public void displayInfo(){
         System.out.println("Inspection Id number = "+InspectionId);
         System.out.println("Vehichle type = "+VehichleType);
         System.out.println("Vehichle Model = "+VehichleModel);
         System.out.println("Average of your car is : "+average);
+        calFinalFee();
+        System.out.println("Your Total Bill is : "+NumberFormat.getCurrencyInstance().format(FinalFee));
+
     }
         
 }   

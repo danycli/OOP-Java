@@ -1,7 +1,9 @@
 package AbstractClass;
 public class Truck extends Vehichle{
+    private int count = 1;
         public Truck(int inspectionId, double baseFee, int vehichleModel){
         super(inspectionId,baseFee,vehichleModel);
+        VehichleType = "Truck";
     }
     public void checkEngineHealth(){
         if(average > 4.1){
@@ -9,6 +11,7 @@ public class Truck extends Vehichle{
         }else{
             System.out.println("Engine Health is not good");
         }
+        count += 7;
     }
     public void checkOilLevel(){
         average = (int)Math.random()*(7-3+1)-3;
@@ -17,5 +20,10 @@ public class Truck extends Vehichle{
         }else{
             System.out.println("Oil level is not good");
         }
+        count += 5;
+    }
+    public void calFinalFee(){
+        // Along with 4.7% of tax
+        FinalFee = (count*BaseFee)*4.7;
     }
 }
