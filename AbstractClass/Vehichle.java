@@ -78,6 +78,7 @@ public abstract class Vehichle {
         System.out.println("Inspection Id number = "+InspectionId);
         System.out.println("Vehichle type = "+VehichleType);
         System.out.println("Vehichle Model = "+VehichleModel);
+        System.out.println("Average of your car is : "+average);
     }
         
 }   

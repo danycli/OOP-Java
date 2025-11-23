@@ -5,9 +5,7 @@ public class Car extends Vehichle{
         super(inspectionId,baseFee,vehichleModel);
     }
 
-
     public void checkEngineHealth(){
-        VehichleType = "Car";
         if(average > 12.3){
             System.out.println("Engine Health is Good");
         }else{

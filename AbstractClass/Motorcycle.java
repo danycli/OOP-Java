@@ -6,7 +6,7 @@ public class Motorcycle extends Vehichle{
     }
 
     public void checkEngineHealth(){
-        if(VehichleType.equals("Motorcycle") && average > 33.7){
+        if(average > 33.7){
             System.out.println("Engine Health is Good");
         }else{
             System.out.println("Engine Health is not good");
@@ -14,5 +14,10 @@ public class Motorcycle extends Vehichle{
     }
     public void checkOilLevel(){
         average = (float)Math.random()*(60-30+1)-30;
+        if(average > 46.7){
+            System.out.println("Oil level is good");
+        }else{
+            System.out.println("Oil level is not good");
+        }
     }
 }
