@@ -5,22 +5,16 @@ public class Truck extends Vehichle{
         super(inspectionId,baseFee,vehichleModel);
         VehichleType = "Truck";
     }
+    @Override
     public void checkEngineHealth(){
-        if(average > 4.1){
-            System.out.println("Engine Health is Good");
-        }else{
-            System.out.println("Engine Health is not good");
-        }
-        count += 7;
-    }
-    public void checkOilLevel(){
-        average = (int)Math.random()*(7-3+1)-3;
-        if( average > 5.4 ){
-            System.out.println("Oil level is good");
-        }else{
-            System.out.println("Oil level is not good");
-        }
+        super.checkEngineHealth();
         count += 5;
+    }
+    @Override
+    public void checkOilLevel(){
+        average = (float)(3+Math.random()*(7-3));
+        super.checkOilLevel();
+        count += 7;
     }
     public void calFinalFee(){
         // Along with 4.7% of tax

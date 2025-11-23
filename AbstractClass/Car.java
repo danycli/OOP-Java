@@ -9,16 +9,13 @@ public class Car extends Vehichle{
     }
     @Override
     public void checkEngineHealth(){
-        super.checkEngineHealth(12.3f);
+        super.checkEngineHealth();
         count += 4;
     }
+    @Override
     public void checkOilLevel(){
-        average = (float)Math.random()*(30-10+1)-10;
-        if(average > 12.3){
-            System.out.println("Oil level is good");
-        }else{
-            System.out.println("Oil level is not good");
-        }
+        average =(float)(10+ Math.random()*(30-10));
+        super.checkOilLevel();
         count += 6;
     }
     public void calFinalFee(){

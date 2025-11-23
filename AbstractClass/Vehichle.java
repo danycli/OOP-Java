@@ -8,6 +8,7 @@ public abstract class Vehichle {
     protected double BaseFee;
     protected double FinalFee;
     protected float average;
+    private float ave;
     //Constructor
     protected Vehichle(int inspectionId, double baseFee, int vehichleModel){
         setBaseFee(baseFee);
@@ -71,12 +72,30 @@ public abstract class Vehichle {
         return average;
     }
     //OilLevel
-    protected void checkOilLevel(float ave){
-        
+    protected void checkOilLevel(){
+        if(VehichleType.equals("Car")){
+            ave = 12.3f;
+        }else if(VehichleType.equals("Truck")){
+            ave = 4.1f;
+        }else{
+            ave = 33.7f;
+        }
+        if(average >= ave){
+            System.out.println("Oil level is good");
+        }else{
+            System.out.println("Oil level is not good");
+        }
     }
     //Health Check
-    protected void checkEngineHealth(float ave){
-        if(average > ave){
+    protected void checkEngineHealth(){
+        if(VehichleType.equals("Car")){
+            ave = 12.3f;
+        }else if(VehichleType.equals("Truck")){
+            ave = 4.1f;
+        }else{
+            ave = 33.7f;
+        }
+        if(average >= ave){
             System.out.println("Engine Health is Good");
         }else{
             System.out.println("Engine Health is not good");
@@ -86,10 +105,10 @@ public abstract class Vehichle {
     protected abstract void calFinalFee ();
 
     public void displayInfo(){
-        System.out.println("Inspection Id number = "+InspectionId);
-        System.out.println("Vehichle type = "+VehichleType);
-        System.out.println("Vehichle Model = "+VehichleModel);
-        System.out.println("Average of your car is : "+average);
+        System.out.println("Inspection Id number = "+ InspectionId);
+        System.out.println("Vehichle type = "+ VehichleType);
+        System.out.println("Vehichle Model = "+ VehichleModel);
+        System.out.println("Average of your car is : "+ average);
         calFinalFee();
         System.out.println("Your Total Bill is : "+NumberFormat.getCurrencyInstance().format(FinalFee));
 
