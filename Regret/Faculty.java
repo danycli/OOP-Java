@@ -13,6 +13,9 @@ public class Faculty extends Employee{
     public void setFid(int fid) {
         this.fid = fid;
     }
+    public void setNumberOfPublications(int numberOfResearchPublications){
+        this.numberOfResearchPublications = numberOfResearchPublications;
+    }
 
     private int getFid() {
         return fid;
@@ -24,16 +27,16 @@ public class Faculty extends Employee{
     public void calculateSalary() { 
         salary=2000* numberOfResearchPublications; 
     } 
-    public void calculateTax() { 
-        tax=salary*0.03; 
-    }
+    @Override
     public void calculateGpfund (){
-        gpfund = salary *12;
+        super.calculateGpfund();
         gpfund =gpfund * (numberOfResearchPublications+10);
     }
-    public void displayInfo() {
-        System.out.println("id = "+fid);
+    @Override
+    public void display() {
+        System.out.println("id = "+getFid());
         super.display();
+        System.out.println("Number of Reaserches = "+getNumberOfResearchPublications());
     }
     
 }

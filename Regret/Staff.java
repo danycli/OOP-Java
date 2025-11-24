@@ -24,23 +24,23 @@ public class Staff extends Employee{
     private int getNumberOfProjects() {
         return numberOfProjects;
     }
-
-    void calculateSalary() { 
+    @Override
+    public void calculateSalary() { 
         salary=3000* numberOfProjects; 
-    } 
-    void calculateTax() { 
-        tax=salary*0.03; 
     }
-    void calculateGpfund (){
-        gpfund = salary *12;
-        gpfund =gpfund * (numberOfProjects+8);
+    @Override
+    public void calculateGpfund (){
+        super.calculateGpfund();
+        gpfund =gpfund * (numberOfProjects + 8);
     }
-    void calculateBonus (){
+    public void calculateBonus (){
         bonus= salary/2;
     }
-    void displayInfo() {
-        System.out.println("Id = "+sId);
+    @Override
+    public void display() {
+        System.out.println("Id = "+getsId());
         super.display();
+        System.out.println("Number of projects = "+getNumberOfProjects());
         System.out.println("Bonus = "+bonus);
     }
 }

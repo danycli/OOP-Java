@@ -1,6 +1,8 @@
 package Regret;
 
-public class Employee {
+import java.text.NumberFormat;
+
+public abstract class Employee {
     private String name;
     private String department;
     protected double salary;
@@ -39,11 +41,20 @@ public class Employee {
         this.department = department;
     }
 
-    public void display(){
-        System.out.println("Name = "+name);
-        System.out.println("Department = "+department);
-        System.out.println("Salary = "+salary);
-        System.out.println("Tax = "+tax);
-        System.out.println("GP Fund = "+gpfund);
+    protected abstract void calculateSalary();
+    
+    public void calculateTax() { 
+        tax=salary*0.03;
+    }
+    void calculateGpfund (){
+        gpfund = salary *12;
+    }
+
+    protected void display(){
+        System.out.println("Name = "+getName());
+        System.out.println("Department = "+getDepartment());
+        System.out.println("Salary = "+NumberFormat.getCurrencyInstance().format(getSalary()));
+        System.out.println("Tax = "+NumberFormat.getCurrencyInstance().format(getTax()));
+        System.out.println("GP Fund = "+getGpfund());
     }
 }
