@@ -9,7 +9,7 @@ public class MainClass {
         int player = 1;
         boolean gameOver = false;
         while(gameOver != true ){
-            Table.table();
+            Table.table(); 
             System.out.print("Player "+player+" turn : ");
             int num = sc.nextInt();
             while(num < 0 || num > 9){
