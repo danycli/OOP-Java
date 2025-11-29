@@ -51,32 +51,4 @@ public class Table {
             }
         return won;
     }
-    // public static boolean Checkdraw(char symb){
-    //     boolean draw = false;
-        
-    //     for(int i = 1; i < 3; i++){
-    //         if(i == 2){
-    //             symb = 'O';
-    //         }
-    //         //Rows
-    //         for(int j = 0; j < 3; j++){
-    //         if(board[j][j] != symb || board[j][j+1] != symb || board[j][j+2] != symb){
-    //             draw = true;
-    //         }
-    //     }
-    //     //Coloumns
-    //     for(int k = 0; k < 3; k++){
-    //         if(board[i][i] != symb && board[i][i+1] != symb || board[i+2][i] != symb){
-    //             draw = true;
-    //         }
-    //     }
-    //     //Diognals
-    //     for(int z = 0; z < 3; z++){
-    //         if(board[z][z] != symb || board[i+1][i+1] != symb || board[i+2][i+2] != symb){
-    //             draw = true;
-    //         }
-    //     }
-    //     }
-    //     return draw;
-    // }
 }
