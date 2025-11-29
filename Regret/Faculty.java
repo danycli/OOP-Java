@@ -2,7 +2,7 @@ package Regret;
 
 public class Faculty extends Employee{
     private int fid;
-    private int numberOfResearchPublications;
+    private int numberOfResearchPublications; 
 
     public Faculty(int fid, String name, String department, int numberOfResearchPublications) {
         super(name,department);
