@@ -18,10 +18,46 @@ public class Table {
                 System.out.println("-----|-----|-----");
         }
     }
-    public static boolean placeMove(int num){
-        
-    }
-    public static void gameWon(){
+    public static boolean placeMove(int num, char symb){
+        int r = (num-1) / 3;
+        int c = (num-1) % 3;
 
+        if(board[r][c] == 'X' || board[r][c] == 'O'){
+            return false;
+        }else{
+            board[r][c] = symb;
+            return true;
+        }
+    }
+    public static boolean gameWon(){
+        boolean won = false;
+        //Rows
+        for(int i = 0; i < 3; i++){
+            if(board[i][i] == board[i][i+1] && board[i][i] == board[i][i+2]){
+                won = true;
+                break;
+            }
+        }
+        //Coloumns
+        for(int i = 0; i < 3; i++){
+            if(board[i][i] == board[i+1][i] && board[i][i] == board[i+2][i]){
+                won = true;
+                break;
+            }
+        }
+        //Diognals
+        for(int i = 0; i < 3; i++){
+            if(board[i][i] == board[i+1][i+1] && board[i][i] == board[i+2][i+2]){
+                won = true;
+                break;
+            }
+        }
+        return won;
+    }
+    public static boolean Checkdraw(char symb){
+        
+        if(){
+
+        }
     }
 }

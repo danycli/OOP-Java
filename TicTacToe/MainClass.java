@@ -6,13 +6,11 @@ public class MainClass {
     public static void main(String [] args){
         System.out.println(".....Welcome to Tic Tac Toe.....");
         Scanner sc = new Scanner(System.in);
-        char symb = '1';
-        int r=0,c=0;
+        Table.table();
+        char symb = 'X';
         int player = 1;
         boolean gameOver = false;
         while(gameOver != true ){
-            Table.table(r,c,symb);
-            r = 0; c = 0;
             System.out.print("Player "+player+" turn : ");
             symb = sc.nextLine().charAt(0);
             int num = symb - '0';
@@ -21,21 +19,26 @@ public class MainClass {
                 symb = sc.nextLine().charAt(0);
                 num = symb - '0';
             }
-            if(num >= 3){
-                c = num - 1;
-            }else if(num >= 6){
-                r = 1;
-                c = num - 1;
-            }else{
-                r = 2;
-                c = num - 1;
+
+            boolean check = Table.placeMove(num,symb);
+            while(check == false){
+                check = Table.placeMove(num,symb);
+                System.out.println("Invalid Move!\nTry Again....");
+                symb = sc.nextLine().charAt(0);
+                num = symb - '0';
             }
-            if(player == 1){
-                symb = 'X';
-            }else{
-                symb = 'O';
+            Table.table();
+            boolean won = Table.gameWon();
+            if(won == true){
+                String wonMessage = (symb == 'X') ? "Player 1 Won" : "Player 2 Won"; 
+                System.out.println(wonMessage);
+                break;
             }
+            boolean draw = Table.Checkdraw(symb);
+
+            symb = (symb == 'X') ? '0' : 'X';
             player = (player == 1) ? 2 : 1 ;
         }
+        sc.close();
     }
 }
