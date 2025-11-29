@@ -10,11 +10,10 @@ public class Equals extends Object{
     }
     @Override
     public boolean equals(Object e2){
-        Equals pov = (Equals)e2;
-        boolean chk = false;
-        if(this.h == pov.h && this.y == pov.y){
-            chk = true;
+        if(!(e2 instanceof Equals)){
+            return false;
         }
-        return chk;
+        Equals pov = (Equals)e2;
+        return this.h == pov.h && this.y == pov.y;
     }
 }
