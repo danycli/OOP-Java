@@ -1,6 +1,6 @@
-package secondOne;
+package PurePloymorphism;
 
-public class square {
+public class square extends shape{
     private int ID;
     private float sideLength;
     private float area;
@@ -30,14 +30,14 @@ public class square {
     public float getPerimeter() {
         return perimeter;
     }
-
+    @Override
     public void calculateArea(){
         area = sideLength*sideLength;
     }
     public void calculatePerimeter(){
         perimeter = 4* sideLength;
     }
-
+    @Override
     public void displayInfo(){
         System.out.println(ID+sideLength+area+perimeter);
     }

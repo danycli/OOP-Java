@@ -1,6 +1,6 @@
-package secondOne;
+package PurePloymorphism;
 
-public class circle {
+public class circle extends shape{
     private int ID;
     private float radius;
     private float area;
@@ -30,11 +30,15 @@ public class circle {
     public float getCircumference() {
         return circumference;
     }
-
+    @Override
     public void calculateArea(){
         area = 3.142f*radius*radius;
     }
     public void calculateCircumference(){
         circumference = 2*3.142f*radius;
+    }
+    @Override
+    public void displayInfo(){
+        System.out.println(ID+radius+area+circumference);
     }
 }
