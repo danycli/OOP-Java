@@ -1,6 +1,6 @@
 package PurePloymorphism;
 
-public class square extends shape{
+public class square implements shape{
     private int ID;
     private float sideLength;
     private float area;

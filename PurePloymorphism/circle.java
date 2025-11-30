@@ -1,6 +1,6 @@
 package PurePloymorphism;
 
-public class circle extends shape{
+public class circle implements shape{
     private int ID;
     private float radius;
     private float area;

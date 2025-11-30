@@ -1,6 +1,6 @@
 package PurePloymorphism;
 
-public abstract class shape {
+interface shape {
     public abstract void calculateArea();
     public abstract void displayInfo();
 }
