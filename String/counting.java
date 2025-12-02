@@ -5,9 +5,7 @@ public class counting {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your Name :");
         String name = sc.nextLine();
-        name = name.toLowerCase();
-        name = name.replace(" ","");
-        String[] sp = name.split("");
+        String[] sp = name.replace(" ","").toLowerCase().split("");
 
         int count = 0;
 

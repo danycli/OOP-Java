@@ -24,6 +24,6 @@ public class MainClass{
         //Object removal
         Integer v = 6;
         list.remove(v);
-        System.out.println(list);
+        System.out.println(list+"   "+list.size());
     }
 }
