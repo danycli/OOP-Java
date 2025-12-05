@@ -30,7 +30,7 @@ public class Student {
             if(e instanceof MarksException){
                 ((MarksException) e).display();
             }else if(e instanceof ArrayIndexOutOfBoundsException){
-                System.out.println("The array size is not greater than "+marks.length);
+                System.out.println("Index size out of range.Array Size = "+marks.length);
             }
         }
     }
@@ -46,7 +46,7 @@ public class Student {
             return marks[index];
         }
         catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("The array size is not greater than "+marks.length);
+                System.out.println("Index size out of range.Array Size = "+marks.length);
                 return 0;
         }
     }
@@ -59,13 +59,15 @@ public class Student {
             return S1.marks[index] + S1.marks[index];
         }
         catch(RuntimeException e){
-            ArrayIndexOutOfBoundsException A = new ArrayIndexOutOfBoundsException();
-            if(e.equals(A)){
-                System.out.println("The Student dont have more than "+marks.length);
-            }else{
-                System.out.println("Any one or both of the students do not have marks for"+index+" subject");
+            if(e instanceof ArrayIndexOutOfBoundsException){
+                String student = (S2.marks.length > index) ? (S1.SName+" and "+S2.SName+" as well") : S2.SName+"`s" ;
+                System.out.println("Array size out of bound for "+student+" Marks Array");
+                return 0;
+            }else if(e instanceof NullPointerException){
+                System.out.println("Any one or both of the students do not have marks for "+index+" subject");
                 return 0;
             }
+            return 0;
         }
     }
 }
