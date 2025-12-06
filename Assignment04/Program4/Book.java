@@ -1,6 +1,6 @@
 package Assignment04.Program4;
 
-public class Book extends Publication{
+public final class Book extends Publication{
     private String author;
     //Constructor
     public Book(int id, String title, String author, float price) {

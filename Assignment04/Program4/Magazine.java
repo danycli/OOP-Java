@@ -1,6 +1,6 @@
 package Assignment04.Program4;
 
-public class Magazine extends Publication{
+public final class Magazine extends Publication{
     private int IssueNumber;
     private int year;
     //Constructor
@@ -28,7 +28,8 @@ public class Magazine extends Publication{
         discountedPrice = price * 0.30f;
     }
     //display
-    public void display(){
+    @Override
+    public void displayInfo(){
         System.out.println("Issue Number = "+getIssueNumber());
         System.out.println("Year Published = "+getYear());
         super.displayInfo();

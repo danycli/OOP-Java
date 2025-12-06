@@ -1,12 +1,14 @@
 package Assignment04.Program4;
 
+import java.text.NumberFormat;
+
 public abstract class Publication {
     private int id;
     private String title;
     protected float price;
     protected float discountedPrice;
     //Constructor
-    public Publication(int id, String title, float price, float discountedPrice) {
+    protected Publication(int id, String title, float price, float discountedPrice) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -45,7 +47,7 @@ public abstract class Publication {
     protected void displayInfo(){
         System.out.println("Id = "+getId());
         System.out.println("Title = "+getTitle());
-        System.out.println("Price = "+getPrice());
-        System.out.println("Discounted price = "+getDiscountedPrice());
+        System.out.println("Price = "+NumberFormat.getCurrencyInstance().format(getPrice()));
+        System.out.println("Discounted price = "+NumberFormat.getCurrencyInstance().format(getDiscountedPrice()));
     }
 }
