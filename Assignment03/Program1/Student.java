@@ -1,4 +1,4 @@
-package Assignment04.Program1;
+package Assignment03.Program1;
 
 public class Student {
     private int studentid;
