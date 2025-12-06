@@ -1,8 +1,8 @@
 package Assignment04.Program2;
 public class Machine {
-    int machineId;
-    double totalSensorsValue;
-    Sensor[] sensors;
+    private int machineId;
+    private double totalSensorsValue;
+    private Sensor[] sensors;
     public Machine(int machineId, int numberOfSensors) {
         this.machineId = machineId;
         sensors = new Sensor[numberOfSensors];

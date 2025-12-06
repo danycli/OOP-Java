@@ -1,7 +1,7 @@
 package Assignment04.Program1;
 
 public class MarksException extends RuntimeException {
-    String ErrorMessage;
+    private String ErrorMessage;
 
     public MarksException(){
         ErrorMessage = null;

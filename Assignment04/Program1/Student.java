@@ -5,6 +5,7 @@ public class Student {
     private String SName;
     private int[] marks;
     private double[] gpa;
+    
     public Student(int studentid, String sName, int numberOfSubjects) {
         this.studentid = studentid;
         SName = sName;
