@@ -1,4 +1,4 @@
-package Assignmet04.Program2;
+package Assignment04.Program2;
 
 public class Sensor {
     private int sensorid;

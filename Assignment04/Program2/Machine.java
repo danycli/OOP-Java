@@ -1,4 +1,4 @@
-package Assignmet04.Program2;
+package Assignment04.Program2;
 public class Machine {
     int machineId;
     double totalSensorsValue;

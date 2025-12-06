@@ -1,4 +1,4 @@
-package Assignmet04.Program1;
+package Assignment04.Program1;
 
 public class MarksException extends RuntimeException {
     String ErrorMessage;
