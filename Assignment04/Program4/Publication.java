@@ -3,8 +3,8 @@ package Assignment04.Program4;
 public abstract class Publication {
     private int id;
     private String title;
-    private float price;
-    private float discountedPrice;
+    protected float price;
+    protected float discountedPrice;
     //Constructor
     public Publication(int id, String title, float price, float discountedPrice) {
         this.id = id;
@@ -26,17 +26,26 @@ public abstract class Publication {
         this.discountedPrice = discountedPrice;
     }
     //Getters
-    public int getId() {
+    private int getId() {
         return id;
     }
-    public String getTitle() {
+    private String getTitle() {
         return title;
     }
-    public float getPrice() {
+    private float getPrice() {
         return price;
     }
-    public float getDiscountedPrice() {
+    private float getDiscountedPrice() {
         return discountedPrice;
     }
 
+    //discounted
+    protected abstract void calculateDiscountedPrice();
+    //display
+    protected void displayInfo(){
+        System.out.println("Id = "+getId());
+        System.out.println("Title = "+getTitle());
+        System.out.println("Price = "+getPrice());
+        System.out.println("Discounted price = "+getDiscountedPrice());
+    }
 }

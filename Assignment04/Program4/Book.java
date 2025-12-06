@@ -1,56 +1,29 @@
 package Assignment04.Program4;
 
 public class Book extends Publication{
-    private int id;
-    private String title;
     private String author;
-    private float price;
-    private float discountedPrice;
     //Constructor
     public Book(int id, String title, String author, float price) {
-        this.id = id;
-        this.title = title;
+        super(id, title, price, price);
         this.author = author;
-        this.price = price;
     }
-    //Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    //Setter
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-    //Getters
-    public int getId() {
-        return id;
-    }
-    public String getTitle() {
-        return title;
-    }
-    public String getAuthor() {
+    //Getter
+    private String getAuthor() {
         return author;
     }
-    public float getPrice() {
-        return price;
-    }
-    public float getDiscountedPrice() {
-        return discountedPrice;
-    }
     //Discount
+    @Override
     public void calculateDiscountedPrice(){
         discountedPrice = price * 0.90f;
     }
     //display
+    @Override
     public void displayInfo(){
-        
+        System.out.println("Author = "+getAuthor());
+        super.displayInfo();
     }
 }
