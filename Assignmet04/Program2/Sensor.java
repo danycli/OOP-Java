@@ -38,9 +38,9 @@ public class Sensor {
         ResultValue = (SensorType.equals("Temperature")) ? sensorValue*9.2 : sensorValue*3;
     }
     public void displayInfo(){
-        System.out.println("Sensor Type = "+SensorType);
+        System.out.println("\nSensor Type = "+SensorType);
         System.out.println("Sensor Id = "+sensorid);
         System.out.println("Sensor value = "+sensorValue);
-        System.out.println("Result Value = "+ResultValue);
+        System.out.println("Result Value = "+ResultValue+"\n");
     }
 }
