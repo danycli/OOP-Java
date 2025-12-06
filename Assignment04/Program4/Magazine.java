@@ -1,6 +1,6 @@
 package Assignment04.Program4;
 
-public class Magazine {
+public class Magazine extends Publication{
     private int id;
     private String title;
     private int IssueNumber;
@@ -53,5 +53,12 @@ public class Magazine {
     }
     public float getDiscountedPrice() {
         return discountedPrice;
+    }
+    //Discount
+    public void calculateDiscountedPrice(){
+        discountedPrice = price * 0.30f;
+    }
+    //display
+    public void display(){
     }
 }

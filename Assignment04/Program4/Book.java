@@ -1,6 +1,6 @@
 package Assignment04.Program4;
 
-public class Book {
+public class Book extends Publication{
     private int id;
     private String title;
     private String author;
@@ -48,5 +48,9 @@ public class Book {
     //Discount
     public void calculateDiscountedPrice(){
         discountedPrice = price * 0.90f;
+    }
+    //display
+    public void displayInfo(){
+        
     }
 }
