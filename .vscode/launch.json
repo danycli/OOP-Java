@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "mainClass": "LabAssignment02.Program01.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "mainClass": "LabAssignment02.Program02.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
