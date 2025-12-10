@@ -2,6 +2,9 @@ package FileHandling;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import javax.swing.*;
 
 public class nextApproch{
@@ -18,6 +21,17 @@ public class nextApproch{
             }
             catch(IOException e){
                 System.out.println("There is some error While opening the file");
+            }
+        }
+        int list = JOptionPane.showConfirmDialog(null, "Do you want to see the list of your players??");
+        if(list == 0){
+            String teamName = JOptionPane.showInputDialog(null,"Enter the name of your team..");
+            try{
+                String data = Files.readString(Paths.get(teamName+".txt"));
+                JOptionPane.showMessageDialog(null, data);
+            }
+            catch(IOException e){
+                System.out.println("There is some error while reading the file");
             }
         }
     }
