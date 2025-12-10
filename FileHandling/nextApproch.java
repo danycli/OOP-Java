@@ -20,7 +20,7 @@ public class nextApproch{
                 }
             }
             catch(IOException e){
-                System.out.println("There is some error While opening the file");
+                System.out.println("Stay curious. Keep building.");
             }
         }
         int list = JOptionPane.showConfirmDialog(null, "Do you want to see the list of your players??");
