@@ -6,8 +6,33 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "GUI.InputOutput.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "GUI.Match.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "Logics",
+            "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "GUI.Match.Logics",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
             "name": "nextApproch",
             "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "FileHandling.nextApproch",
             "projectName": "OOP-Java_4062772c"
         },
@@ -15,6 +40,7 @@
             "type": "java",
             "name": "Test",
             "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "FileHandling.Test",
             "projectName": "OOP-Java_4062772c"
         },
@@ -22,6 +48,7 @@
             "type": "java",
             "name": "MainClass",
             "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "LabAssignment02.Program01.MainClass",
             "projectName": "OOP-Java_4062772c"
         },
@@ -29,6 +56,7 @@
             "type": "java",
             "name": "MainClass",
             "request": "launch",
+            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "LabAssignment02.Program02.MainClass",
             "projectName": "OOP-Java_4062772c"
         },
