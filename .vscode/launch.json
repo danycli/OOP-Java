@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "nextApproch",
+            "request": "launch",
+            "mainClass": "FileHandling.nextApproch",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
             "name": "Test",
             "request": "launch",
             "mainClass": "FileHandling.Test",
