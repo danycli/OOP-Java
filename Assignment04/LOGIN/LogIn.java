@@ -1,4 +1,4 @@
-package Assignment04;
+package Assignment04.LOGIN;
 
 import java.awt.*;
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class LogIn extends JFrame {
     private JLabel password = LabelStyle.PasswordLabel("Password:");
     private JLabel TopLogin = LabelStyle.LoginLabel(" Login ");
     
-    LogIn(){
+    public LogIn(){
         setLocation(710,230);
         setSize(500,700);
         setLayout(null);

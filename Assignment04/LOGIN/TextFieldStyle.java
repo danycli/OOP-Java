@@ -1,4 +1,4 @@
-package Assignment04;
+package Assignment04.LOGIN;
 
 import java.awt.*;
 import javax.swing.*;
