@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Logics extends Application{
-    @Overrideg
+    @Override
     public void start(Stage stage){
         Group root = new Group();
         Scene scene = new Scene(root,Color.BISQUE);
