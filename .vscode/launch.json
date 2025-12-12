@@ -8,6 +8,13 @@
             "type": "java",
             "name": "MainClass",
             "request": "launch",
+            "mainClass": "Assignment04.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "MainClass",
+            "request": "launch",
             "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
             "mainClass": "GUI.InputOutput.MainClass",
             "projectName": "OOP-Java_4062772c"
