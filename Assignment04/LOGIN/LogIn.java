@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class LogIn extends JFrame {
-    private JFrame LoginFrame = new JFrame();
 
     private JButton LoginButton = ButtonStyle.LoginButton("Login");
     private JButton ForgotPass = ButtonStyle.ForgotPass("Forgot Password?");
