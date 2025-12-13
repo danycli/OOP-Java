@@ -44,4 +44,12 @@ public class LabelStyle {
 
         return l;
     }
+    public static JLabel RonaldoLabel(String text){
+        JLabel l = new JLabel(text);
+        l.setBounds(100,130,300,50);
+        l.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        l.setForeground(Color.BLACK);//Text Color
+
+        return l;
+    }
 }

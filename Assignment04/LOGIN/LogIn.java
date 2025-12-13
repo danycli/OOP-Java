@@ -4,8 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class LogIn extends JFrame {
-    private String pass = "nishtamara!!@@";
-    private String UserName = "Acid Eye";
+    private String pass;
+    private String UserName;
 
     private JButton LoginButton = ButtonStyle.LoginButton("Login");
     private JButton ForgotPass = ButtonStyle.ForgotPass("Forgot Password?");
@@ -21,6 +21,9 @@ public class LogIn extends JFrame {
 
     
     public LogIn(){
+        UserName = "Acid Eye";
+        pass = "nishtamara!!@@";
+
         setTitle("LogIn");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
@@ -76,6 +79,13 @@ public class LogIn extends JFrame {
     }
     public String getUserName() {
         return UserName;
+    }
+    //Setters for pass and username
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 
     //Setters for TextFields
