@@ -103,4 +103,15 @@ public class LabelStyle {
 
         return l;
     }
+    public static JLabel stlyeStats(String text){
+        JLabel l = new JLabel(text);
+
+        l.setBounds(130,100,400,300);
+        l.setBackground(new Color(43, 47, 54));
+        l.setFont(new Font("Aharoni", Font.PLAIN, 30));
+        l.setForeground(Color.WHITE);
+        l.setOpaque(true);
+
+        return l;
+    }
 }
