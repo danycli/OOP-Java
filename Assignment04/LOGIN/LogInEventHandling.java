@@ -2,22 +2,31 @@ package Assignment04.LOGIN;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 import Assignment04.DASHBOARD.Dashboard;
 
 public class LogInEventHandling extends MouseAdapter{
     private LogIn login;
+    private ForgotFrame forgotframe;
 
     public LogInEventHandling(LogIn L){
         login = L;
     }
+    public LogInEventHandling(ForgotFrame f){
+        forgotframe = f;
+    }
     
     @Override
     public void mouseClicked(MouseEvent e){
-        if(e.getSource() == login.getLoginButton()){
+        if(login != null && e.getSource() == login.getLoginButton()){
             loginButtonHandle();
-        }else if(e.getSource() == login.getForgotPass()){
-            forgotPassword();
+        }else if(login != null && e.getSource() == login.getForgotPass()){
+            ForgotFrame forgot = new ForgotFrame();
+            forgot.display();
+            login.dispose();
+        }else if(forgotframe != null && e.getSource() == forgotframe.getBack()){
+            LogIn Login = new LogIn();
+            Login.display();
+            forgotframe.dispose();
         }else if(e.getSource() == login.getUserField()){
             login.getUserField().setText("");
         }else if(e.getSource() == login.getPassField()){
@@ -25,8 +34,8 @@ public class LogInEventHandling extends MouseAdapter{
         }
     }
 
-    private void forgotPassword() {
-        JOptionPane.showMessageDialog(login, "I am not going to help you with this","Forgot Password",JOptionPane.PLAIN_MESSAGE);
+    private void PassForget(){
+        
     }
 
     private void loginButtonHandle(){
