@@ -43,10 +43,9 @@ public class TextFieldStyle extends FocusAdapter {
 
     @Override
     public void focusGained(FocusEvent e) {
-        if(login.getUserField().isFocusable()){
+        if(login.getUserField().isFocusable() && e.getSource() == login.getUserField()){
             login.setUserField(null);
-        }
-        if(login.getPassField().isFocusable()){
+        }else if(login.getPassField().isFocusable() && e.getSource() == login.getPassField()){
             login.setpassField(null);
         }
     }
