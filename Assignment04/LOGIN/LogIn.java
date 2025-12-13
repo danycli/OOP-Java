@@ -24,7 +24,7 @@ public class LogIn extends JFrame {
         setTitle("LogIn");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
-        setLocation(710,230);
+        setLocation(710,190);
         setSize(500,700);
         setLayout(null);
         getContentPane().setBackground(Color.CYAN);
