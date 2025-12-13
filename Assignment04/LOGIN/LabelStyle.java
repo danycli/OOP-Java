@@ -34,4 +34,13 @@ public class LabelStyle {
 
         return l;
     }
+
+    public static JLabel ErrorLabel(String text){
+        JLabel l = new JLabel(text);
+        l.setBounds(190,380,115,50);
+        l.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+        l.setForeground(Color.RED);//Text Color
+
+        return l;
+    }
 }

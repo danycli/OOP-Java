@@ -2,6 +2,10 @@ package Assignment04.LOGIN;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import Assignment04.DASHBOARD.Dashboard;
 
 public class LogInEventHandling extends MouseAdapter{
@@ -31,8 +35,12 @@ public class LogInEventHandling extends MouseAdapter{
                 login.dispose();
                 Dashboard dashboard = new Dashboard();
                 dashboard.display();
+            }else if(!(login.getpassFieldText().equals(login.getPass()) && login.getUserFieldText().equals(login.getUserName()))){
+                JLabel Error = LabelStyle.ErrorLabel("One or both Credentials are incorrect!");
+                login.add(Error);
+                // JOptionPane.showMessageDialog(null, "One or both Credentials are incorrect!");
             }else{
-                
+
             }
     }
 }
