@@ -8,6 +8,7 @@ public class DashboardEventHandling extends MouseAdapter {
     private Dashboard dashboard;
     private PlayFrame play;
     private Stats stats;
+    private Settings setting;
 
     public DashboardEventHandling(Dashboard d){
         dashboard = d;
@@ -18,6 +19,10 @@ public class DashboardEventHandling extends MouseAdapter {
     public DashboardEventHandling(Stats s){
         stats = s;
     }
+    public DashboardEventHandling(Settings s){
+        setting = s;
+    }
+    
     
 
     @Override
@@ -30,6 +35,14 @@ public class DashboardEventHandling extends MouseAdapter {
             Stats stats1 = new Stats();
             stats1.display();
             dashboard.dispose();
+        }else if(dashboard != null && e.getSource() == dashboard.getSettings()){
+            Settings settings = new Settings();
+            settings.display();
+            dashboard.dispose();
+        }else if(setting != null && e.getSource() == setting.getBack()){
+            Dashboard dashboard = new Dashboard();
+            dashboard.display();
+            setting.dispose();
         }else if(play != null && e.getSource() == play.getBack()){
             Dashboard dashboard = new Dashboard();
             dashboard.display();

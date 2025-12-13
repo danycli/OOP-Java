@@ -32,6 +32,7 @@ public class Dashboard extends JFrame{
         DashboardEventHandling mouseClick = new DashboardEventHandling(this);
         PLay.addMouseListener(mouseClick);
         ViewStats.addMouseListener(mouseClick);
+        Settings.addMouseListener(mouseClick);
 
         add(PLay);
         add(Settings);
@@ -45,13 +46,17 @@ public class Dashboard extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    //Getter for play & view Stats
+    //Getter for play,Settings & view Stats 
     public JButton getPLay() {
         return PLay;
     }
     public JButton getViewStats() {
         return ViewStats;
     }
+    public JButton getSettings() {
+        return Settings;
+    }
+
     public void display(){
         setVisible(true);
     }

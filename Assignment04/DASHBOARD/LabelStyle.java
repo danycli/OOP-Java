@@ -80,7 +80,6 @@ public class LabelStyle {
         JLabel l = new JLabel(text);
 
         l.setBounds(270,500,780,70);
-        l.setBackground(new Color(43, 47, 54));
         l.setOpaque(true);
         l.setHorizontalAlignment(SwingConstants.CENTER);
         l.setVerticalAlignment(SwingConstants.CENTER);
@@ -95,7 +94,7 @@ public class LabelStyle {
     public static JLabel stlyeWarning(String text){
         JLabel l = new JLabel(text);
 
-        l.setBounds(83,450,1035,100);
+        l.setBounds(136,445,928,110);
         l.setBackground(new Color(43, 47, 54));
         l.setFont(new Font("Minecrafter Alt", Font.PLAIN, 50));
         l.setForeground(Color.RED);
@@ -106,11 +105,28 @@ public class LabelStyle {
     public static JLabel stlyeStats(String text){
         JLabel l = new JLabel(text);
 
-        l.setBounds(130,100,400,300);
-        l.setBackground(new Color(43, 47, 54));
-        l.setFont(new Font("Aharoni", Font.PLAIN, 30));
-        l.setForeground(Color.WHITE);
+        l.setBounds(130,80,700,870);
+        l.setBackground(new Color(60, 65, 72));
+        l.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
+        l.setFont(new Font("Segoe UI", Font.PLAIN, 40));
+        l.setForeground(Color.CYAN);
         l.setOpaque(true);
+        l.setVerticalAlignment(SwingConstants.TOP);
+
+
+        return l;
+    }
+    public static JLabel stlyeSettings(String text){
+        JLabel l = new JLabel(text);
+
+        l.setBounds(130,80,700,870);
+        l.setBackground(new Color(60, 65, 72));
+        l.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
+        l.setFont(new Font("Segoe UI", Font.PLAIN, 40));
+        l.setForeground(Color.CYAN);
+        l.setOpaque(true);
+        l.setVerticalAlignment(SwingConstants.TOP);
+
 
         return l;
     }

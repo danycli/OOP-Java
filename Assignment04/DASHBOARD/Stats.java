@@ -7,14 +7,32 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 public class Stats extends JFrame{
-    String freshStats = "<html>Total Games Played : 39<br>Total Wins : 35<br>Kills : 912<br>Knockdowns :1297<br>K/D : 4.5<br>Time game Played :9 hours<br></html>";
+    String freshStats ="<html>" +
+                    "<b>Player Progress</b><br>"+
+                    "Level : 5<br>"+
+                    "Rank : GrandMaster IV<br>"+
+                    "Total XP : 1250<br><br>"+
+                    "<b>Match Performance</b><br>"+
+                    "Total Games : 39<br>"+
+                    "Wins : 35<br>"+
+                    "Losses : 4<br>"+
+                    "Win Rate : 94%<br><br>"+
+                    "<b>Combat Stats</b><br>"+
+                    "Kills : 912<br>"+
+                    "Knockdowns : 1297<br>"+
+                    "K/D Ratio : 4.5<br>"+
+                    "Headshot Rate : 84.7%<br><br>"+
+                    "<b>Play Time & Achievements</b><br>"+
+                    "Play Time : 14h 32m<br>"+
+                    "Achievements : 12 / 90<br>"+"</html>";
+
     private JButton back = ButtonStyle.styleBack("Back");
     private JLabel stats = LabelStyle.stlyeStats(freshStats);
 
     public Stats(){
         setSize(1200,1000);
         setLocation(360,40);
-        setTitle("Dashboard");
+        setTitle("Stats");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
         setResizable(false);

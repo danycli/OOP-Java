@@ -9,12 +9,12 @@ import java.awt.Color;
 public class PlayFrame extends JFrame {
 
     JButton back = ButtonStyle.styleBack("Back");
-    JLabel warning = LabelStyle.stlyeWarning("The game is under development, go back!");
+    JLabel warning = LabelStyle.stlyeWarning("<html>The game is under Maintinance<br><center>go back!</center></html>");
 
     public PlayFrame(){
         setSize(1200,1000);
         setLocation(360,40);
-        setTitle("Dashboard");
+        setTitle("Play");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
         setResizable(false);
