@@ -12,14 +12,17 @@ public class LogIn extends JFrame {
 
     private JTextField userField = TextFieldStyle.UserField("👤 Type your username");
     private JTextField passField = TextFieldStyle.PassField("🔒 Type your password");
+    private JTextField DummyField = TextFieldStyle.dummyfield(""); //For focus 
 
     private JLabel username = LabelStyle.UsernameLabel("Username:");
     private JLabel password = LabelStyle.PasswordLabel("Password:");
     private JLabel TopLogin = LabelStyle.LoginLabel(" Login ");
+    private JLabel Error = LabelStyle.ErrorLabel("");
+
     
     public LogIn(){
         setTitle("LogIn");
-        ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\LOGIN\\favicon5.png");
+        ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
         setLocation(710,230);
         setSize(500,700);
@@ -27,6 +30,7 @@ public class LogIn extends JFrame {
         getContentPane().setBackground(Color.CYAN);
 
         LogInEventHandling mouseClick = new LogInEventHandling(this);
+        TextFieldStyle clicked = new TextFieldStyle(this);
         
         add(TopLogin);
         add(username);
@@ -35,7 +39,13 @@ public class LogIn extends JFrame {
         add(passField);
         add(ForgotPass);
         add(LoginButton);
+        add(Error);
+        add(DummyField);
+
         LoginButton.addMouseListener(mouseClick);
+        ForgotPass.addMouseListener(mouseClick);
+        userField.addFocusListener(clicked);
+        passField.addFocusListener(clicked);
 
         setResizable(false); // Restricting the frame not to maximize because making the frame componenton the to hendled dynamic is a headach for me
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +86,10 @@ public class LogIn extends JFrame {
         this.passField.setText(text);
     }
 
+    public void showError(String text){
+        Error.setText(text);
+        Error.setVisible(true);
+    }
     public void display(){
         setVisible(true);
     }

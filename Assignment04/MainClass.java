@@ -6,8 +6,5 @@ public class MainClass {
         public static void main(String [] args){
             LogIn login = new LogIn();
             login.display();
-
-            // Dashboard dashboard = new Dashboard();
-            // dashboard.display();
         }
 }
