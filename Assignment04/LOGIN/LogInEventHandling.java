@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import Assignment04.DASHBOARD.Dashboard;
 
 public class LogInEventHandling extends MouseAdapter{
-    LogIn login;
+    private LogIn login;
 
     public LogInEventHandling(LogIn L){
         login = L;

@@ -4,7 +4,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 
 public class Dashboard extends JFrame{
@@ -30,6 +29,8 @@ public class Dashboard extends JFrame{
         setLayout(null);
         getContentPane().setBackground(new Color(43, 47, 54));
 
+        DashboardEventHandling mouseClick = new DashboardEventHandling(this);
+        PLay.addMouseListener(mouseClick);
 
         add(PLay);
         add(Settings);
@@ -43,6 +44,10 @@ public class Dashboard extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //Getter for play
+    public JButton getPLay() {
+        return PLay;
+    }
     public void display(){
         setVisible(true);
     }
