@@ -3,7 +3,6 @@ package Assignment04.DASHBOARD;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
 import java.awt.Color;
 import java.awt.Font;
 
@@ -89,6 +88,17 @@ public class LabelStyle {
         l.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.GRAY));
         l.setFont(new Font("Minecrafter Alt", Font.PLAIN, 30));
         l.setForeground(Color.WHITE);
+        l.setOpaque(true);
+
+        return l;
+    }
+    public static JLabel stlyeWarning(String text){
+        JLabel l = new JLabel(text);
+
+        l.setBounds(83,450,1035,100);
+        l.setBackground(new Color(43, 47, 54));
+        l.setFont(new Font("Minecrafter Alt", Font.PLAIN, 50));
+        l.setForeground(Color.RED);
         l.setOpaque(true);
 
         return l;

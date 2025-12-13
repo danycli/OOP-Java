@@ -21,7 +21,8 @@ public class DashboardEventHandling extends MouseAdapter {
             play.display();
             dashboard.dispose();
         }else if(e.getSource() == play.getBack()){
-
+            Dashboard dashboard = new Dashboard();
+            dashboard.display();
         }
     }
 }

@@ -9,8 +9,8 @@ import java.awt.Color;
 
 public class PlayFrame extends JFrame {
 
-    JButton back = new JButton("Back");
-    JLabel warning = new JLabel("The game is under development, go back!");
+    JButton back = ButtonStyle.styleBack("Back");
+    JLabel warning = LabelStyle.stlyeWarning("The game is under development, go back!");
 
     public PlayFrame(){
         setSize(1200,1000);
@@ -23,9 +23,12 @@ public class PlayFrame extends JFrame {
         getContentPane().setBackground(new Color(43, 47, 54));
 
         DashboardEventHandling MouseClick = new DashboardEventHandling(this);
+        back.addMouseListener(MouseClick);
         
         add(back);
         add(warning);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public JButton getBack() {
