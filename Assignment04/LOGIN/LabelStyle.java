@@ -76,4 +76,15 @@ public class LabelStyle {
 
         return l;
     }
+    public static JLabel warning(String text){
+        JLabel l = new JLabel(text);
+
+        l.setBounds(190,210,80,50);
+        l.setBackground(new Color(43, 47, 54));
+        l.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        l.setForeground(Color.RED);
+        l.setOpaque(true);
+
+        return l;
+    }
 }

@@ -11,6 +11,7 @@ public class ForgotFrame extends JFrame{
     private JButton back = ButtonStyle.BackButton("Back");
     private JButton next = ButtonStyle.BackNext("Next");
     private JLabel ronaldo = LabelStyle.RonaldoLabel("Enter the full name of Ronaldo");
+    private JLabel error = LabelStyle.warning("Incorrect!");
     private JTextField name = TextFieldStyle.RonaldoField("");
     public ForgotFrame(){
         setTitle("Forgot Password");
@@ -29,6 +30,10 @@ public class ForgotFrame extends JFrame{
         add(ronaldo);
         add(name);
         add(next);
+        add(error);
+
+        error.setVisible(false);
+        error.setOpaque(false);
 
         setResizable(false); // Restricting the frame not to maximize because making the frame componenton the to hendled dynamic is a headach for me
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +48,10 @@ public class ForgotFrame extends JFrame{
     //getter for the text of the textField of name
     public String getName() {
         return name.getText();
+    }
+
+    public void showError(String text) {
+        error.setVisible(true);
     }
 
     public void display(){

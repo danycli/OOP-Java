@@ -36,6 +36,8 @@ public class LogInEventHandling extends MouseAdapter{
                 ResetPass resetting = new ResetPass();
                 resetting.display();
                 forgotframe.dispose();
+            }else{
+                forgotframe.showError("Incorrect!");
             }
         }else if(reset != null && e.getSource() == reset.getReset() && reset.getPassText() != null && reset.getUserText() != null){
                 LogIn newLogin = new LogIn();

@@ -3,6 +3,8 @@ package Assignment04.DASHBOARD;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import Assignment04.LOGIN.LogIn;
+
 public class DashboardEventHandling extends MouseAdapter {
 
     private Dashboard dashboard;
@@ -38,6 +40,10 @@ public class DashboardEventHandling extends MouseAdapter {
         }else if(dashboard != null && e.getSource() == dashboard.getSettings()){
             Settings settings = new Settings();
             settings.display();
+            dashboard.dispose();
+        }else if(dashboard != null && e.getSource() == dashboard.getBackToLogin()){
+            LogIn login = new LogIn();
+            login.display();
             dashboard.dispose();
         }else if(setting != null && e.getSource() == setting.getBack()){
             Dashboard dashboard = new Dashboard();

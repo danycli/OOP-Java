@@ -97,7 +97,7 @@ public class ButtonStyle {
 
         // ImageIcon setting = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\setting.png");
         // b.setIcon(setting);
-        b.setBounds(20,20,90,40);
+        b.setBounds(20,20,200,40);
         b.setCursor(new Cursor(Cursor.HAND_CURSOR));
         b.setBackground(new Color(60, 65, 72));
         b.setForeground(Color.WHITE);
