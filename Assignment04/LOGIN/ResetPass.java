@@ -5,19 +5,20 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.awt.Color;
 
-public class ForgotFrame extends JFrame{
-    private JButton back = ButtonStyle.BackButton("Back");
-    private JButton next = ButtonStyle.BackNext("Next");
-    private JLabel ronaldo = LabelStyle.RonaldoLabel("Enter the full name of Ronaldo");
-    private JTextField name = TextFieldStyle.RonaldoField("");
+public class ResetPass extends JFrame {
 
-    public String getName() {
-        return name.getText();
-    }
-    public ForgotFrame(){
-        setTitle("Forgot Password");
+    private JButton reset = new JButton("Reset");
+    private JLabel passReset = new JLabel("Password & Username Reset");
+    private JLabel passLabel = new JLabel("New Password:");
+    private JLabel userLabel = new JLabel("New User Name:");
+    private JTextField passText = new JTextField("");
+    private JTextField userText = new JTextField("");
+    
+    public ResetPass(){
+        setTitle("Reset Password");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
         setIconImage(favicon.getImage());
         setLocation(710,190);
@@ -26,25 +27,21 @@ public class ForgotFrame extends JFrame{
         getContentPane().setBackground(new Color(0, 255, 255));
 
         LogInEventHandling mouseClick = new LogInEventHandling(this);
-        back.addMouseListener(mouseClick);
-        next.addMouseListener(mouseClick);
+        reset.addMouseListener(mouseClick);
 
-        add(back);
-        add(ronaldo);
-        add(name);
-        add(next);
+        add(passReset);
+        add(passLabel);
+        add(userLabel);
+        add(passText);
+        add(userText);
 
         setResizable(false); // Restricting the frame not to maximize because making the frame componenton the to hendled dynamic is a headach for me
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    //Getter for back & next
-    public JButton getBack() {
-        return back;
+    //Getter for reset
+    public JButton getReset() {
+        return reset;
     }
-    public JButton getNext() {
-        return next;
-    }
-
     public void display(){
         setVisible(true);
     }

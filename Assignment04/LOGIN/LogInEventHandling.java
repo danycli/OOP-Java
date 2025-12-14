@@ -7,12 +7,16 @@ import Assignment04.DASHBOARD.Dashboard;
 public class LogInEventHandling extends MouseAdapter{
     private LogIn login;
     private ForgotFrame forgotframe;
+    private ResetPass reset;
 
     public LogInEventHandling(LogIn L){
         login = L;
     }
     public LogInEventHandling(ForgotFrame f){
         forgotframe = f;
+    }
+    public LogInEventHandling(ResetPass r){
+        reset = r;
     }
     
     @Override
@@ -27,6 +31,10 @@ public class LogInEventHandling extends MouseAdapter{
             LogIn Login = new LogIn();
             Login.display();
             forgotframe.dispose();
+        }else if(forgotframe != null && e.getSource() == forgotframe.getNext()){
+            if(){
+                
+            }
         }else if(e.getSource() == login.getUserField()){
             login.getUserField().setText("");
         }else if(e.getSource() == login.getPassField()){
@@ -34,9 +42,6 @@ public class LogInEventHandling extends MouseAdapter{
         }
     }
 
-    private void PassForget(){
-        
-    }
 
     private void loginButtonHandle(){
         if(login.getpassFieldText().equals(login.getPass()) && login.getUserFieldText().equals(login.getUserName())){

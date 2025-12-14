@@ -42,5 +42,29 @@ public class ButtonStyle{
 
         return b;
     }
+    public static JButton BackNext(String text){
+        JButton b = new JButton(text);
+        b.setBounds(200,220,50,30);
+        b.setBorder(BorderFactory.createEmptyBorder());
+        b.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        b.setForeground(Color.WHITE);
+        b.setCursor(new Cursor (Cursor.HAND_CURSOR));
+        b.setBackground(new Color(0, 40, 80));
+        
+
+        return b;
+    }
+    public static JButton BackReset(String text){
+        JButton b = new JButton(text);
+        b.setBounds(200,220,50,30);
+        b.setBorder(BorderFactory.createEmptyBorder());
+        b.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        b.setForeground(Color.WHITE);
+        b.setCursor(new Cursor (Cursor.HAND_CURSOR));
+        b.setBackground(new Color(0, 40, 80));
+        
+
+        return b;
+    }
 
 }
