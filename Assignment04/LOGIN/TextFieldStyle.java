@@ -43,6 +43,26 @@ public class TextFieldStyle extends FocusAdapter {
 
         return t;
     }
+    public static JTextField passText(String text){
+        JTextField t = new JTextField(text);
+        // t.requestFocusInWindow();
+        t.setBounds(125,190,250,30);
+        t.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+        t.setFont(new Font("Aptos Display", Font.PLAIN, 14));
+        t.setOpaque(false);
+
+        return t;
+    }
+    public static JTextField userText(String text){
+        JTextField t = new JTextField(text);
+        // t.requestFocusInWindow();
+        t.setBounds(125,260,250,30);
+        t.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
+        t.setFont(new Font("Aptos Display", Font.PLAIN, 14));
+        t.setOpaque(false);
+
+        return t;
+    }
     public static JTextField dummyfield(String text){
         JTextField t = new JTextField(text);
         t.requestFocusInWindow();

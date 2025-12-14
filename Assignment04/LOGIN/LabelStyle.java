@@ -52,4 +52,28 @@ public class LabelStyle {
 
         return l;
     }
+    public static JLabel passAndUserLabel(String text){
+        JLabel l = new JLabel(text);
+        l.setBounds(65,80,370,50);
+        l.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        l.setForeground(Color.BLACK);//Text Color
+
+        return l;
+    }
+    public static JLabel newPassLabel(String text){
+        JLabel l = new JLabel(text);
+        l.setBounds(125,150,150,50);
+        l.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        l.setForeground(Color.BLACK);//Text Color
+
+        return l;
+    }
+    public static JLabel newUserLable(String text){
+        JLabel l = new JLabel(text);
+        l.setBounds(125,220,150,50);
+        l.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        l.setForeground(Color.BLACK);//Text Color
+
+        return l;
+    }
 }

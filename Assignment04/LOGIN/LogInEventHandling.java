@@ -32,9 +32,17 @@ public class LogInEventHandling extends MouseAdapter{
             Login.display();
             forgotframe.dispose();
         }else if(forgotframe != null && e.getSource() == forgotframe.getNext()){
-            if(){
-                
+            if(forgotframe.getName().toLowerCase().equals("cristiano ronaldo dos santos aveiro")){
+                ResetPass resetting = new ResetPass();
+                resetting.display();
+                forgotframe.dispose();
             }
+        }else if(reset != null && e.getSource() == reset.getReset() && reset.getPassText() != null && reset.getUserText() != null){
+                LogIn newLogin = new LogIn();
+                newLogin.setPass(reset.getPassText());
+                newLogin.setUserName(reset.getUserText());
+                newLogin.display();
+                reset.dispose();
         }else if(e.getSource() == login.getUserField()){
             login.getUserField().setText("");
         }else if(e.getSource() == login.getPassField()){

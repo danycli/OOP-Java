@@ -92,4 +92,22 @@ public class ButtonStyle {
 
         return b;
     }
+    public static JButton styleLogin(String text){
+        JButton b = new JButton(text);
+
+        // ImageIcon setting = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\setting.png");
+        // b.setIcon(setting);
+        b.setBounds(20,20,90,40);
+        b.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        b.setBackground(new Color(60, 65, 72));
+        b.setForeground(Color.WHITE);
+        b.setOpaque(true);
+        b.setHorizontalAlignment(SwingConstants.CENTER);
+        b.setVerticalAlignment(SwingConstants.CENTER);
+        b.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        b.setFont(new Font("Minecrafter Alt", Font.PLAIN, 20));
+
+
+        return b;
+    }
 }

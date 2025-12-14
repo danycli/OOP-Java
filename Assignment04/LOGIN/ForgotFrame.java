@@ -12,10 +12,6 @@ public class ForgotFrame extends JFrame{
     private JButton next = ButtonStyle.BackNext("Next");
     private JLabel ronaldo = LabelStyle.RonaldoLabel("Enter the full name of Ronaldo");
     private JTextField name = TextFieldStyle.RonaldoField("");
-
-    public String getName() {
-        return name.getText();
-    }
     public ForgotFrame(){
         setTitle("Forgot Password");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");
@@ -43,6 +39,10 @@ public class ForgotFrame extends JFrame{
     }
     public JButton getNext() {
         return next;
+    }
+    //getter for the text of the textField of name
+    public String getName() {
+        return name.getText();
     }
 
     public void display(){

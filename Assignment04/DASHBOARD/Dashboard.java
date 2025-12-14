@@ -11,6 +11,7 @@ public class Dashboard extends JFrame{
     private JButton PLay = ButtonStyle.stylePlay("PLAY");
     private JButton Settings = ButtonStyle.styleSetting("Settings");
     private JButton ViewStats = ButtonStyle.styleViewStats("View Stats");
+    private JButton BackToLogin = ButtonStyle.styleLogin("Back To LogIn");
 
     private JLabel Dashboard = LabelStyle.stlyeDashboard("WELCOME BACK ACID EYE");
     private JLabel xp = LabelStyle.stlyeXP("<html>Total XP<br><center>1250</center></html>");
@@ -33,6 +34,7 @@ public class Dashboard extends JFrame{
         PLay.addMouseListener(mouseClick);
         ViewStats.addMouseListener(mouseClick);
         Settings.addMouseListener(mouseClick);
+        BackToLogin.addMouseListener(mouseClick);
 
         add(PLay);
         add(Settings);
@@ -42,6 +44,7 @@ public class Dashboard extends JFrame{
         add(achievements);
         add(level);
         add(quote);
+        add(BackToLogin);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
