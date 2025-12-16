@@ -8,6 +8,20 @@
             "type": "java",
             "name": "MainClass",
             "request": "launch",
+            "mainClass": "GUI.Program2.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "mainClass": "GUI.Program.MainClass",
+            "projectName": "OOP-Java_4062772c"
+        },
+        {
+            "type": "java",
+            "name": "MainClass",
+            "request": "launch",
             "mainClass": "Assignment04.MainClass",
             "projectName": "OOP-Java_4062772c"
         },
