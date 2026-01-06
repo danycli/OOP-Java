@@ -3,6 +3,13 @@
   "configurations": [
     {
         "type": "java",
+        "name": "MianClass",
+        "request": "launch",
+        "mainClass": "GUI.Calculator.MianClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "Main",
         "request": "launch",
         "mainClass": "GUI.JavaFX.Main",
@@ -15,7 +22,7 @@
         "request": "launch",
         "mainClass": "GPACAL.GPACalculatorFX",
         "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-        "projectName": "OOP-Java_4062772c",
+        "projectName": "OOP-Java_4062772c"
     }
 ]
 }

@@ -1,7 +1,7 @@
 package GUI.Calculator;
 
 import javax.swing.*;
-import java.awt.*;
+// import java.awt.*;
 
 public class MainFrame extends JFrame{
 
@@ -35,5 +35,9 @@ public class MainFrame extends JFrame{
         add(multiply);
         add(AC);
         add(decimal);
+    }
+
+    public void display(){
+        setVisible(true);
     }
 }
