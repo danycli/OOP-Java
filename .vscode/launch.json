@@ -1,100 +1,21 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "mainClass": "GUI.Program2.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "mainClass": "GUI.Program.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "mainClass": "Assignment04.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "GUI.InputOutput.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "GUI.Match.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "Logics",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "GUI.Match.Logics",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "nextApproch",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "FileHandling.nextApproch",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "Test",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "FileHandling.Test",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "LabAssignment02.Program01.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "MainClass",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "LabAssignment02.Program02.MainClass",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "Main",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "GUI.JavaFX.Main",
-            "projectName": "OOP-Java_4062772c"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
-            "mainClass": "${file}"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+        "type": "java",
+        "name": "Main",
+        "request": "launch",
+        "mainClass": "GUI.JavaFX.Main",
+        "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "Run GPA Calculator",
+        "request": "launch",
+        "mainClass": "GPACAL.GPACalculatorFX",
+        "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+        "projectName": "OOP-Java_4062772c",
+    }
+]
 }
