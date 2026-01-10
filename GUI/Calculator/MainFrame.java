@@ -24,11 +24,11 @@ public class MainFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         text.setBounds(0,0,450,112);
-        text.setFont(new Font("Roboto Condensed", Font.BOLD, 30));
+        text.setFont(new Font("Roboto Condensed", Font.BOLD, 50));
         text.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.BLACK));
         text.setHorizontalAlignment(JTextField.RIGHT);
         // text.setEditable(false);
-        // text.setFocusable(false);
+        text.setFocusable(false);
 
         btn1 = ButtonStyling.arithmeticOp("1", 0, 448);
         btn2 = ButtonStyling.arithmeticOp("2", 112, 448);
@@ -50,7 +50,25 @@ public class MainFrame extends JFrame{
         equal = ButtonStyling.arithmeticOp("=", 336, 560);
 
         EventHandling mouseClick = new EventHandling(this);
+        btn0.addMouseListener(mouseClick);
         btn1.addMouseListener(mouseClick);
+        btn2.addMouseListener(mouseClick);
+        btn3.addMouseListener(mouseClick);
+        btn4.addMouseListener(mouseClick);
+        btn5.addMouseListener(mouseClick);
+        btn6.addMouseListener(mouseClick);
+        btn7.addMouseListener(mouseClick);
+        btn8.addMouseListener(mouseClick);
+        btn9.addMouseListener(mouseClick);
+
+        AC.addMouseListener(mouseClick);
+        clearOne.addMouseListener(mouseClick);
+        decimal.addMouseListener(mouseClick);
+        multiply.addMouseListener(mouseClick);
+        divide.addMouseListener(mouseClick);
+        add.addMouseListener(mouseClick);
+        subtract.addMouseListener(mouseClick);
+        
 
         add(text);
         add(btn1);
