@@ -68,7 +68,7 @@ public class MainFrame extends JFrame{
         divide.addMouseListener(mouseClick);
         add.addMouseListener(mouseClick);
         subtract.addMouseListener(mouseClick);
-        
+        equal.addMouseListener(mouseClick);
 
         add(text);
         add(btn1);
