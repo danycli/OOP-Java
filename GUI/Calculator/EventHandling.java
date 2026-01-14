@@ -4,8 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 public class EventHandling extends MouseAdapter{
     
     private MainFrame f;
@@ -89,54 +87,74 @@ public class EventHandling extends MouseAdapter{
             }else if(e.getSource() == f.getEqual()){
                 //Storing in the arraylist
                 String t = f.getText().getText();
-                String[] split = t.split("");
                 ArrayList<String> equation = new ArrayList<>();
-                for(int i = 0; i < split.length; i++){
-                    if(split[i].equals("x") || split[i].equals("-") || split[i].equals("/") || split[i].equals("+")){
-                        System.out.println("sign found at"+i);
-                        for(int j = i-1; j >= 0; j--){
-                            System.out.println("Passing through here");
-                            if(j >= 0 && split[j].equals("x") || split[j].equals("-") || split[j].equals("/") || split[j].equals("+")){
-                                System.out.println("prev sign found at"+j);
-                                String num = t.substring(j+1,i);
-                                equation.add(num);
-                            }else{
-                                String nums = t.substring(0, i);
-                                equation.add(nums);
+                String num = "";
+                for(int i = 0; i < t.length(); i++){
+                    char c = t.charAt(i);
+                    if(Character.isDigit(c) || c == '.'){
+                        num+=c;
+                    }else{
+                        equation.add(num);
+                        equation.add(""+c);
+                        num = "";
+                    }
+                }
+                equation.add(num);
+
+                for(int i = 0; i < equation.size(); i++){
+                    double prev = 0;
+                    double next = 0;
+                    String result = "";
+                    double res = 0;
+                    if(equation.get(i).equals("/")){
+                        prev = Double.parseDouble(equation.get(i-1));
+                        next = Double.parseDouble(equation.get(i+1));
+                            try{
+                                res = prev / next;
+                            }
+                            catch(ArithmeticException gg){
+                                f.getText().setText("Syntax Error");
                                 break;
                             }
-                        }
-                        for(int z = 0; z < i; z++){
-                            if(split[z].equals("x") || split[z].equals("-") || split[z].equals("/") || split[z].equals("+")){
-                                String num = t.substring(i+1,z+1);
-                                equation.add(num);
-                            }
-                        }
-                        equation.add(split[i]);
-                    }
-                }
-                System.out.println(equation);
-                for(int i = 0; i < equation.size(); i++){
-                    System.out.println("passing "+i+" time");
-                    if(equation.get(i).equals("x")){
-                        double prev = Double.parseDouble(equation.get(i-1));
-                        System.out.println("get the prev value");
-                        double next = Double.parseDouble(equation.get(i+1));
-                        System.out.println("get the next value");
-                        double result = prev * next;
-                        String res = "" + result;
-                        equation.remove(i-1);
+                        result += res;
                         equation.remove(i);
-                        // equation.remove(i+1);
-                        equation.add(0,res);
-                    }else{
-                        JOptionPane.showMessageDialog(f,"Not Interested");
+                        equation.remove(i);
+                        equation.remove(i-1);
+                        equation.add(i-1, result);
+                        i--;
+                    }else if(equation.get(i).equals("x")){
+                        prev = Double.parseDouble(equation.get(i-1));
+                        next = Double.parseDouble(equation.get(i+1));
+                        res = prev * next;
+                        result += res;
+                        equation.remove(i);
+                        equation.remove(i);
+                        equation.remove(i-1);
+                        equation.add(i-1, result);
+                        i--;
+                    }else if(equation.get(i).equals("+")){
+                        prev = Double.parseDouble(equation.get(i-1));
+                        next = Double.parseDouble(equation.get(i+1));
+                        res = prev + next;
+                        result += res;
+                        equation.remove(i);
+                        equation.remove(i);
+                        equation.remove(i-1);
+                        equation.add(i-1, result);
+                        i--;
+                    }else if(equation.get(i).equals("-")){
+                        prev = Double.parseDouble(equation.get(i-1));
+                        next = Double.parseDouble(equation.get(i+1));
+                        res = prev - next;
+                        result += res;
+                        equation.remove(i);
+                        equation.remove(i);
+                        equation.remove(i-1);
+                        equation.add(i-1, result);
+                        i--;
                     }
                 }
-                f.getText().setText("");
-                String resultant = "";
-                resultant = resultant + equation.get(0);
-                f.getText().setText(resultant);
+                f.getText().setText(equation.get(0));
             }
         }
     }
