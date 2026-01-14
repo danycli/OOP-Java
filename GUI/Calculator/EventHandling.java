@@ -4,157 +4,161 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class EventHandling extends MouseAdapter{
-    
+public class EventHandling extends MouseAdapter {
+
     private MainFrame f;
-    public EventHandling(MainFrame frame){
+
+    public EventHandling(MainFrame frame) {
         f = frame;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(f != null ){
-            if(e.getSource() == f.getBtn1()){
+        if (f != null) {
+            if (e.getSource() == f.getBtn1()) {
                 String t = f.getText().getText();
-                t = t+"1";
+                t = t + "1";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn2()){
+            } else if (e.getSource() == f.getBtn2()) {
                 String t = f.getText().getText();
-                t = t+"2";
+                t = t + "2";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn3()){
+            } else if (e.getSource() == f.getBtn3()) {
                 String t = f.getText().getText();
-                t = t+"3";
+                t = t + "3";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn4()){
+            } else if (e.getSource() == f.getBtn4()) {
                 String t = f.getText().getText();
-                t = t+"4";
+                t = t + "4";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn5()){
+            } else if (e.getSource() == f.getBtn5()) {
                 String t = f.getText().getText();
-                t = t+"5";
+                t = t + "5";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn6()){
+            } else if (e.getSource() == f.getBtn6()) {
                 String t = f.getText().getText();
-                t = t+"6";
+                t = t + "6";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn7()){
+            } else if (e.getSource() == f.getBtn7()) {
                 String t = f.getText().getText();
-                t = t+"7";
+                t = t + "7";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn8()){
+            } else if (e.getSource() == f.getBtn8()) {
                 String t = f.getText().getText();
-                t = t+"8";
+                t = t + "8";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn9()){
+            } else if (e.getSource() == f.getBtn9()) {
                 String t = f.getText().getText();
-                t = t+"9";
+                t = t + "9";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getBtn0()){
+            } else if (e.getSource() == f.getBtn0()) {
                 String t = f.getText().getText();
-                t = t+"0";
+                t = t + "0";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getAC()){
+            } else if (e.getSource() == f.getAC()) {
                 f.getText().setText("");
-            }else if(e.getSource() == f.getClearOne()){
+            } else if (e.getSource() == f.getClearOne()) {
                 String t = f.getText().getText();
                 String b = "";
                 String[] sp = t.split("");
-                for(int i = sp.length-2; i >= 0; i--){
-                        b = sp[i]+b;
+                for (int i = sp.length - 2; i >= 0; i--) {
+                    b = sp[i] + b;
                 }
                 f.getText().setText(b);
-            }else if(e.getSource() == f.getAdd()){
+            } else if (e.getSource() == f.getAdd()) {
                 String t = f.getText().getText();
-                t = t+"+";
+                t = t + "+";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getMultiply()){
+            } else if (e.getSource() == f.getMultiply()) {
                 String t = f.getText().getText();
-                t = t+"x";
+                t = t + "x";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getDivide()){
+            } else if (e.getSource() == f.getDivide()) {
                 String t = f.getText().getText();
-                t = t+"/";
+                t = t + "/";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getSubtract()){
+            } else if (e.getSource() == f.getSubtract()) {
                 String t = f.getText().getText();
-                t = t+"-";
+                t = t + "-";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getDecimal()){
+            } else if (e.getSource() == f.getDecimal()) {
                 String t = f.getText().getText();
-                t = t+".";
+                t = t + ".";
                 f.getText().setText(t);
-            }else if(e.getSource() == f.getEqual()){
-                //Storing in the arraylist
+            } else if (e.getSource() == f.getEqual()) {
+                // Storing in the arraylist
+                int count = 0;
                 String t = f.getText().getText();
                 ArrayList<String> equation = new ArrayList<>();
                 String num = "";
-                for(int i = 0; i < t.length(); i++){
+                for (int i = 0; i < t.length(); i++) {
                     char c = t.charAt(i);
-                    if(Character.isDigit(c) || c == '.'){
-                        num+=c;
-                    }else{
+                    if (Character.isDigit(c) || c == '.') {
+                        num += c;
+                        count++;
+                    } else {
                         equation.add(num);
-                        equation.add(""+c);
+                        equation.add("" + c);
                         num = "";
                     }
                 }
                 equation.add(num);
 
-                for(int i = 0; i < equation.size(); i++){
+                for (int i = 0; i < equation.size(); i++) {
                     double prev = 0;
                     double next = 0;
                     String result = "";
                     double res = 0;
-                    if(equation.get(i).equals("/")){
-                        prev = Double.parseDouble(equation.get(i-1));
-                        next = Double.parseDouble(equation.get(i+1));
-                            try{
+                    if (count != 0) {
+                        if (equation.get(i).equals("/")) {
+                            prev = Double.parseDouble(equation.get(i - 1));
+                            next = Double.parseDouble(equation.get(i + 1));
+                            try {
                                 res = prev / next;
-                            }
-                            catch(ArithmeticException gg){
+                            } catch (ArithmeticException gg) {
                                 f.getText().setText("Syntax Error");
                                 break;
                             }
-                        result += res;
-                        equation.remove(i);
-                        equation.remove(i);
-                        equation.remove(i-1);
-                        equation.add(i-1, result);
-                        i--;
-                    }else if(equation.get(i).equals("x")){
-                        prev = Double.parseDouble(equation.get(i-1));
-                        next = Double.parseDouble(equation.get(i+1));
-                        res = prev * next;
-                        result += res;
-                        equation.remove(i);
-                        equation.remove(i);
-                        equation.remove(i-1);
-                        equation.add(i-1, result);
-                        i--;
-                    }else if(equation.get(i).equals("+")){
-                        prev = Double.parseDouble(equation.get(i-1));
-                        next = Double.parseDouble(equation.get(i+1));
-                        res = prev + next;
-                        result += res;
-                        equation.remove(i);
-                        equation.remove(i);
-                        equation.remove(i-1);
-                        equation.add(i-1, result);
-                        i--;
-                    }else if(equation.get(i).equals("-")){
-                        prev = Double.parseDouble(equation.get(i-1));
-                        next = Double.parseDouble(equation.get(i+1));
-                        res = prev - next;
-                        result += res;
-                        equation.remove(i);
-                        equation.remove(i);
-                        equation.remove(i-1);
-                        equation.add(i-1, result);
-                        i--;
+                            result += res;
+                            equation.remove(i);
+                            equation.remove(i);
+                            equation.remove(i - 1);
+                            equation.add(i - 1, result);
+                            i--;
+                        } else if (equation.get(i).equals("x")) {
+                            prev = Double.parseDouble(equation.get(i - 1));
+                            next = Double.parseDouble(equation.get(i + 1));
+                            res = prev * next;
+                            result += res;
+                            equation.remove(i);
+                            equation.remove(i);
+                            equation.remove(i - 1);
+                            equation.add(i - 1, result);
+                            i--;
+                        } else if (equation.get(i).equals("+")) {
+                            prev = Double.parseDouble(equation.get(i - 1));
+                            next = Double.parseDouble(equation.get(i + 1));
+                            res = prev + next;
+                            result += res;
+                            equation.remove(i);
+                            equation.remove(i);
+                            equation.remove(i - 1);
+                            equation.add(i - 1, result);
+                            i--;
+                        } else if (equation.get(i).equals("-")) {
+                            prev = Double.parseDouble(equation.get(i - 1));
+                            next = Double.parseDouble(equation.get(i + 1));
+                            res = prev - next;
+                            result += res;
+                            equation.remove(i);
+                            equation.remove(i);
+                            equation.remove(i - 1);
+                            equation.add(i - 1, result);
+                            i--;
+                        }
                     }
+                    f.getText().setText(equation.get(0));
                 }
-                f.getText().setText(equation.get(0));
             }
         }
     }

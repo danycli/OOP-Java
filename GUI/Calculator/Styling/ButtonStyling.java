@@ -8,14 +8,15 @@ import javax.swing.JButton;
 
 public class ButtonStyling {
     
-    public static JButton arithmeticOp(String text, int x, int y){
+    public static JButton arithmeticOp(String text, int x, int y,Color c){
         JButton b = new JButton(text);
         b.setSize(112,112);
         b.setLocation(x, y);
         b.setBorder(BorderFactory.createEmptyBorder());
-        b.setBackground(Color.RED);
+        b.setOpaque(true);
+        b.setBackground(c);
         b.setForeground(Color.WHITE);
-        b.setBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, Color.WHITE));
+        b.setBorder(BorderFactory.createMatteBorder(0, 2, 2, 2, Color.GRAY));
         b.setFont(new Font("Roboto Condensed",Font.BOLD,50));
         b.setFocusable(false);
         return b;
@@ -26,10 +27,11 @@ public class ButtonStyling {
         b.setSize(336,112);
         b.setLocation(x, y);
         b.setBorder(BorderFactory.createEmptyBorder());
-        b.setBackground(Color.RED);
+        b.setBackground(new Color(55, 55, 56));
         b.setForeground(Color.WHITE);
+        b.setOpaque(true);
         b.setFont(new Font("Roboto Condensed",Font.BOLD,50));
-        b.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        b.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.GRAY));
         return b;
     }
 }
