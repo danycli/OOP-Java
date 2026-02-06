@@ -29,6 +29,9 @@ import MatchMechanics.PopupFrame;
 import MatchMechanics.ScoreBoardFrame;
 import MatchMechanics.TossFrame;
 import MatchMechanics.TossResultFrame;
+import MatchMechanics.MatchHistoryManager;
+import MatchMechanics.MatchInningsRecord;
+import MatchMechanics.ExtraRunsPopup;
 import MatchMechanics.WicketRuns;
 import MatchMechanics.WinnerFrame;
 
@@ -73,6 +76,12 @@ public class EventHandling extends MouseAdapter {
     private int bowlerWickets = 0;
     private int bowlerBalls = 0;
 
+    private int[] battingRuns;
+    private int[] battingBalls;
+    private int[] bowlingRuns;
+    private int[] bowlingWickets;
+    private int[] bowlingBalls;
+
     // Constructors
     public EventHandling(Dashboard d) {
         dashboard = d;
@@ -98,6 +107,11 @@ public class EventHandling extends MouseAdapter {
         scoreFrame = sb;
         battingPlayers = loadPlayersFromFile(sb.getBattingTeamName());
         bowlingPlayers = loadPlayersFromFile(sb.getBowlingTeamName());
+        battingRuns = new int[battingPlayers.size()];
+        battingBalls = new int[battingPlayers.size()];
+        bowlingRuns = new int[bowlingPlayers.size()];
+        bowlingWickets = new int[bowlingPlayers.size()];
+        bowlingBalls = new int[bowlingPlayers.size()];
         updatePlayerLabels();
     }
     public EventHandling(WicketRuns w){
@@ -160,6 +174,7 @@ public class EventHandling extends MouseAdapter {
                 PopupFrame errorPopup = new PopupFrame("Error", "Select two different teams first",new java.awt.Color(180, 0, 0));
                 errorPopup.display();
             } else {
+                MatchHistoryManager.resetMatch();
                 TossFrame toss = new TossFrame(tA, tB);
                 toss.display();
                 dashboard.dispose();
@@ -310,7 +325,7 @@ public class EventHandling extends MouseAdapter {
                 wic = true;
                 validBall = true;
                 totalWickets++;
-                bowlerWickets++;
+                bowlingWickets[currentBowlerIndex]++;
                 
                 
 
@@ -350,8 +365,23 @@ public class EventHandling extends MouseAdapter {
             }
             // Extras
             else if (e.getSource() == scoreFrame.getBtnWide() || e.getSource() == scoreFrame.getBtnNoBall()) {
-                totalRuns++;
-                bowlerRuns++;
+                boolean isNoBall = e.getSource() == scoreFrame.getBtnNoBall();
+                int maxRuns = isNoBall ? 6 : 4;
+                int extraRuns = ExtraRunsPopup.promptRuns(scoreFrame, isNoBall ? "No Ball Runs" : "Wide Runs", maxRuns);
+                int totalExtra = 1 + extraRuns;
+                totalRuns += totalExtra;
+                bowlingRuns[currentBowlerIndex] += totalExtra;
+
+                if (isNoBall) {
+                    battingRuns[strikerIndex] += extraRuns;
+                    if (extraRuns % 2 != 0) {
+                        swapBatsmen();
+                    }
+                } else {
+                    if (extraRuns % 2 != 0) {
+                        swapBatsmen();
+                    }
+                }
 
                 // Check if chasing team won with extras
                 if (scoreFrame.getInningsNumber() == 2) {
@@ -392,11 +422,11 @@ public class EventHandling extends MouseAdapter {
                 totalRuns += runsScored;
                 ballsBowled++;
                 if(wic == false){
-                    strikerBalls++;
+                    battingBalls[strikerIndex]++;
                 }
-                strikerRuns += runsScored;
-                bowlerRuns += runsScored;
-                bowlerBalls++;
+                battingRuns[strikerIndex] += runsScored;
+                bowlingRuns[currentBowlerIndex] += runsScored;
+                bowlingBalls[currentBowlerIndex]++;
 
                 // Check if chasing team beat the target in 2nd innings
                 if (scoreFrame.getInningsNumber() == 2) {
@@ -418,6 +448,7 @@ public class EventHandling extends MouseAdapter {
                     showInningsOverPopup();
                     return;
                 }
+                wic = false;
             }
 
             // Update Text on Screen
@@ -431,14 +462,6 @@ public class EventHandling extends MouseAdapter {
         int temp = strikerIndex;
         strikerIndex = nonStrikerIndex;
         nonStrikerIndex = temp;
-
-        int tempRuns = strikerRuns;
-        strikerRuns = nonStrikerRuns;
-        nonStrikerRuns = tempRuns;
-
-        int tempBalls = strikerBalls;
-        strikerBalls = nonStrikerBalls;
-        nonStrikerBalls = tempBalls;
     }
 
     // Helper to update player labels
@@ -447,6 +470,14 @@ public class EventHandling extends MouseAdapter {
             String strikerName = battingPlayers.get(strikerIndex);
             String nonStrikerName = battingPlayers.get(nonStrikerIndex);
             String bowlerName = bowlingPlayers.get(currentBowlerIndex);
+
+            strikerRuns = battingRuns[strikerIndex];
+            strikerBalls = battingBalls[strikerIndex];
+            nonStrikerRuns = battingRuns[nonStrikerIndex];
+            nonStrikerBalls = battingBalls[nonStrikerIndex];
+            bowlerRuns = bowlingRuns[currentBowlerIndex];
+            bowlerWickets = bowlingWickets[currentBowlerIndex];
+            bowlerBalls = bowlingBalls[currentBowlerIndex];
 
             scoreFrame.getStrikerLabel().setText(strikerName + " * " + strikerRuns + "(" + strikerBalls + ")");
             scoreFrame.getNonStrikerLabel().setText(nonStrikerName + "     " + nonStrikerRuns + "(" + nonStrikerBalls + ")");
@@ -474,6 +505,9 @@ public class EventHandling extends MouseAdapter {
         String firstTeam = scoreFrame.getFirstInningsTeam();
         int firstScore = scoreFrame.getFirstInningsScore();
 
+        MatchHistoryManager.storeInnings(createInningsRecord(), scoreFrame.getInningsNumber());
+        MatchHistoryManager.saveMatchHistory();
+
         scoreFrame.dispose();
         WinnerFrame winner = new WinnerFrame(firstTeam, firstScore, battingTeam, totalRuns);
         winner.display();
@@ -487,9 +521,31 @@ public class EventHandling extends MouseAdapter {
         int firstScore = scoreFrame.getFirstInningsScore();
         String firstTeam = scoreFrame.getFirstInningsTeam();
 
+        MatchHistoryManager.storeInnings(createInningsRecord(), inningsNum);
+        if (inningsNum == 2) {
+            MatchHistoryManager.saveMatchHistory();
+        }
+
         scoreFrame.dispose();
 
         InningsOverFrame inningsFrame = new InningsOverFrame(battingTeam, bowlingTeam, totalRuns, totalWickets,inningsNum, firstScore, firstTeam);
         inningsFrame.display();
+    }
+
+    private MatchInningsRecord createInningsRecord() {
+        return new MatchInningsRecord(
+            scoreFrame.getBattingTeamName(),
+            scoreFrame.getBowlingTeamName(),
+            totalRuns,
+            totalWickets,
+            ballsBowled,
+            new ArrayList<>(battingPlayers),
+            new ArrayList<>(bowlingPlayers),
+            battingRuns.clone(),
+            battingBalls.clone(),
+            bowlingRuns.clone(),
+            bowlingWickets.clone(),
+            bowlingBalls.clone()
+        );
     }
 }
