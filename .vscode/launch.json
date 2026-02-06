@@ -5,6 +5,13 @@
         "type": "java",
         "name": "MainClass",
         "request": "launch",
+        "mainClass": "Main.MainClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "MainClass",
+        "request": "launch",
         "mainClass": "GUI.Calculator.MainClass",
         "projectName": "OOP-Java_4062772c"
     },
