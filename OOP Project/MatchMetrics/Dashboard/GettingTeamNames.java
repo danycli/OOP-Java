@@ -11,7 +11,7 @@ public class GettingTeamNames {
     public static ArrayList<String> file() {
         ArrayList<String> fileNames = new ArrayList<>();
 
-        String folderName = new File("").getAbsolutePath() + File.separator + "MatchMetrics/Teams";
+        String folderName = new File("").getAbsolutePath() + File.separator + "OOP Project/MatchMetrics/Teams";
         File folder = new File(folderName);
         File[] file = folder.listFiles();
 
