@@ -11,9 +11,11 @@ public class ExcelSheet {
         // System.out.println(res);
 
         int count = 0;
-        String str = "ZY";
-        for(int i = 1; i < str.length(); i++){
-            count += str.charAt(i);  
+        String str = "Y";
+        String[] sp = str.split("");
+        for(int i = 0; i < sp.length; i++){
+            
+            count += str.charAt(i);
         }
         System.out.println(count);
     }
