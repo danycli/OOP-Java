@@ -47,8 +47,12 @@ public class binary {
                 inc++;
             }
             System.out.print("The Binary sum for the "+first+" and "+second+" is : ");
+            if(count1 != 0){
             for(int i = count1 - 1; i >=0; i--){
                 System.out.print(ar[i]);
             }
+        }else{
+            System.out.println("0");
+        }
         }
     }

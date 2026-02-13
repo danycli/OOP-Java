@@ -3,6 +3,27 @@
   "configurations": [
     {
         "type": "java",
+        "name": "ExcelSheet",
+        "request": "launch",
+        "mainClass": "String.ExcelSheet",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "java",
+        "request": "launch",
+        "mainClass": "java",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "MainClass",
+        "request": "launch",
+        "mainClass": "addingBinaryNums.MainClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "MainClass",
         "request": "launch",
         "mainClass": "Main.MainClass",
