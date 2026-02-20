@@ -2,36 +2,31 @@ package JavaFX.Styling;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
-import javafx.animation.RotateTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Prob {
-    public static void rotateIt(Line line) {
+    public static void rotateIt(Line line, int secs, int angle) {
+        // choose pivot point
+        double pivotX = 255;
+        double pivotY = 250;
 
-    // choose pivot point
-    double pivotX = 300;
-    double pivotY = 200;
+        // create rotate transform with pivot
+        Rotate rotate = new Rotate(0, pivotX, pivotY);
 
-    // create rotate transform with pivot
-    Rotate rotate = new Rotate(0, pivotX, pivotY);
+        // attach transform to line
+        line.getTransforms().add(rotate);
 
-    // attach transform to line
-    line.getTransforms().add(rotate);
-
-    // animate the ANGLE of the transform
-    RotateTransition rotation = new RotateTransition();
-    rotation.setDuration(Duration.seconds(60));
-    rotation.setFromAngle(0);
-    rotation.setToAngle(360);
-    rotation.setCycleCount(Animation.INDEFINITE);
-    rotation.setInterpolator(Interpolator.LINEAR);
-
-    // IMPORTANT: animate the transform, not the line
-    rotation.setNode(line); // still needed
-    rotate.angleProperty().bind(rotation.currentTimeProperty().divide(rotation.getDuration().toMillis()).multiply(360));
-
-    rotation.play();
-}
+        // animate the ANGLE of the transform using Timeline
+        Timeline timeline = new Timeline(
+            new KeyFrame(Duration.seconds(0), new KeyValue(rotate.angleProperty(), angle, Interpolator.LINEAR)),
+            new KeyFrame(Duration.seconds(secs), new KeyValue(rotate.angleProperty(), 360+angle))
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
 }
