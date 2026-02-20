@@ -5,6 +5,13 @@
         "type": "java",
         "name": "Main",
         "request": "launch",
+        "mainClass": "JavaFX.Main",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "Main",
+        "request": "launch",
         "mainClass": "ToDoList.Main",
         "projectName": "OOP-Java_4062772c"
     },
