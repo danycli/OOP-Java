@@ -3,6 +3,13 @@
   "configurations": [
     {
         "type": "java",
+        "name": "Main",
+        "request": "launch",
+        "mainClass": "ToDoList.Main",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "ExcelSheet",
         "request": "launch",
         "mainClass": "String.ExcelSheet",
