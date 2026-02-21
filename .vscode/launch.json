@@ -3,6 +3,21 @@
   "configurations": [
     {
         "type": "java",
+        "name": "Raw",
+        "request": "launch",
+        "mainClass": "Pac.Raw",
+        "vmArgs": "--module-path C:/javafx-sdk-25.0.1/lib --add-modules javafx.controls,javafx.fxml",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "MainClass",
+        "request": "launch",
+        "mainClass": "Pac.MainClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "MainClass",
         "request": "launch",
         "mainClass": "Assignment04.MainClass",
