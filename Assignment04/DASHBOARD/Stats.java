@@ -7,7 +7,10 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 public class Stats extends JFrame{
-    String freshStats ="<html>" +
+
+    private String UN;
+    private String pass;
+    private String freshStats ="<html>" +
                     "<b>Player Progress</b><br>"+
                     "Level : 5<br>"+
                     "Rank : GrandMaster IV<br>"+
@@ -29,7 +32,11 @@ public class Stats extends JFrame{
     private JButton back = ButtonStyle.styleBack("Back");
     private JLabel stats = LabelStyle.stlyeStats(freshStats);
 
-    public Stats(){
+    public Stats(String name, String Pass){
+        UN = name;
+        pass = Pass;
+        System.out.println("Username = "+UN);
+        System.out.println("Pass = "+pass);
         setSize(1200,1000);
         setLocation(360,40);
         setTitle("Stats");
@@ -50,6 +57,12 @@ public class Stats extends JFrame{
     //Getter for getBack
     public JButton getBack() {
         return back;
+    }
+    public String getUN() {
+        return UN;
+    }
+    public String getPass() {
+        return pass;
     }
     public void display(){
         setVisible(true);

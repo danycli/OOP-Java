@@ -8,7 +8,9 @@ import java.awt.Color;
 
 public class Settings extends JFrame {
     
-    String settingsMenu ="<html>"+
+    private String UN;
+    private String pass;
+    private String settingsMenu ="<html>"+
                     "<b>Graphics</b><br>"+
                     "Preset : Ultra<br>"+
                     "Resolution : 1920 x 1080<br>"+
@@ -28,7 +30,9 @@ public class Settings extends JFrame {
     private JLabel setting = LabelStyle.stlyeSettings(settingsMenu);
 
 
-    public Settings(){
+    public Settings(String name, String Pass){
+        UN = name;
+        pass = Pass;
         setSize(1200,1000);
         setLocation(360,40);
         setTitle("Settings");
@@ -49,6 +53,12 @@ public class Settings extends JFrame {
     //Getterrs
     public JButton getBack() {
         return back;
+    }
+    public String getUN() {
+        return UN;
+    }
+    public String getPass() {
+        return pass;
     }
     public void display(){
         setVisible(true);

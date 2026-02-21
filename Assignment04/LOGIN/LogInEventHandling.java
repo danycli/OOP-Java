@@ -24,26 +24,26 @@ public class LogInEventHandling extends MouseAdapter{
         if(login != null && e.getSource() == login.getLoginButton()){
             loginButtonHandle();
         }else if(login != null && e.getSource() == login.getForgotPass()){
-            ForgotFrame forgot = new ForgotFrame();
-            forgot.display();
+            ForgotFrame Forgotframe = new ForgotFrame();
+            Forgotframe.display();
             login.dispose();
         }else if(forgotframe != null && e.getSource() == forgotframe.getBack()){
-            LogIn Login = new LogIn();
-            Login.display();
+            LogIn LOGIN = new LogIn("", "");
+            LOGIN.display();
             forgotframe.dispose();
         }else if(forgotframe != null && e.getSource() == forgotframe.getNext()){
             if(forgotframe.getName().toLowerCase().equals("cristiano ronaldo dos santos aveiro")){
-                ResetPass resetting = new ResetPass();
-                resetting.display();
+                ResetPass resets = new ResetPass();
+                resets.display();
                 forgotframe.dispose();
             }else{
                 forgotframe.showError("Incorrect!");
             }
         }else if(reset != null && e.getSource() == reset.getReset() && reset.getPassText() != null && reset.getUserText() != null){
-                LogIn newLogin = new LogIn();
-                newLogin.setPass(reset.getPassText());
-                newLogin.setUserName(reset.getUserText());
-                newLogin.display();
+                login = new LogIn(reset.getUserText(),reset.getPassText());
+                login.setPass(reset.getPassText());
+                login.setUserName(reset.getUserText());
+                login.display();
                 reset.dispose();
         }else if(e.getSource() == login.getUserField()){
             login.getUserField().setText("");
@@ -56,7 +56,7 @@ public class LogInEventHandling extends MouseAdapter{
     private void loginButtonHandle(){
         if(login.getpassFieldText().equals(login.getPass()) && login.getUserFieldText().equals(login.getUserName())){
                 login.dispose();
-                Dashboard dashboard = new Dashboard();
+                Dashboard dashboard = new Dashboard(login.getUserFieldText(),login.getpassFieldText());
                 dashboard.display();
             }else if(!(login.getpassFieldText().equals(login.getPass()) && login.getUserFieldText().equals(login.getUserName()))){
                 login.showError("One or both Credentials are incorrect!");

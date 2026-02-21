@@ -20,9 +20,14 @@ public class LogIn extends JFrame {
     private JLabel Error = LabelStyle.ErrorLabel("");
 
     
-    public LogIn(){
-        UserName = "Acid Eye";
-        pass = "nishtamara!!@@";
+    public LogIn(String name, String newPass){
+        if(name.equals("") && newPass.equals("")){
+            UserName = "Acid Eye";
+            pass = "nishtamara!!@@";
+        }else{
+            UserName = name;
+            pass = newPass;
+        }
 
         setTitle("LogIn");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");

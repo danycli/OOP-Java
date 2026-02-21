@@ -8,10 +8,14 @@ import java.awt.Color;
 
 public class PlayFrame extends JFrame {
 
-    JButton back = ButtonStyle.styleBack("Back");
-    JLabel warning = LabelStyle.stlyeWarning("<html>The game is under Maintinance<br><center>go back!</center></html>");
+    private JButton back = ButtonStyle.styleBack("Back");
+    private JLabel warning = LabelStyle.stlyeWarning("<html>The game is under Maintinance<br><center>go back!</center></html>");
+    private String UN;
+    private String pass;
 
-    public PlayFrame(){
+    public PlayFrame(String name, String Pass){
+        UN = name;
+        pass = Pass;
         setSize(1200,1000);
         setLocation(360,40);
         setTitle("Play");
@@ -32,6 +36,12 @@ public class PlayFrame extends JFrame {
 
     public JButton getBack() {
         return back;
+    }
+    public String getName(){
+        return UN;
+    }
+    public String getPass(){
+        return pass;
     }
     public void display(){
         setVisible(true);

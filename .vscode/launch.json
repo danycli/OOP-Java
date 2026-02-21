@@ -5,6 +5,13 @@
         "type": "java",
         "name": "MainClass",
         "request": "launch",
+        "mainClass": "Assignment04.MainClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "MainClass",
+        "request": "launch",
         "mainClass": "AbstractClass.MainClass",
         "projectName": "OOP-Java_4062772c"
     },

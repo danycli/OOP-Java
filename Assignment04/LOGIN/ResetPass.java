@@ -11,10 +11,10 @@ public class ResetPass extends JFrame {
 
     private JButton reset = ButtonStyle.resetButton("Reset");
     private JLabel passReset = LabelStyle.passAndUserLabel("Password & Username Reset");
-    private JLabel passLabel = LabelStyle.newPassLabel("New Password:");
-    private JLabel userLabel = LabelStyle.newUserLable("New User Name:");
-    private JTextField passText = TextFieldStyle.passText("");
-    private JTextField userText = TextFieldStyle.userText("");
+    private JLabel userLabel = LabelStyle.newPassLabel("New User Name:");
+    private JLabel passLabel = LabelStyle.newUserLable("New Password:");
+    private JTextField userText = TextFieldStyle.passText("");
+    private JTextField passText = TextFieldStyle.userText("");
     public ResetPass(){
         setTitle("Reset Password");
         ImageIcon favicon = new ImageIcon("C:\\VS Code projects\\OOP-Java\\Assignment04\\favicon5.png");

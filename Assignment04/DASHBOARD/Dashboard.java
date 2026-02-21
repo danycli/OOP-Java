@@ -1,6 +1,5 @@
 package Assignment04.DASHBOARD;
 
-import Assignment04.LOGIN.LogIn;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,20 +7,24 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 public class Dashboard extends JFrame{
-    private LogIn login = new LogIn();
     private JButton PLay = ButtonStyle.stylePlay("PLAY");
     private JButton Settings = ButtonStyle.styleSetting("Settings");
     private JButton ViewStats = ButtonStyle.styleViewStats("View Stats");
     private JButton BackToLogin = ButtonStyle.styleLogin("Back To LogIn");
+    private String UN;
+    private String pass;
 
-    private JLabel Dashboard = LabelStyle.stlyeDashboard("WELCOME BACK "+login.getUserName().toUpperCase());
+    private JLabel Dashboard ;
     private JLabel xp = LabelStyle.stlyeXP("<html>Total XP<br><center>1250</center></html>");
     private JLabel achievements = LabelStyle.stlyeAchievements("<html>Achievements<br><center>12 / 90</center></html>");
     private JLabel level = LabelStyle.stlyeLevel("<html>Level<br><center>5</center></html>");
     private JLabel quote = LabelStyle.stlyeQuote("You ain't meant to be average");
     
 
-    public Dashboard(){
+    public Dashboard(String username, String Pass){
+        UN = username;
+        pass = Pass;
+        Dashboard = LabelStyle.stlyeDashboard("WELCOME BACK "+UN.toUpperCase());
         setSize(1200,1000);
         setLocation(360,40);
         setTitle("Dashboard");
@@ -62,6 +65,12 @@ public class Dashboard extends JFrame{
     }
     public JButton getBackToLogin() {
         return BackToLogin;
+    }
+    public String getUN(){
+        return UN;
+    }
+    public String getPass(){
+        return pass;
     }
 
     public void display(){
