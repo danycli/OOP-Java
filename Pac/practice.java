@@ -7,6 +7,9 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class practice extends Application{
@@ -14,6 +17,7 @@ public class practice extends Application{
     private boolean downPressed = false;
     private boolean leftPressed = false;
     private boolean rightPressed = false;
+    private int score = 0;
     @Override
     public void start(Stage arg0) throws Exception {
         Stage stage = new Stage();
@@ -32,16 +36,36 @@ public class practice extends Application{
         circle.setTranslateY(y_axis);
         circle.setFill(Color.GRAY);
 
+        Text ScoreCard = new Text("Score = "+ score);
+        ScoreCard.setFont(new Font("Minecrafter Alt",50));
+        ScoreCard.setTranslateY(50);
+        ScoreCard.setTranslateX(5);
+        ScoreCard.setFill(Color.BLACK);
+
+        Rectangle rec = new Rectangle();
+        rec.setTranslateX(0);
+        rec.setTranslateY(0);
+        rec.setWidth(ScoreCard.getLayoutBounds().getWidth() + 10);
+        rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
+        rec.setArcWidth(50);
+        rec.setArcHeight(50);
+        rec.setFill(Color.BURLYWOOD);
+
+
         //root
+        root.getChildren().add(rec);
         root.getChildren().add(circle);
-        // root.getChildren().add(text);
+        root.getChildren().add(ScoreCard);
 
         //Stage
         stage.setScene(scene);
         stage.setFullScreen(true);
+        stage.setTitle("Pac Man");
         stage.show();
+        stage.setMinWidth(scene.getWidth());
+        stage.setMinHeight(scene.getHeight());
 
-        ArrayList<Circle> axisOfBait = Maze.generatingMaze(stage,root,scene);
+        ArrayList<Circle> axisOfBait = Maze.generatingMaze(stage,root,scene,rec.getHeight(),circle.getRadius());
 
         //Button Actions
         scene.setOnKeyPressed(e ->{
@@ -50,6 +74,11 @@ public class practice extends Application{
                 case S -> downPressed = true;
                 case D -> rightPressed = true;
                 case A -> leftPressed = true;
+                case ESCAPE -> {
+                    stage.setX(0);
+                    stage.setY(0);
+                }
+                case F11 -> stage.setFullScreen(true);
 
                 default -> System.out.println();
             }
@@ -88,18 +117,23 @@ public class practice extends Application{
                 double Sheight = stage.getHeight();
 
                 x = Math.max(radius, Math.min(x, Swidth - radius));
-                y = Math.max(radius, Math.min(y, Sheight - radius));
+                y = Math.max(radius+rec.getHeight(), Math.min(y, Sheight - radius));
 
                 circle.setTranslateX(x);
                 circle.setTranslateY(y);
 
-                // 
+                // Euclian Distance Formula for Distance = √[(x₂ - x₁)² + (y₂ - y₁)²]
                 for(int i = axisOfBait.size() - 1; i >= 0; i--) {
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + 
                                                 Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
-                    if(distance < circle.getRadius() + axisOfBait.get(i).getRadius()) {
+                        //if the distance bw bait and the player is less than the sum of their radii so remove the bait
+                        if(distance < circle.getRadius() + axisOfBait.get(i).getRadius()) {
                         root.getChildren().remove(axisOfBait.get(i));
                         axisOfBait.remove(i);
+                        score+=2;
+                        ScoreCard.setText("Score = "+score);
+                        rec.setWidth(ScoreCard.getLayoutBounds().getWidth() + 10);
+                        rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
             }

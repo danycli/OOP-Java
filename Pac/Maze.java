@@ -10,21 +10,35 @@ import javafx.stage.Stage;
 
 public class Maze extends practice{
     
-    public static ArrayList<Circle> generatingMaze(Stage stage,Group root, Scene scene){
+    public static ArrayList<Circle> generatingMaze(Stage stage,Group root, Scene scene,double base, double radius){
         ArrayList<Circle> bait = new ArrayList<>();
         Circle cir ;
 
         for(int i = 0; i < 100; i ++){
-            int x_axis = 0;
-            int y_axis = 0;
+            double x_axis = 0;
+            double y_axis = 0;
             cir = new Circle();
             cir.setRadius(5);
             cir.setFill(Color.RED);
             
-            x_axis = (int)(Math.random()*(stage.getWidth()));
-            y_axis = (int)(Math.random()*(stage.getHeight()));
+            x_axis = (Math.random()*(stage.getWidth()));
+            y_axis = (Math.random()*(stage.getHeight()));
+
             cir.setTranslateX(x_axis);
             cir.setTranslateY(y_axis);
+
+            double x = cir.getTranslateX();
+            double y = cir.getTranslateY();
+
+            double Swidth = stage.getWidth();
+            double Sheight = stage.getHeight();
+
+            x = Math.max(radius, Math.min(x, Swidth - radius));
+            y = Math.max(radius+base, Math.min(y, Sheight - radius));
+
+
+            cir.setTranslateX(x);
+            cir.setTranslateY(y);
 
             root.getChildren().add(cir);
 
