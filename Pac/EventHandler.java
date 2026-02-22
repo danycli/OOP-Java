@@ -52,9 +52,7 @@ public class EventHandler extends Application{
         rec.setArcHeight(50);
         rec.setFill(Color.BURLYWOOD);
 
-        // Image pacMan = new Image("Pac/Images/Pac Man.ico");
-
-
+        Image pacMan = new Image("Pac/Images/Pac Man.ico");
 
         //root
         root.getChildren().add(rec);
@@ -65,7 +63,7 @@ public class EventHandler extends Application{
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Pac Man");
-        // stage.getIcons().add(pacMan);
+        stage.getIcons().add(pacMan);
         stage.show();
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());
