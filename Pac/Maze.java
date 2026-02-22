@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class Maze extends practice{
+public class Maze extends EventHandler{
     
     public static ArrayList<Circle> generatingMaze(Stage stage,Group root, Scene scene,double base, double radius){
         ArrayList<Circle> bait = new ArrayList<>();

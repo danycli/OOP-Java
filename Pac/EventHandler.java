@@ -5,6 +5,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -12,7 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class practice extends Application{
+public class EventHandler extends Application{
     private boolean upPressed = false;
     private boolean downPressed = false;
     private boolean leftPressed = false;
@@ -51,6 +52,9 @@ public class practice extends Application{
         rec.setArcHeight(50);
         rec.setFill(Color.BURLYWOOD);
 
+        // Image pacMan = new Image("Pac/Images/Pac Man.ico");
+
+
 
         //root
         root.getChildren().add(rec);
@@ -61,6 +65,7 @@ public class practice extends Application{
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Pac Man");
+        // stage.getIcons().add(pacMan);
         stage.show();
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());
