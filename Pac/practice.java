@@ -1,6 +1,7 @@
 package Pac;
 
-import javafx.scene.input.KeyCode;
+import java.util.ArrayList;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -9,7 +10,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class practice extends Application{
-
+    private boolean upPressed = false;
+    private boolean downPressed = false;
+    private boolean leftPressed = false;
+    private boolean rightPressed = false;
     @Override
     public void start(Stage arg0) throws Exception {
         Stage stage = new Stage();
@@ -20,38 +24,13 @@ public class practice extends Application{
         Scene scene = new Scene(root);
         
         Circle circle = new Circle();
-        circle.setRadius(40);
-        int x_axis = (int)(Math.random()*(1000 - 40 + 1) + 40);
-        int y_axis = (int)(Math.random()*(1000 - 40 + 1) + 40);
-        System.out.println("x = "+x_axis+"\nY = "+y_axis);
+        circle.setRadius(20);
+        //Spawning at diff locations
+        int x_axis = (int)(Math.random()*(1000 - circle.getRadius() + 1) + circle.getRadius());
+        int y_axis = (int)(Math.random()*(1000 - circle.getRadius() + 1) + circle.getRadius());
         circle.setTranslateX(x_axis);
         circle.setTranslateY(y_axis);
         circle.setFill(Color.GRAY);
-
-        //Button Actions
-        scene.setOnKeyPressed(e ->{
-            double x = circle.getTranslateX();
-            double y = circle.getTranslateY();
-            double move = 10;
-            if(e.getCode() == KeyCode.RIGHT){
-                x += move;
-            }else if(e.getCode() == KeyCode.LEFT){
-                x -= move;
-            }else if(e.getCode() == KeyCode.UP){
-                y -= move;
-            }else if(e.getCode() == KeyCode.DOWN){
-                y += move;
-            }
-            double radius = circle.getRadius();
-            double Swidth = scene.getWidth();
-            double Sheight = scene.getHeight();
-
-            x = Math.max(radius, Math.min(x, Swidth - radius));
-            y = Math.max(radius, Math.min(y, Sheight - radius));
-
-            circle.setTranslateX(x);
-            circle.setTranslateY(y);
-        });
 
         //root
         root.getChildren().add(circle);
@@ -62,10 +41,72 @@ public class practice extends Application{
         stage.setFullScreen(true);
         stage.show();
 
+        ArrayList<Circle> axisOfBait = Maze.generatingMaze(stage,root,scene);
+
+        //Button Actions
+        scene.setOnKeyPressed(e ->{
+            switch(e.getCode()){
+                case W -> upPressed = true;
+                case S -> downPressed = true;
+                case D -> rightPressed = true;
+                case A -> leftPressed = true;
+
+                default -> System.out.println();
+            }
+        });
+
+        scene.setOnKeyReleased(e ->{
+            switch(e.getCode()){
+            case W -> upPressed = false;
+            case S -> downPressed = false;
+            case D -> rightPressed = false;
+            case A -> leftPressed = false;
+
+            default -> System.out.println();
+            }
+        });
+
+        AnimationTimer gameLoop = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                double x = circle.getTranslateX();
+                double y = circle.getTranslateY();
+                double move = 10;
+            
+                if (upPressed) 
+                    y -= move;
+                if (downPressed) 
+                    y += move;
+                if (leftPressed) 
+                    x -= move;
+                if (rightPressed) 
+                    x += move;
+                
+                // Boundary checking
+                double radius = circle.getRadius();
+                double Swidth = stage.getWidth();
+                double Sheight = stage.getHeight();
+
+                x = Math.max(radius, Math.min(x, Swidth - radius));
+                y = Math.max(radius, Math.min(y, Sheight - radius));
+
+                circle.setTranslateX(x);
+                circle.setTranslateY(y);
+
+                // 
+                for(int i = axisOfBait.size() - 1; i >= 0; i--) {
+                    double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + 
+                                                Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
+                    if(distance < circle.getRadius() + axisOfBait.get(i).getRadius()) {
+                        root.getChildren().remove(axisOfBait.get(i));
+                        axisOfBait.remove(i);
+                    }
+                }
+            }
+        };
+        gameLoop.start();
         root.setFocusTraversable(true);
         root.requestFocus();
-
-        //Setting X and Y after Pressing a key
 
     }
 }
