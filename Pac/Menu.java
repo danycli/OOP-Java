@@ -2,6 +2,7 @@ package Pac;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
@@ -32,7 +33,7 @@ public class Menu {
         settings.setFont(new Font("Minecrafter Alt",30));
         settings.setBackground(Background.fill(Color.RED));
 
-        Button exiButton = new Button("Setting");
+        Button exiButton = new Button("Exit");
         exiButton.setTranslateY(110);
         exiButton.setBorder(Border.EMPTY);
         exiButton.setFocusTraversable(false);
@@ -40,15 +41,28 @@ public class Menu {
         exiButton.setFont(new Font("Minecrafter Alt",30));
         exiButton.setBackground(Background.fill(Color.RED));
 
+        resume.setOnAction(e ->{
+            stage2.close();
+        });
+
         root.getChildren().add(resume);
         root.getChildren().add(settings);
         root.getChildren().add(exiButton);
-        
+
         stage2.setScene(scene2);
         stage2.setHeight(600);
         stage2.setWidth(500);
         stage2.setResizable(false);
         stage2.setAlwaysOnTop(true);
+
+        scene2.setOnKeyPressed(e ->{
+            if(e.getCode() == KeyCode.ESCAPE){
+                stage2.close();
+            }
+        });
+        EventHandler der = new EventHandler();
+        der.deriveScene(scene2);
         stage2.show();
     }
+
 }

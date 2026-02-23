@@ -11,7 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -24,6 +23,7 @@ public class EventHandler extends Application{
     private boolean rightPressed = false;
     private double rotate = 0;
     private int score = 0;
+    private boolean SceneChecking = false;
     @Override
     public void start(Stage arg0) throws Exception {
         Stage stage = new Stage();
@@ -64,47 +64,55 @@ public class EventHandler extends Application{
         rec.setArcHeight(50);
         rec.setFill(Color.GRAY);
 
-        Image pacMan = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
-
         Image settingsIcon = new Image(getClass().getResourceAsStream("/Pac/Images/setting.png"));
         ImageView icon = new ImageView(settingsIcon);
         // icon.setFitHeight(30);
         // icon.setFitWidth(30);
         // icon.setPreserveRatio(true);
 
+        Image pause = new Image(getClass().getResourceAsStream("/Pac/Images/PauseButton.png"));
+        ImageView pauseView = new ImageView(pause);
+        pauseView.setFitHeight(40);
+        pauseView.setFitWidth(35);
+        // pauseView.setPreserveRatio(true);
+
+        Button pauseButton = new Button();
+        pauseButton.setGraphic(pauseView);
+        pauseButton.setTranslateY(7);
+        pauseButton.setFocusTraversable(false);
+        pauseButton.setBackground(Background.fill(Color.YELLOW));
+
         Button settings = new Button();
         settings.setGraphic(icon);
         settings.setTranslateY(3);
         settings.setFocusTraversable(false);
-        settings.setBackground(Background.fill(Color.WHITE));
+        settings.setBackground(Background.fill(Color.YELLOW));
 
-        Line topLine = new Line();
-        topLine.setStroke(Color.GAINSBORO);
-        topLine.setStrokeWidth(2);
-        topLine.setStartX(0);
-        topLine.setStartY(rec.getHeight());
-        topLine.setEndY(rec.getHeight());
+        Rectangle topRect = new Rectangle();
+        topRect.setHeight(62);
+        topRect.setFill(Color.YELLOW);
 
         //root
+        root.getChildren().add(topRect);
         root.getChildren().add(rec);
-        // root.getChildren().add(circle);
         root.getChildren().add(circle);
         root.getChildren().add(ScoreCard);
         root.getChildren().add(settings);
-        root.getChildren().add(topLine);
+        root.getChildren().add(pauseButton);
         
 
         //Stage
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Pac Man");
-        stage.getIcons().add(pacMan);
-        stage.show();
+        stage.getIcons().add(player);
+        stage.show(); 
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());
 
+        topRect.setWidth(stage.getWidth());
         settings.setTranslateX(stage.getWidth()-75);
-        topLine.setEndX(stage.getWidth());
+        pauseButton.setTranslateX(stage.getWidth()-130);
 
         ArrayList<Circle> axisOfBait = Maze.generatingMaze(stage,root,scene,rec.getHeight(),CircleRadius);
 
@@ -142,7 +150,9 @@ public class EventHandler extends Application{
                     stage.setY(0);
                     Menu.ShowMenu();
                 }
-                case F11 -> stage.setFullScreen(true);
+                case F11 -> {
+                    stage.setFullScreen(true);
+                }
 
                 default -> System.out.println();
             }
@@ -159,12 +169,32 @@ public class EventHandler extends Application{
             }
         });
 
+        settings.setOnAction(e ->{
+            stage.setFullScreen(false);
+            stage.setX(0);
+            stage.setY(0);
+            gameSettings.settingPopup();
+        });
+        pauseButton.setOnAction(e ->{
+            stage.setFullScreen(false);
+            stage.setX(0);
+            stage.setY(0);
+            Menu.ShowMenu();
+        });
+
         AnimationTimer gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 double x = circle.getTranslateX();
                 double y = circle.getTranslateY();
                 double move = 10;
+
+                if(SceneChecking == true){
+                    upPressed = false;
+                    downPressed = false;
+                    rightPressed = false;
+                    leftPressed = false;
+                }
             
                 if (upPressed) 
                     y -= move;
@@ -180,13 +210,13 @@ public class EventHandler extends Application{
                 double Swidth = stage.getWidth();
                 double Sheight = stage.getHeight();
 
-                x = Math.max(radius, Math.min(x, Swidth - radius));
-                y = Math.max(radius+rec.getHeight(), Math.min(y, Sheight - radius));
+                x = Math.max(0, Math.min(x, Swidth - radius));
+                y = Math.max(radius+13, Math.min(y, Sheight - radius));
 
                 circle.setTranslateX(x);
                 circle.setTranslateY(y);
 
-                // Euclian Distance Formula for Distance = √[(x₂ - x₁)² + (y₂ - y₁)²]
+                // Euclian Distance Formula for Distance between two points = √[(x₂ - x₁)² + (y₂ - y₁)²]
                 for(int i = axisOfBait.size() - 1; i >= 0; i--) {
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + 
                                                 Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
@@ -206,5 +236,12 @@ public class EventHandler extends Application{
         root.setFocusTraversable(true);
         root.requestFocus();
 
+    }
+    public void deriveScene(Scene scene){
+        if(scene != null){
+            SceneChecking = true;
+        }else{
+            SceneChecking = false;
+        }
     }
 }
