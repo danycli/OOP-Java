@@ -61,9 +61,9 @@ public class gameSettings {
 
     public static Color MainSceneColor(){
         if(setColor == true){
-            return Color.BLACK;
+            return Color.rgb(15, 4, 63);
         }else{
-            return Color.WHITE;
+            return Color.rgb(186, 233, 153);
         }
     }
     private static Button MenuButtons(String text, double y,Color color){

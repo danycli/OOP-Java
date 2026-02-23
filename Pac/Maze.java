@@ -1,25 +1,24 @@
 package Pac;
 
 import java.util.ArrayList;
-
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class Maze{
     
-    public static ArrayList<Circle> generatingMaze(Stage stage,Group root, Scene scene,double base, double radius){
-        ArrayList<Circle> bait = new ArrayList<>();
-        Circle cir ;
-
+    public ArrayList<ImageView> generatingMaze(Stage stage,Group root, Scene scene,double base, double radius){
+        ArrayList<ImageView> bait = new ArrayList<>();
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/cherry.png"));
+        ImageView cir;
         for(int i = 0; i < 100; i ++){
             double x_axis = 0;
             double y_axis = 0;
-            cir = new Circle();
-            cir.setRadius(5);
-            cir.setFill(Color.RED);
+            cir = new ImageView(player);
+            // cir.setRadius(5);
+            // cir.setFill(Color.RED);
             
             x_axis = (Math.random()*(stage.getWidth()));
             y_axis = (Math.random()*(stage.getHeight()));

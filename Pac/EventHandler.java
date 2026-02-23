@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -36,24 +35,19 @@ public class EventHandler extends Application{
 
         //Scene
         Scene scene = new Scene(root);
-        // scene.setFill(Color.WHITE);
 
         Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
         ImageView circle = new ImageView(player);
         circle.setRotate(rotate);
-        circle.setFitWidth(50);
-        circle.setFitHeight(50);
         circle.setPreserveRatio(true);
 
-        double CircleRadius = ((circle.getFitWidth()+circle.getFitHeight())/2) - 3;
+        double CircleRadius = circle.getLayoutBounds().getWidth();
         //Spawning at diff locations
 
         int x_axis = (int)(Math.random()*(1000 - CircleRadius + 1) + CircleRadius);
         int y_axis = (int)(Math.random()*(1000 - CircleRadius + 1) + CircleRadius);
         circle.setTranslateX(x_axis);
         circle.setTranslateY(y_axis);
-        // circle.setFill(Color.GRAY);
-
         Text ScoreCard = new Text("Score = "+ score);
         ScoreCard.setFont(new Font("Minecrafter Alt",50));
         ScoreCard.setTranslateY(50);
@@ -123,34 +117,23 @@ public class EventHandler extends Application{
         settings.setTranslateX(stage.getWidth()-75);
         pauseButton.setTranslateX(stage.getWidth()-130);
 
-        ArrayList<Circle> axisOfBait = Maze.generatingMaze(stage,root,scene,rec.getHeight(),CircleRadius);
+        Maze maze = new Maze();
+        ArrayList<ImageView> axisOfBait = maze.generatingMaze(stage,root,scene,rec.getHeight(),CircleRadius);
 
         //Button Actions
         scene.setOnKeyPressed(e ->{
             switch(e.getCode()){
                 case W -> {
                     upPressed = true;
-                    circle.setScaleX(1);
-                    rotate = -90;
-                    circle.setRotate(rotate);
                 }
                 case S -> {
                     downPressed = true;
-                    circle.setScaleX(1);
-                    rotate = 90;
-                    circle.setRotate(rotate);
                 }
                 case D -> {
                     rightPressed = true;
-                    circle.setScaleX(1);
-                    rotate = 0;
-                    circle.setRotate(rotate);
                 }
                 case A -> {
                     leftPressed = true;
-                    rotate = 0;
-                    circle.setRotate(rotate);
-                    circle.setScaleX(-1);
                 }
                 case ESCAPE -> {
                     stage.setX(0);
@@ -211,14 +194,30 @@ public class EventHandler extends Application{
                 }
                 
             
-                if (upPressed) 
+                if (upPressed && !downPressed && !rightPressed && !leftPressed){
+                    circle.setScaleX(1);
+                    rotate = -90;
+                    circle.setRotate(rotate);
                     y -= move;
-                if (downPressed) 
+                }
+                else if (downPressed && !upPressed && !rightPressed && !leftPressed) {
+                    circle.setScaleX(1);
+                    rotate = 90;
+                    circle.setRotate(rotate);
                     y += move;
-                if (leftPressed) 
+                }
+                else if (leftPressed && !downPressed && !upPressed && !rightPressed){
+                    rotate = 0;
+                    circle.setRotate(rotate);
+                    circle.setScaleX(-1);
                     x -= move;
-                if (rightPressed) 
+                } 
+                else if (rightPressed && !leftPressed && !downPressed && !upPressed){
+                    circle.setScaleX(1);
+                    rotate = 0;
+                    circle.setRotate(rotate);
                     x += move;
+                }
                 
                 // Boundary checking
                 double radius = CircleRadius;
@@ -235,8 +234,9 @@ public class EventHandler extends Application{
                 for(int i = axisOfBait.size() - 1; i >= 0; i--) {
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + 
                                                 Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
+                        distance += 35;
                         //if the distance bw bait and the player is less than the sum of their radii so remove the bait
-                        if(distance < CircleRadius + axisOfBait.get(i).getRadius()) {
+                        if(distance < CircleRadius + axisOfBait.get(i).getLayoutBounds().getWidth()) {
                         root.getChildren().remove(axisOfBait.get(i));
                         axisOfBait.remove(i);
                         score+=2;
