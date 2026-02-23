@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -35,6 +36,7 @@ public class EventHandler extends Application{
 
         //Scene
         Scene scene = new Scene(root);
+        // scene.setFill(Color.WHITE);
 
         Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
         ImageView circle = new ImageView(player);
@@ -56,7 +58,11 @@ public class EventHandler extends Application{
         ScoreCard.setFont(new Font("Minecrafter Alt",50));
         ScoreCard.setTranslateY(50);
         ScoreCard.setTranslateX(5);
-        ScoreCard.setFill(Color.BLACK);
+        ScoreCard.setFill(Color.rgb(11, 19, 43));
+        DropShadow textShadow = new DropShadow();
+        textShadow.setColor(Color.BLACK);
+        textShadow.setRadius(20);
+        ScoreCard.setEffect(textShadow);
 
         Rectangle rec = new Rectangle();
         rec.setTranslateX(0);
@@ -65,7 +71,7 @@ public class EventHandler extends Application{
         rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
         rec.setArcWidth(50);
         rec.setArcHeight(50);
-        rec.setFill(Color.GRAY);
+        rec.setFill(Color.YELLOW);
 
         Image settingsIcon = new Image(getClass().getResourceAsStream("/Pac/Images/setting.png"));
         ImageView icon = new ImageView(settingsIcon);
@@ -142,11 +148,9 @@ public class EventHandler extends Application{
                 }
                 case A -> {
                     leftPressed = true;
-                    // rotate = 180;
                     rotate = 0;
                     circle.setRotate(rotate);
                     circle.setScaleX(-1);
-                    // circle.setRotate(rotate);
                 }
                 case ESCAPE -> {
                     stage.setX(0);
@@ -173,10 +177,11 @@ public class EventHandler extends Application{
         });
 
         settings.setOnAction(e ->{
+
             stage.setFullScreen(false);
             stage.setX(0);
             stage.setY(0);
-            if(settingAction == 1){
+            if(settingAction == 1 && pauseAction == 1){
                 settingAction++;
                 gameSettings.settingPopup();
             }
@@ -185,7 +190,7 @@ public class EventHandler extends Application{
             stage.setFullScreen(false);
             stage.setX(0);
             stage.setY(0);
-            if(pauseAction == 1){
+            if(pauseAction == 1 && settingAction == 1){
                 pauseAction++;
                 Menu.ShowMenu();
             }
@@ -240,6 +245,7 @@ public class EventHandler extends Application{
                         rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
+                scene.setFill(gameSettings.MainSceneColor());
                 if(Menu.isCloseGame()){
                 stage.close();
             }
