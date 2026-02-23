@@ -23,7 +23,10 @@ public class EventHandler extends Application{
     private boolean rightPressed = false;
     private double rotate = 0;
     private int score = 0;
+    private static int pauseAction = 1;
+    private static int settingAction = 1;
     private boolean SceneChecking = false;
+    
     @Override
     public void start(Stage arg0) throws Exception {
         Stage stage = new Stage();
@@ -173,13 +176,19 @@ public class EventHandler extends Application{
             stage.setFullScreen(false);
             stage.setX(0);
             stage.setY(0);
-            gameSettings.settingPopup();
+            if(settingAction == 1){
+                settingAction++;
+                gameSettings.settingPopup();
+            }
         });
         pauseButton.setOnAction(e ->{
             stage.setFullScreen(false);
             stage.setX(0);
             stage.setY(0);
-            Menu.ShowMenu();
+            if(pauseAction == 1){
+                pauseAction++;
+                Menu.ShowMenu();
+            }
         });
 
         AnimationTimer gameLoop = new AnimationTimer() {
@@ -195,6 +204,7 @@ public class EventHandler extends Application{
                     rightPressed = false;
                     leftPressed = false;
                 }
+                
             
                 if (upPressed) 
                     y -= move;
@@ -230,12 +240,14 @@ public class EventHandler extends Application{
                         rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
+                if(Menu.isCloseGame()){
+                stage.close();
+            }
             }
         };
         gameLoop.start();
         root.setFocusTraversable(true);
         root.requestFocus();
-
     }
     public void deriveScene(Scene scene){
         if(scene != null){
@@ -243,5 +255,11 @@ public class EventHandler extends Application{
         }else{
             SceneChecking = false;
         }
+    }
+    public static void setPauseAction(int PauseAction) {
+        pauseAction = PauseAction;
+    }
+    public static void setSettingAction(int settingAction) {
+        EventHandler.settingAction = settingAction;
     }
 }

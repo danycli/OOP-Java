@@ -3,6 +3,20 @@
   "configurations": [
     {
         "type": "java",
+        "name": "intersectionOfTwoArrays",
+        "request": "launch",
+        "mainClass": "Array.intersectionOfTwoArrays",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
+        "name": "sorting",
+        "request": "launch",
+        "mainClass": "Array.sorting",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "Raw",
         "request": "launch",
         "mainClass": "Pac.Raw",

@@ -9,10 +9,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Menu {
-    
+    private static boolean closeGame = false;
+    private static boolean checkSetting = false;
+
     public static void ShowMenu(){
+        EventHandler der = new EventHandler();
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 500,600);
@@ -33,7 +37,7 @@ public class Menu {
         settings.setFont(new Font("Minecrafter Alt",30));
         settings.setBackground(Background.fill(Color.RED));
 
-        Button exiButton = new Button("Exit");
+        Button exiButton = new Button("Quit Game");
         exiButton.setTranslateY(110);
         exiButton.setBorder(Border.EMPTY);
         exiButton.setFocusTraversable(false);
@@ -41,9 +45,20 @@ public class Menu {
         exiButton.setFont(new Font("Minecrafter Alt",30));
         exiButton.setBackground(Background.fill(Color.RED));
 
-        resume.setOnAction(e ->{
+
+        if(!checkSetting){
+            resume.setOnAction(e ->{
             stage2.close();
+            EventHandler.setPauseAction(1);
         });
+        settings.setOnAction(e ->{
+            gameSettings.settingPopup();
+        });
+        exiButton.setOnAction(e ->{
+            stage2.close();
+            closeGame = true;
+        });
+        }
 
         root.getChildren().add(resume);
         root.getChildren().add(settings);
@@ -60,9 +75,18 @@ public class Menu {
                 stage2.close();
             }
         });
-        EventHandler der = new EventHandler();
         der.deriveScene(scene2);
+        stage2.initStyle(StageStyle.UNDECORATED);
         stage2.show();
     }
-
+    public static boolean isCloseGame() {
+        return closeGame;
+    }
+    public static void getScene(Scene scene){
+        if(scene != null){
+            checkSetting = true;
+        }else{
+            checkSetting = false;
+        }
+    }
 }

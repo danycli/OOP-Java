@@ -6,6 +6,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class gameSettings {
     
@@ -24,7 +25,10 @@ public class gameSettings {
         lightMode.setBackground(Background.fill(Color.WHITE));
         lightMode.setTranslateY(10);
 
-        
+        darkMode.setOnAction(e ->{
+            EventHandler.setSettingAction(1);
+            stage.close();
+        });
 
         root.getChildren().add(lightMode);
         root.getChildren().add(darkMode);
@@ -32,6 +36,8 @@ public class gameSettings {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
+        stage.initStyle(StageStyle.UNDECORATED);
+        Menu.getScene(scene);
         stage.show();
     }
 }
