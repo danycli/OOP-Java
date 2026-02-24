@@ -10,44 +10,32 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Menu {
-    protected static boolean closeGame = false;
-    protected static int setPop = 1;
-
-    public void ShowMenu(){
-        EventHandler der = new EventHandler();
+public class GameOver {
+    public void ShowMenu(EventHandler current){
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
-        Scene scene2 = new Scene(root, 500,600);
+        Scene scene2 = new Scene(root, 400,500);
         scene2.setFill(Color.AZURE);
 
-        Button resume = MenuButtons("Resume",-90);
+        Button playAgain = MenuButtons("Play Again",-90);
 
-        Button settings = MenuButtons("Setting",10);
+        Button settings = MenuButtons("View Stats",10);
 
         Button exitButton = MenuButtons("Quit Game",110);
 
 
-        resume.setOnAction(e ->{
-        if(setPop == 1){
+        playAgain.setOnAction(e ->{
             stage2.close();
-            EventHandler.setPauseAction(1);
-        }
+            current.startGame();
         });
         settings.setOnAction(e ->{
-            if(setPop == 1){
-                gameSettings.settingPopup();
-            }
-            setPop++;
+            gameSettings.settingPopup();
         });
         exitButton.setOnAction(e ->{
-            if(setPop == 1){
-                stage2.close();
-                closeGame = true;
-            }
+            stage2.close();
         });
 
-        root.getChildren().add(resume);
+        root.getChildren().add(playAgain);
         root.getChildren().add(settings);
         root.getChildren().add(exitButton);
 
@@ -62,7 +50,7 @@ public class Menu {
                 stage2.close();
             }
         });
-        der.deriveScene(scene2);
+        current.deriveScene(scene2);
         stage2.initStyle(StageStyle.UNDECORATED);
 
         stage2.initStyle(StageStyle.TRANSPARENT);
@@ -73,19 +61,6 @@ public class Menu {
         """);
 
         stage2.show();
-    }
-    public static boolean isCloseGame() {
-        return closeGame;
-    }
-    // public static void getScene(Scene scene){
-    //     if(scene != null){
-    //         checkSetting = true;
-    //     }else{
-    //         checkSetting = false;
-    //     }
-    // }
-    public static void setSetPop(int setPop) {
-        Menu.setPop = setPop;
     }
     private static Button MenuButtons(String text, double y){
         Button b = new Button(text);

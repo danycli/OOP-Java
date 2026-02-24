@@ -3,6 +3,7 @@ package Pac;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,9 +27,18 @@ public class EventHandler extends Application{
     private static int pauseAction = 1;
     private static int settingAction = 1;
     private boolean SceneChecking = false;
+    private AnimationTimer gameLoop = null;
     
     @Override
     public void start(Stage arg0) throws Exception {
+        upPressed = downPressed = leftPressed = rightPressed = false;
+        SceneChecking = false;
+        startGame();
+    }
+    public void startGame(){
+        if (gameLoop != null) gameLoop.stop();
+        upPressed = downPressed = leftPressed = rightPressed = false;
+        SceneChecking = false;
         Stage stage = new Stage();
 
         Group root = new Group();
@@ -110,6 +120,10 @@ public class EventHandler extends Application{
         stage.setTitle("Pac Man");
         stage.getIcons().add(player);
         stage.show(); 
+        Platform.runLater(() -> {
+            root.setFocusTraversable(true);
+            root.requestFocus();
+        });
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());
 
@@ -117,9 +131,13 @@ public class EventHandler extends Application{
         settings.setTranslateX(stage.getWidth()-75);
         pauseButton.setTranslateX(stage.getWidth()-130);
 
-        Maze maze = new Maze();
+        GameOver gameOver = new GameOver();
+        Menu menu = new Menu();
+        Pickables maze = new Pickables();
         ArrayList<ImageView> axisOfBait = maze.generatingMaze(stage,root,scene,rec.getHeight(),CircleRadius);
 
+        Entities entities = new Entities();
+        ArrayList<ImageView> allEnimies = entities.spawnEnemies(stage,root,scene,rec.getHeight(),CircleRadius);
         //Button Actions
         scene.setOnKeyPressed(e ->{
             switch(e.getCode()){
@@ -138,7 +156,7 @@ public class EventHandler extends Application{
                 case ESCAPE -> {
                     stage.setX(0);
                     stage.setY(0);
-                    Menu.ShowMenu();
+                    menu.ShowMenu();
                 }
                 case F11 -> {
                     stage.setFullScreen(true);
@@ -175,11 +193,11 @@ public class EventHandler extends Application{
             stage.setY(0);
             if(pauseAction == 1 && settingAction == 1){
                 pauseAction++;
-                Menu.ShowMenu();
+                menu.ShowMenu();
             }
         });
 
-        AnimationTimer gameLoop = new AnimationTimer() {
+        gameLoop = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 double x = circle.getTranslateX();
@@ -232,9 +250,8 @@ public class EventHandler extends Application{
 
                 // Euclian Distance Formula for Distance between two points = √[(x₂ - x₁)² + (y₂ - y₁)²]
                 for(int i = axisOfBait.size() - 1; i >= 0; i--) {
-                    double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + 
-                                                Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
-                        distance += 35;
+                    double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
+                    distance += 35;
                         //if the distance bw bait and the player is less than the sum of their radii so remove the bait
                         if(distance < CircleRadius + axisOfBait.get(i).getLayoutBounds().getWidth()) {
                         root.getChildren().remove(axisOfBait.get(i));
@@ -245,6 +262,18 @@ public class EventHandler extends Application{
                         rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
+                
+                for(int i = allEnimies.size()-1; i >= 0; i--){
+                    double distance = Math.sqrt(Math.pow(circle.getTranslateX() - allEnimies.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - allEnimies.get(i).getTranslateY(), 2));
+                    distance += 55;
+                    if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth()) {
+                        gameLoop.stop();
+                        gameOver.ShowMenu(EventHandler.this);
+                        stage.close();
+                        break;
+                    }
+                }
+
                 scene.setFill(gameSettings.MainSceneColor());
                 if(Menu.isCloseGame()){
                 stage.close();
@@ -252,8 +281,6 @@ public class EventHandler extends Application{
             }
         };
         gameLoop.start();
-        root.setFocusTraversable(true);
-        root.requestFocus();
     }
     public void deriveScene(Scene scene){
         if(scene != null){
