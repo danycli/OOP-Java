@@ -28,15 +28,23 @@ public class EventHandler extends Application{
     private static int settingAction = 1;
     private boolean SceneChecking = false;
     private AnimationTimer gameLoop = null;
+    private double enemySpeed = 1;
     
     @Override
     public void start(Stage arg0) throws Exception {
-        upPressed = downPressed = leftPressed = rightPressed = false;
-        SceneChecking = false;
+        // upPressed = downPressed = leftPressed = rightPressed = false;
+        // enemySpeed = 1;
+        // SceneChecking = false;
         startGame();
     }
     public void startGame(){
         if (gameLoop != null) gameLoop.stop();
+        enemySpeed = 1;
+        score = 0;
+        rotate = 0;
+        pauseAction = 1;
+        settingAction = 1;
+        gameLoop = null;
         upPressed = downPressed = leftPressed = rightPressed = false;
         SceneChecking = false;
         Stage stage = new Stage();
@@ -62,7 +70,8 @@ public class EventHandler extends Application{
         ScoreCard.setFont(new Font("Minecrafter Alt",50));
         ScoreCard.setTranslateY(50);
         ScoreCard.setTranslateX(5);
-        ScoreCard.setFill(Color.rgb(11, 19, 43));
+        // ScoreCard.setFill(Color.rgb(11, 19, 43));
+        ScoreCard.setFill(Color.WHITE);
         DropShadow textShadow = new DropShadow();
         textShadow.setColor(Color.BLACK);
         textShadow.setRadius(20);
@@ -154,9 +163,12 @@ public class EventHandler extends Application{
                     leftPressed = true;
                 }
                 case ESCAPE -> {
-                    stage.setX(0);
-                    stage.setY(0);
-                    menu.ShowMenu();
+                    if(pauseAction == 1 && settingAction == 1){
+                        stage.setX(0);
+                        stage.setY(0);
+                        menu.ShowMenu();
+                        pauseAction++;
+                    }
                 }
                 case F11 -> {
                     stage.setFullScreen(true);
@@ -263,9 +275,31 @@ public class EventHandler extends Application{
                     }
                 }
                 
+
                 for(int i = allEnimies.size()-1; i >= 0; i--){
+
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - allEnimies.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - allEnimies.get(i).getTranslateY(), 2));
                     distance += 55;
+
+                    if((pauseAction == 1 && settingAction ==1) || (pauseAction != 1 && settingAction !=1)){
+                        double dx = circle.getTranslateX() - allEnimies.get(i).getTranslateX();
+                        double dy = circle.getTranslateY() - allEnimies.get(i).getTranslateY();
+
+                        double displacement = Math.sqrt(dx*dx + dy*dy);
+
+                        if(displacement > 10){
+                        dx /= displacement;
+                        dy /= displacement;
+                        }
+
+                        dx += (Math.random() - 0.5) * 0.3;
+                        dy += (Math.random() - 0.5) * 0.3;
+
+                        allEnimies.get(i).setTranslateX(allEnimies.get(i).getTranslateX() + dx * enemySpeed);
+                        allEnimies.get(i).setTranslateY(allEnimies.get(i).getTranslateY() + dy * enemySpeed);
+                        enemySpeed += 0.0008;
+                    }
+
                     if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth()) {
                         gameLoop.stop();
                         gameOver.ShowMenu(EventHandler.this);

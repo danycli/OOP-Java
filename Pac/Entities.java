@@ -60,8 +60,9 @@ public class Entities {
 
         en.setTranslateX(x);
         en.setTranslateY(y);
-
         root.getChildren().add(en);
+
         return en;
     } 
+    
 }

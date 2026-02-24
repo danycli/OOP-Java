@@ -16,10 +16,17 @@ public class Pickables{
         Image diamond = new Image(getClass().getResourceAsStream("/Pac/Images/diamond.png"));
 
         ArrayList<ImageView> addingCherries = addingItemsToScreen(50, cherry, stage, root, scene, base, radius);
-        int n = (int)(Math.random()*(6-2+1)-2);
+        int n = (int)(Math.random()*6);
         ArrayList<ImageView> addingDiamonds = addingItemsToScreen(n, diamond, stage, root, scene, base, radius);
 
-        
+        for(int i = 0; i < addingCherries.size()+addingDiamonds.size(); i++){
+            if(i < addingDiamonds.size()){
+                bait.add(addingDiamonds.get(i));
+                bait.add(addingCherries.get(i));
+            }else if(i > addingDiamonds.size() && i < addingCherries.size()){
+                bait.add(addingCherries.get(i));
+            }
+        }
 
         // ImageView cir;
         // for(int i = 0; i < 50; i ++){
@@ -57,7 +64,7 @@ public class Pickables{
     private ArrayList<ImageView> addingItemsToScreen(int numOfItem, Image item,Stage stage,Group root, Scene scene,double base, double radius){
         ArrayList<ImageView> items = new ArrayList<>();
         ImageView cir;
-        for(int i = 0; i < 50; i ++){
+        for(int i = 0; i < numOfItem; i ++){
             double x_axis = 0;
             double y_axis = 0;
             cir = new ImageView(item);
