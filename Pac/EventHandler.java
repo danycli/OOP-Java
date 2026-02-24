@@ -297,7 +297,9 @@ public class EventHandler extends Application{
 
                         allEnimies.get(i).setTranslateX(allEnimies.get(i).getTranslateX() + dx * enemySpeed);
                         allEnimies.get(i).setTranslateY(allEnimies.get(i).getTranslateY() + dy * enemySpeed);
-                        enemySpeed += 0.0008;
+                        if(enemySpeed < 6){
+                            enemySpeed += 0.0008;
+                        }
                     }
 
                     if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth()) {
