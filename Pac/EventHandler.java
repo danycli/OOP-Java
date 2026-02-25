@@ -40,6 +40,8 @@ public class EventHandler extends Application{
     public void startGame(){
         if (gameLoop != null) gameLoop.stop();
         enemySpeed = 1;
+        ArrayList<Double> enemyDirX = new ArrayList<>();
+        ArrayList<Double> enemyDirY = new ArrayList<>();
         score = 0;
         rotate = 0;
         pauseAction = 1;
@@ -147,6 +149,26 @@ public class EventHandler extends Application{
 
         Entities entities = new Entities();
         ArrayList<ImageView> allEnimies = entities.spawnEnemies(stage,root,scene,rec.getHeight(),CircleRadius);
+
+        enemyDirX.clear();
+        enemyDirY.clear();
+
+        for(int i = 0; i < allEnimies.size(); i++){
+
+            // random direction between -1 and 1
+            double dx = Math.random()*2 - 1;
+            double dy = Math.random()*2 - 1;
+
+            // normalize (explained later)
+            double length = Math.sqrt(dx*dx + dy*dy);
+
+            dx /= length;
+            dy /= length;
+
+            enemyDirX.add(dx);
+            enemyDirY.add(dy);
+        }
+
         //Button Actions
         scene.setOnKeyPressed(e ->{
             switch(e.getCode()){
@@ -281,7 +303,8 @@ public class EventHandler extends Application{
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - allEnimies.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - allEnimies.get(i).getTranslateY(), 2));
                     distance += 55;
 
-                    if((pauseAction == 1 && settingAction ==1) || (pauseAction != 1 && settingAction !=1)){
+
+                    if(((pauseAction == 1 && settingAction ==1) || (pauseAction != 1 && settingAction !=1)) && distance < 400){
                         double dx = circle.getTranslateX() - allEnimies.get(i).getTranslateX();
                         double dy = circle.getTranslateY() - allEnimies.get(i).getTranslateY();
 
@@ -297,9 +320,28 @@ public class EventHandler extends Application{
 
                         allEnimies.get(i).setTranslateX(allEnimies.get(i).getTranslateX() + dx * enemySpeed);
                         allEnimies.get(i).setTranslateY(allEnimies.get(i).getTranslateY() + dy * enemySpeed);
-                        if(enemySpeed < 6){
-                            enemySpeed += 0.0008;
-                        }
+                    }else if (((pauseAction == 1 && settingAction ==1) || (pauseAction != 1 && settingAction !=1))){
+                        double x_axis = allEnimies.get(i).getTranslateX();
+                        double y_axis = allEnimies.get(i).getTranslateY();
+
+                        // move enemy
+                        x_axis += enemyDirX.get(i) * enemySpeed;
+                        y_axis += enemyDirY.get(i) * enemySpeed;
+
+                        double width = stage.getWidth();
+                        double height = stage.getHeight();
+
+                        if(x_axis <= 0 || x_axis >= width-40)
+                        enemyDirX.set(i, -enemyDirX.get(i));
+
+                        if(y_axis <= 60 || y_axis >= height-40)
+                        enemyDirY.set(i, -enemyDirY.get(i));
+
+                        allEnimies.get(i).setTranslateX(x_axis);
+                        allEnimies.get(i).setTranslateY(y_axis);
+                    }
+                    if(enemySpeed < 6){
+                        enemySpeed += 0.00008;
                     }
 
                     if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth()) {
