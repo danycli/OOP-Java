@@ -2,6 +2,7 @@ package Pac;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -12,21 +13,31 @@ import javafx.stage.StageStyle;
 
 public class gameOverstats {
     
-    public static void gameOverStatsPopup(int score, int NumofDiamondsCollected){
+    public void gameOverStatsPopup(int score, int NumofDiamondsCollected, int highScore, int totalDiamonds){
         Stage stage = new Stage();
         StackPane root = new StackPane();
-        Scene scene = new Scene(root,350,450);
+        Scene scene = new Scene(root,450,500);
         // scene.setFill(Color.AZURE);
         
         Text totalScore = new Text("Score = "+score);
-        totalScore.setFont(new Font("Minecrafter Alt",40));
+        totalScore.setFont(new Font("Minecrafter Alt",30));
         totalScore.setFill(Color.WHITE);
-        totalScore.setTranslateY(-50);
+        totalScore.setTranslateY(-110);
 
         Text numOfDiamonds = new Text("Diamonds = "+NumofDiamondsCollected);
-        numOfDiamonds.setFont(new Font("Minecrafter Alt",40));
+        numOfDiamonds.setFont(new Font("Minecrafter Alt",30));
         numOfDiamonds.setFill(Color.WHITE);
-        numOfDiamonds.setTranslateY(20);
+        numOfDiamonds.setTranslateY(-60);
+
+        Text diamondstotal = new Text("Total Diamonds = "+totalDiamonds);
+        diamondstotal.setFont(new Font("Minecrafter Alt",30));
+        diamondstotal.setFill(Color.WHITE);
+        diamondstotal.setTranslateY(40);
+
+        Text HighScore = new Text("High Score = "+highScore);
+        HighScore.setFont(new Font("Minecrafter Alt",30));
+        HighScore.setFill(Color.WHITE);
+        HighScore.setTranslateY(-10);
 
         Button close = new Button("Close");
         close.setTranslateY(110);
@@ -46,7 +57,13 @@ public class gameOverstats {
         root.getChildren().add(numOfDiamonds);
         root.getChildren().add(close);
         root.getChildren().add(totalScore);
+        root.getChildren().add(diamondstotal);
+        root.getChildren().add(HighScore);
 
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
+
+        stage.getIcons().add(player);
+        stage.setTitle("Stats");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);

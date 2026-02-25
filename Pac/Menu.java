@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Menu {
-    protected static boolean closeGame = false;
-    protected static int setPop = 1;
+    private static boolean closeGame = false;
+    private static int setPop = 1;
 
     public void ShowMenu(){
         EventHandler der = new EventHandler();

@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -12,42 +11,42 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class GameOver {
-    public void ShowMenu(EventHandler current, int score, int numOfDiamonds, int totalDiamonds, int highScore){
+public class PlayGame {
+    // private int setPop = 1;
+
+    public void playGame(EventHandler current){
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 400,500);
         scene2.setFill(Color.AZURE);
 
-        Text gameOver = new Text("Game Over");
-        gameOver.setFont(new Font("Minecrafter Alt",60));
-        gameOver.setFill(Color.WHITE);
-        gameOver.setTranslateY(-200);
+        Text PacMan = new Text("Pac Man");
+        PacMan.setFont(new Font("Minecrafter Alt",60));
+        PacMan.setFill(Color.WHITE);
+        PacMan.setTranslateY(-200);
 
-        Button playAgain = MenuButtons("Play Again",-90);
+        Button play = GameOver.MenuButtons("Play",-90);
 
-        Button stats = MenuButtons("View Stats",10);
+        Button settings = GameOver.MenuButtons("Settings",10);
 
-        Button exitButton = MenuButtons("Quit Game",110);
-
-        gameOverstats gameStats = new gameOverstats();
+        Button exitButton = GameOver.MenuButtons("Quit Game",110);
 
 
-        playAgain.setOnAction(e ->{
+        play.setOnAction(e ->{
             stage2.close();
             current.startGame();
         });
-        stats.setOnAction(e ->{
-            gameStats.gameOverStatsPopup(score, numOfDiamonds, highScore, totalDiamonds);
+        settings.setOnAction(e ->{
+            gameSettings.settingPopup();
         });
         exitButton.setOnAction(e ->{
             stage2.close();
         });
 
-        root.getChildren().add(playAgain);
-        root.getChildren().add(stats);
+        root.getChildren().add(play);
+        root.getChildren().add(settings);
         root.getChildren().add(exitButton);
-        root.getChildren().add(gameOver);
+        root.getChildren().add(PacMan);
 
         Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
 
@@ -75,19 +74,5 @@ public class GameOver {
         """);
 
         stage2.show();
-    }
-    public static Button MenuButtons(String text, double y){
-        Button b = new Button(text);
-        b.setTranslateY(y);
-        b.setBorder(Border.EMPTY);
-        b.setFocusTraversable(false);
-        b.setTextFill(Color.WHITE);
-        b.setFont(new Font("Minecrafter Alt",30));
-        b.setStyle("""
-                -fx-background-color: #ffffff43;
-                -fx-background-radius:20;
-                """);
-
-        return b;
     }
 }

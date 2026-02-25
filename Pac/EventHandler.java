@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -38,12 +37,20 @@ public class EventHandler extends Application{
     private int NumofDiamondsCollected ;
     private int highScore ;
     private int totalDiamonds;
+    private long startTime;
+    private long endTime;
+    private long pauseTime;
+    private int countDiamond;
     
     @Override
     public void start(Stage arg0) throws Exception {
-        startGame();
+        PlayGame play = new PlayGame();
+        play.playGame(EventHandler.this);
     }
     public void startGame(){
+        startTime = System.nanoTime();
+        endTime = 0;
+        pauseTime = 0;
         if (gameLoop != null) gameLoop.stop();
         enemySpeed = 1;
         ArrayList<Double> enemyDirX = new ArrayList<>();
@@ -57,6 +64,7 @@ public class EventHandler extends Application{
         SceneChecking = false;
         NumofDiamondsCollected = 0;
         FileHandling();
+        countDiamond = totalDiamonds;
 
         Stage stage = new Stage();
 
@@ -86,6 +94,22 @@ public class EventHandler extends Application{
         textShadow.setColor(Color.BLACK);
         textShadow.setRadius(10);
         ScoreCard.setEffect(textShadow);
+
+        Image diamondIcon = new Image(getClass().getResourceAsStream("/Pac/Images/OnScreenDiamond.png"));
+        ImageView diamond = new ImageView(diamondIcon);
+        diamond.setTranslateX(400);
+        diamond.setTranslateY(15);
+        diamond.setEffect(textShadow);
+        // diamond.setFitHeight(40);
+        // diamond.setFitWidth(40);
+
+        Text diamondCount = new Text(""+countDiamond);
+        diamondCount.setFill(Color.WHITE);
+        diamondCount.setFont(new Font("Minecrafter Alt",40));
+        textShadow.setRadius(10);
+        diamondCount.setEffect(textShadow);
+        diamondCount.setTranslateX(diamond.getTranslateX()+ 55);
+        diamondCount.setTranslateY(diamond.getTranslateY() + 35);
 
         Rectangle rec = new Rectangle();
         rec.setTranslateX(0);
@@ -129,8 +153,6 @@ public class EventHandler extends Application{
         Text HIGHScore = new Text("High Score = "+highScore);
         HIGHScore.setFill(Color.WHITE);
         HIGHScore.setFont(new Font("Minecrafter Alt",50));
-        HIGHScore.setTranslateX(ScoreCard.getTranslateX()+ 295);
-        HIGHScore.setTranslateY(50);
         textShadow.setRadius(10);
         HIGHScore.setEffect(textShadow);
 
@@ -138,6 +160,8 @@ public class EventHandler extends Application{
         root.getChildren().add(topRect);
         root.getChildren().add(rec);
         root.getChildren().add(circle);
+        root.getChildren().add(diamond);
+        root.getChildren().add(diamondCount);
         root.getChildren().add(HIGHScore);
         root.getChildren().add(ScoreCard);
         root.getChildren().add(settings);
@@ -150,10 +174,10 @@ public class EventHandler extends Application{
         stage.setTitle("Pac Man");
         stage.getIcons().add(player);
         stage.show(); 
-        Platform.runLater(() -> {
-            root.setFocusTraversable(true);
-            root.requestFocus();
-        });
+        HIGHScore.setTranslateX(stage.getWidth() - 650);
+        HIGHScore.setTranslateY(50);
+        root.setFocusTraversable(true);
+        root.requestFocus();
         stage.setMinWidth(scene.getWidth());
         stage.setMinHeight(scene.getHeight());
 
@@ -262,6 +286,7 @@ public class EventHandler extends Application{
                     downPressed = false;
                     rightPressed = false;
                     leftPressed = false;
+                    pauseTime += System.nanoTime();
                 }
                 
             
@@ -312,6 +337,8 @@ public class EventHandler extends Application{
                             score+=2;
                         }else if(axisOfBait.get(i).getId().equals("Diamond")){
                             score += 5;
+                            countDiamond++;
+                            diamondCount.setText(""+countDiamond);
                             NumofDiamondsCollected++;
                         }
                         ScoreCard.setText("Score = "+score);
@@ -369,9 +396,14 @@ public class EventHandler extends Application{
                     }
                     
                     if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth() || axisOfBait.size() == 0) {
+                        endTime = System.nanoTime();
+                        startTime += pauseTime;
+                        int ExtraScore = (int)((endTime - startTime)/1e9);
+                        ExtraScore /= 3;
+                        score += ExtraScore;
                         FileHandling();
                         gameLoop.stop();
-                        gameOver.ShowMenu(EventHandler.this, score, NumofDiamondsCollected);
+                        gameOver.ShowMenu(EventHandler.this, score, NumofDiamondsCollected, totalDiamonds, highScore);
                         stage.close();
                         break;
                     }
@@ -417,9 +449,9 @@ public class EventHandler extends Application{
             while((line = read.readLine()) != null){
                     String[] split = line.split(" ");
                     if(lineIndex == 1 && line.startsWith("Score") ) {
-                        if(score < highScore) {
+                        if(score <= highScore) {
                             highScore = Integer.parseInt(split[split.length - 1]);
-                        }else{
+                        }else {
                             highScore = score;
                             line = "Score = "+highScore;
                         }
@@ -442,5 +474,4 @@ public class EventHandler extends Application{
             System.out.println("Something went Wrong");
         }
     }
-
 }
