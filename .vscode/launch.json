@@ -3,6 +3,13 @@
   "configurations": [
     {
         "type": "java",
+        "name": "MiainClass",
+        "request": "launch",
+        "mainClass": "FileHandling.MiainClass",
+        "projectName": "OOP-Java_4062772c"
+    },
+    {
+        "type": "java",
         "name": "arrayToString",
         "request": "launch",
         "mainClass": "Array.arrayToString",

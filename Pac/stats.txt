@@ -1,0 +1,2 @@
+Score = 108
+Total Diamonds = 10

@@ -20,9 +20,9 @@ public class gameSettings {
         scene.setFill(Color.AZURE);
         
 
-        Button darkMode = MenuButtons("Dark Mode",-40,Color.WHITE);
+        Button darkMode = MenuButtons("Dark Mode",-30,Color.WHITE);
 
-        Button lightMode = MenuButtons("Light Mode",20,Color.BLACK);
+        Button lightMode = MenuButtons("Light Mode",30,Color.BLACK);
 
         darkMode.setOnAction(e ->{
             EventHandler.setSettingAction(1);

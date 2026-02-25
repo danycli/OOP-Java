@@ -1,5 +1,11 @@
 package Pac;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -18,23 +24,23 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EventHandler extends Application{
-    private boolean upPressed = false;
-    private boolean downPressed = false;
-    private boolean leftPressed = false;
-    private boolean rightPressed = false;
-    private double rotate = 0;
-    private int score = 0;
-    private static int pauseAction = 1;
-    private static int settingAction = 1;
-    private boolean SceneChecking = false;
+    private boolean upPressed ;
+    private boolean downPressed ;
+    private boolean leftPressed ;
+    private boolean rightPressed ;
+    private double rotate ;
+    private int score ;
+    private static int pauseAction ;
+    private static int settingAction ;
+    private boolean SceneChecking ;
     private AnimationTimer gameLoop = null;
-    private double enemySpeed = 1;
+    private double enemySpeed ;
+    private int NumofDiamondsCollected ;
+    private int highScore ;
+    private int totalDiamonds;
     
     @Override
     public void start(Stage arg0) throws Exception {
-        // upPressed = downPressed = leftPressed = rightPressed = false;
-        // enemySpeed = 1;
-        // SceneChecking = false;
         startGame();
     }
     public void startGame(){
@@ -49,6 +55,9 @@ public class EventHandler extends Application{
         gameLoop = null;
         upPressed = downPressed = leftPressed = rightPressed = false;
         SceneChecking = false;
+        NumofDiamondsCollected = 0;
+        FileHandling();
+
         Stage stage = new Stage();
 
         Group root = new Group();
@@ -72,11 +81,10 @@ public class EventHandler extends Application{
         ScoreCard.setFont(new Font("Minecrafter Alt",50));
         ScoreCard.setTranslateY(50);
         ScoreCard.setTranslateX(5);
-        // ScoreCard.setFill(Color.rgb(11, 19, 43));
         ScoreCard.setFill(Color.WHITE);
         DropShadow textShadow = new DropShadow();
         textShadow.setColor(Color.BLACK);
-        textShadow.setRadius(20);
+        textShadow.setRadius(10);
         ScoreCard.setEffect(textShadow);
 
         Rectangle rec = new Rectangle();
@@ -115,11 +123,22 @@ public class EventHandler extends Application{
         Rectangle topRect = new Rectangle();
         topRect.setHeight(62);
         topRect.setFill(Color.YELLOW);
+        textShadow.setRadius(30);
+        topRect.setEffect(textShadow);
+
+        Text HIGHScore = new Text("High Score = "+highScore);
+        HIGHScore.setFill(Color.WHITE);
+        HIGHScore.setFont(new Font("Minecrafter Alt",50));
+        HIGHScore.setTranslateX(ScoreCard.getTranslateX()+ 295);
+        HIGHScore.setTranslateY(50);
+        textShadow.setRadius(10);
+        HIGHScore.setEffect(textShadow);
 
         //root
         root.getChildren().add(topRect);
         root.getChildren().add(rec);
         root.getChildren().add(circle);
+        root.getChildren().add(HIGHScore);
         root.getChildren().add(ScoreCard);
         root.getChildren().add(settings);
         root.getChildren().add(pauseButton);
@@ -283,17 +302,22 @@ public class EventHandler extends Application{
                 circle.setTranslateY(y);
 
                 // Euclian Distance Formula for Distance between two points = √[(x₂ - x₁)² + (y₂ - y₁)²]
-                for(int i = axisOfBait.size() - 1; i >= 0; i--) {
+                for(int i = axisOfBait.size() - 1 ; i >= 0; i--) {
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - axisOfBait.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - axisOfBait.get(i).getTranslateY(), 2));
-                    distance += 35;
+                    distance += 20;
                         //if the distance bw bait and the player is less than the sum of their radii so remove the bait
                         if(distance < CircleRadius + axisOfBait.get(i).getLayoutBounds().getWidth()) {
                         root.getChildren().remove(axisOfBait.get(i));
-                        axisOfBait.remove(i);
-                        score+=2;
+                        if(axisOfBait.get(i).getId().equals("Cherry")){
+                            score+=2;
+                        }else if(axisOfBait.get(i).getId().equals("Diamond")){
+                            score += 5;
+                            NumofDiamondsCollected++;
+                        }
                         ScoreCard.setText("Score = "+score);
-                        rec.setWidth(ScoreCard.getLayoutBounds().getWidth() + 10);
-                        rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
+                        axisOfBait.remove(i);
+                        // rec.setWidth(ScoreCard.getLayoutBounds().getWidth() + 10);
+                        // rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
                 
@@ -301,7 +325,7 @@ public class EventHandler extends Application{
                 for(int i = allEnimies.size()-1; i >= 0; i--){
 
                     double distance = Math.sqrt(Math.pow(circle.getTranslateX() - allEnimies.get(i).getTranslateX(), 2) + Math.pow(circle.getTranslateY() - allEnimies.get(i).getTranslateY(), 2));
-                    distance += 55;
+                    distance += 50;
 
 
                     if(((pauseAction == 1 && settingAction ==1) || (pauseAction != 1 && settingAction !=1)) && distance < 400){
@@ -343,10 +367,11 @@ public class EventHandler extends Application{
                     if(enemySpeed < 6){
                         enemySpeed += 0.00008;
                     }
-
-                    if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth()) {
+                    
+                    if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth() || axisOfBait.size() == 0) {
+                        FileHandling();
                         gameLoop.stop();
-                        gameOver.ShowMenu(EventHandler.this);
+                        gameOver.ShowMenu(EventHandler.this, score, NumofDiamondsCollected);
                         stage.close();
                         break;
                     }
@@ -373,4 +398,49 @@ public class EventHandler extends Application{
     public static void setSettingAction(int settingAction) {
         EventHandler.settingAction = settingAction;
     }
+
+    private void FileHandling(){
+        try{
+            ArrayList<String> lines = new ArrayList<>();
+            File stats = new File("Pac/stats.txt");
+            if(stats.createNewFile()){
+                BufferedWriter write = new BufferedWriter(new FileWriter(stats));
+                write.write("Score = 0");
+                write.newLine();
+                write.write("Total Diamonds = 0");
+                write.close();
+            }
+            BufferedReader read = new BufferedReader(new FileReader(stats));
+            // int line = 1;
+            String line = null;
+            int lineIndex = 1;
+            while((line = read.readLine()) != null){
+                    String[] split = line.split(" ");
+                    if(lineIndex == 1 && line.startsWith("Score") ) {
+                        if(score < highScore) {
+                            highScore = Integer.parseInt(split[split.length - 1]);
+                        }else{
+                            highScore = score;
+                            line = "Score = "+highScore;
+                        }
+                    }else if(lineIndex == 2 && line.startsWith("Total")){
+                        totalDiamonds = (Integer.parseInt(split[split.length-1])) + NumofDiamondsCollected;
+                        line = "Total Diamonds = "+totalDiamonds;
+                    }
+                    lines.add(line);
+                    lineIndex++;
+            }
+            BufferedWriter Bwrite = new BufferedWriter(new FileWriter(stats));
+            for(String text : lines){
+                Bwrite.write(text);
+                Bwrite.newLine();
+            }
+            Bwrite.close();
+            read.close();
+        }
+        catch(IOException e){
+            System.out.println("Something went Wrong");
+        }
+    }
+
 }

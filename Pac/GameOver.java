@@ -7,15 +7,21 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class GameOver {
-    public void ShowMenu(EventHandler current){
+    public void ShowMenu(EventHandler current, int score, int numOfDiamonds){
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 400,500);
         scene2.setFill(Color.AZURE);
+
+        Text gameOver = new Text("Game Over");
+        gameOver.setFont(new Font("Minecrafter Alt",60));
+        gameOver.setFill(Color.WHITE);
+        gameOver.setTranslateY(-200);
 
         Button playAgain = MenuButtons("Play Again",-90);
 
@@ -29,7 +35,7 @@ public class GameOver {
             current.startGame();
         });
         settings.setOnAction(e ->{
-            gameSettings.settingPopup();
+            gameOverstats.gameOverStatsPopup(score, numOfDiamonds);
         });
         exitButton.setOnAction(e ->{
             stage2.close();
@@ -38,6 +44,7 @@ public class GameOver {
         root.getChildren().add(playAgain);
         root.getChildren().add(settings);
         root.getChildren().add(exitButton);
+        root.getChildren().add(gameOver);
 
         stage2.setScene(scene2);
         stage2.setHeight(600);

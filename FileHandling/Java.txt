@@ -1,0 +1,5 @@
+Score = 50
+Hi james what are you doing
+I am fine
+Diamond = 23
+What are you up to?
