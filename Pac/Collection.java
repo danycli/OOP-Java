@@ -15,15 +15,16 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Collection {
-    private static ArrayList<String> images = new ArrayList<>();
     public void collection(){
-        images.clear();
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Scene scene = new Scene(root,500,700);
-        
+        ArrayList<String> images = new ArrayList<>();
+        images.clear();
+
         try{
             File col = new File("Pac/CollectedItems.txt");
+            col.createNewFile();
             BufferedReader read = new BufferedReader(new FileReader(col));
             String line = null;
             while((line = read.readLine()) != null){
@@ -36,7 +37,7 @@ public class Collection {
         }
 
         int y_axis = 0;
-        Button quit = GameOver.MenuButtons("Quit",0);
+        Button quit = GameOver.MenuButtons("Back",0);
         quit.setTranslateY(((images.size()/2) * 80) + 80);
         for(int i = 0; i < images.size(); i++){
 
@@ -76,9 +77,5 @@ public class Collection {
             -fx-background-radius: 20;
         """);
         stage.show();
-    }
-    public static ArrayList<String> getImages() {
-        System.out.println("Collection/Collection = "+images.size());
-        return images;
     }
 }

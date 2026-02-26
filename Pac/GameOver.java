@@ -49,7 +49,7 @@ public class GameOver {
         root.getChildren().add(exitButton);
         root.getChildren().add(gameOver);
 
-        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
 
         stage2.setScene(scene2);
         stage2.setTitle("Game Over");
@@ -87,7 +87,6 @@ public class GameOver {
                 -fx-background-color: #ffffff43;
                 -fx-background-radius:20;
                 """);
-
         return b;
     }
 }

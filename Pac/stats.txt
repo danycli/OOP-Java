@@ -1,2 +1,2 @@
-Score = 0
-Total Diamonds = 8500
+Score = 146
+Total Diamonds = 5955

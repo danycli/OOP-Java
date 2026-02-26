@@ -70,10 +70,9 @@ public class EventHandler extends Application{
 
         Group root = new Group();
 
-        //Scene
         Scene scene = new Scene(root);
 
-        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
         ImageView circle = new ImageView(player);
         circle.setRotate(rotate);
         circle.setPreserveRatio(true);
@@ -100,8 +99,6 @@ public class EventHandler extends Application{
         diamond.setTranslateX(400);
         diamond.setTranslateY(15);
         diamond.setEffect(textShadow);
-        // diamond.setFitHeight(40);
-        // diamond.setFitWidth(40);
 
         Text diamondCount = new Text(""+countDiamond);
         diamondCount.setFill(Color.WHITE);
@@ -122,15 +119,11 @@ public class EventHandler extends Application{
 
         Image settingsIcon = new Image(getClass().getResourceAsStream("/Pac/Images/setting.png"));
         ImageView icon = new ImageView(settingsIcon);
-        // icon.setFitHeight(30);
-        // icon.setFitWidth(30);
-        // icon.setPreserveRatio(true);
 
         Image pause = new Image(getClass().getResourceAsStream("/Pac/Images/PauseButton.png"));
         ImageView pauseView = new ImageView(pause);
         pauseView.setFitHeight(40);
         pauseView.setFitWidth(35);
-        // pauseView.setPreserveRatio(true);
 
         Button pauseButton = new Button();
         pauseButton.setGraphic(pauseView);
@@ -156,7 +149,6 @@ public class EventHandler extends Application{
         textShadow.setRadius(10);
         HIGHScore.setEffect(textShadow);
 
-        //root
         root.getChildren().add(topRect);
         root.getChildren().add(rec);
         root.getChildren().add(circle);
@@ -168,7 +160,6 @@ public class EventHandler extends Application{
         root.getChildren().add(pauseButton);
         
 
-        //Stage
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Pac Man");
@@ -198,11 +189,9 @@ public class EventHandler extends Application{
 
         for(int i = 0; i < allEnimies.size(); i++){
 
-            // random direction between -1 and 1
             double dx = Math.random()*2 - 1;
             double dy = Math.random()*2 - 1;
 
-            // normalize (explained later)
             double length = Math.sqrt(dx*dx + dy*dy);
 
             dx /= length;
@@ -212,7 +201,6 @@ public class EventHandler extends Application{
             enemyDirY.add(dy);
         }
 
-        //Button Actions
         scene.setOnKeyPressed(e ->{
             switch(e.getCode()){
                 case W -> {
@@ -261,7 +249,8 @@ public class EventHandler extends Application{
             stage.setY(0);
             if(settingAction == 1 && pauseAction == 1){
                 settingAction++;
-                gameSettings.settingPopup();
+                gameSettings set = new gameSettings();
+                set.settingPopup();
             }
         });
         pauseButton.setOnAction(e ->{
@@ -343,8 +332,6 @@ public class EventHandler extends Application{
                         }
                         ScoreCard.setText("Score = "+score);
                         axisOfBait.remove(i);
-                        // rec.setWidth(ScoreCard.getLayoutBounds().getWidth() + 10);
-                        // rec.setHeight(ScoreCard.getLayoutBounds().getHeight() + 10);
                     }
                 }
                 
@@ -471,7 +458,7 @@ public class EventHandler extends Application{
             read.close();
         }
         catch(IOException e){
-            System.out.println("Something went Wrong");
+            System.out.println("Something went Wrong while getting and updating the diamonds and the score in the Event Handler");
         }
     }
 }

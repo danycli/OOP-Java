@@ -17,7 +17,6 @@ public class gameOverstats {
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Scene scene = new Scene(root,450,500);
-        // scene.setFill(Color.AZURE);
         
         Text totalScore = new Text("Score = "+score);
         totalScore.setFont(new Font("Minecrafter Alt",30));
@@ -60,7 +59,7 @@ public class gameOverstats {
         root.getChildren().add(diamondstotal);
         root.getChildren().add(HighScore);
 
-        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/Pac_Man_Favicon.png"));
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
 
         stage.getIcons().add(player);
         stage.setTitle("Stats");
@@ -68,7 +67,7 @@ public class gameOverstats {
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        // Menu.getScene(scene);
+
         EventHandler der = new EventHandler();
         der.deriveScene(scene);
 

@@ -2,6 +2,7 @@ package Pac;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
@@ -36,7 +37,8 @@ public class Menu {
         });
         settings.setOnAction(e ->{
             if(setPop == 1){
-                gameSettings.settingPopup();
+                gameSettings set = new gameSettings();
+                set.settingPopup();
             }
             setPop++;
         });
@@ -51,6 +53,10 @@ public class Menu {
         root.getChildren().add(settings);
         root.getChildren().add(exitButton);
 
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
+
+        stage2.getIcons().add(player);
+        stage2.setTitle("Menu");
         stage2.setScene(scene2);
         stage2.setHeight(600);
         stage2.setWidth(500);
@@ -77,13 +83,6 @@ public class Menu {
     public static boolean isCloseGame() {
         return closeGame;
     }
-    // public static void getScene(Scene scene){
-    //     if(scene != null){
-    //         checkSetting = true;
-    //     }else{
-    //         checkSetting = false;
-    //     }
-    // }
     public static void setSetPop(int setPop) {
         Menu.setPop = setPop;
     }

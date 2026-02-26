@@ -41,7 +41,8 @@ public class PlayGame {
             current.startGame();
         });
         settings.setOnAction(e ->{
-            gameSettings.settingPopup();
+            gameSettings set = new gameSettings();
+            set.settingPopup();
         });
         exitButton.setOnAction(e ->{
             stage2.close();
@@ -67,8 +68,6 @@ public class PlayGame {
         stage2.setScene(scene2);
         stage2.setTitle("Play");
         stage2.getIcons().add(player);
-        // stage2.setHeight(600);
-        // stage2.setWidth(500);
         stage2.setResizable(false);
         stage2.setAlwaysOnTop(true);
 

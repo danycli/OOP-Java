@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -25,9 +24,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Store {
-    int diamondsTOTAL = 0;
-    int itemPrice = 0;
-    String Item = null;
+    private int diamondsTOTAL = 0;
     public void store(){
         Stage stage = new Stage();
         StackPane root = new StackPane();
@@ -47,6 +44,10 @@ public class Store {
         ArrayList<String> stats = new ArrayList<>();
         ArrayList<Text> pricesOfItems = new ArrayList<>();
         ArrayList<ImageView> diamondOnScreen = new ArrayList<>();
+        ArrayList<Button> buy = new ArrayList<>();
+        ArrayList<Integer> prices = new ArrayList<>();
+
+
         Path directory = Paths.get("Pac/Images/PacSkins");
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(directory)){
             for(Path file : stream){
@@ -62,6 +63,7 @@ public class Store {
 
         try{
             File cItems = new File("Pac/CollectedItems.txt");
+            cItems.createNewFile();
             BufferedReader read = new BufferedReader(new FileReader(cItems));
             String line = null;
             while ((line = read.readLine()) != null) {
@@ -78,25 +80,25 @@ public class Store {
             System.out.println("Something went wrong while checking for collected items in store");
         }
 
+        Text text = new Text("Items Sold Out");
+        text.setFont(new Font("Minecrafter Alt",40));
+        text.setFill(Color.WHITE);
+        text.setTranslateX(10);
+
         if(images.size() == 0){
-            Text text = new Text("Items Sold Out");
-            text.setFont(new Font("Minecrafter Alt",40));
-            text.setFill(Color.WHITE);
-            text.setTranslateX(10);
-            // text.setTranslateY(-(((images.size()/2) * 80) + 80));
             root.getChildren().add(text);
         }
 
         int y_axis = 0;
                 
-        Button quit = GameOver.MenuButtons("Quit",0);
+        Button quit = GameOver.MenuButtons("Back",0);
         quit.setTranslateY(((images.size()/2) * 80) + 80);
 
         Text storeTxt = new Text("Store");
         storeTxt.setFont(new Font("Minecrafter Alt",60));
         storeTxt.setFill(Color.WHITE);
         storeTxt.setTranslateX(10);
-        storeTxt.setTranslateY(-(((images.size()/2) * 80) + 50));
+        storeTxt.setTranslateY(-(((images.size()/2) * 80) + 0));
         root.getChildren().add(storeTxt);
 
         quit.setOnAction(e ->{
@@ -105,6 +107,13 @@ public class Store {
 
             try{
                 File file = new File("Pac/stats.txt");
+                if(file.createNewFile()){
+                    BufferedWriter write = new BufferedWriter(new FileWriter(file));
+                    write.write("Score = 0");
+                    write.newLine();
+                    write.write("Total Diamonds = 0");
+                    write.close();
+                }
                 BufferedReader read = new BufferedReader(new FileReader(file));
                 String line = null;
                 while((line = read.readLine()) != null){
@@ -119,8 +128,6 @@ public class Store {
                 catch(IOException b){
                     System.out.print("Something Went wrong while getting diamonds in store");
                 }
-                ArrayList<Button> buy = new ArrayList<>();
-                ArrayList<Integer> prices = new ArrayList<>();
         for(int i = 0 ; i < images.size() ; i++){
             int highPrice = 0;
             highPrice = priceMap.get(images.get(i).getId());
@@ -140,7 +147,7 @@ public class Store {
                 price.setTranslateX(10);
                 price.setTranslateY(y_axis + 5);
 
-                Image diamond = new Image("/Pac/Images/OnScreenDiamond.png");
+                Image diamond = new Image("/Pac/Images/OnScreenDiamond.png");//add diamond count
                 ImageView Diamond = new ImageView(diamond);
                 Diamond.setTranslateY(y_axis);
                 Diamond.setTranslateX(-55);
@@ -160,8 +167,7 @@ public class Store {
                 pricesOfItems.add(price);
                 diamondOnScreen.add(Diamond);
         }
-        // scene.setOnMouseClicked(e ->{
-        //     if(e.getButton() == MouseButton.PRIMARY){
+
                 int count = 0;
                 while(count < images.size()){
                     final int index = count;
@@ -174,6 +180,7 @@ public class Store {
                             diamondsTOTAL -= prices.get(currentIndex);
                         try{
                             File file = new File("Pac/CollectedItems.txt");
+                            file.createNewFile();
                             BufferedWriter write = new BufferedWriter(new FileWriter(file,true));
                             write.newLine();
                             write.write(images.get(currentIndex).getId());
@@ -182,6 +189,7 @@ public class Store {
                         catch(IOException t){
                             System.out.println("Something went wrong while adding bought item");
                         }
+
                         ImageView im = images.get(currentIndex);
                         Button btn = buy.get(currentIndex);
                         Text pr = pricesOfItems.get(currentIndex);
@@ -196,8 +204,16 @@ public class Store {
                         pricesOfItems.remove(pr);
                         diamondOnScreen.remove(dim);
                         }
+                        
                         try{
                             File file = new File("Pac/stats.txt");
+                            if(file.createNewFile()){
+                                BufferedWriter write = new BufferedWriter(new FileWriter(file));
+                                write.write("Score = 0");
+                                write.newLine();
+                                write.write("Total Diamonds = 0");
+                                write.close();
+                            }
                             BufferedWriter write = new BufferedWriter(new FileWriter(file));
                             int numOfLine = 0;
                             while(numOfLine < stats.size()){
@@ -217,8 +233,7 @@ public class Store {
                     });
                     count++;
                 }
-            // }
-        // });
+
         root.getChildren().add(quit);
 
         Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));

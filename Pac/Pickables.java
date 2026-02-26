@@ -16,8 +16,8 @@ public class Pickables{
         Image diamond = new Image(getClass().getResourceAsStream("/Pac/Images/diamond.png"));
 
         int numOfCherries = (int)(Math.random()*(150 - 50)+1);
-
         ArrayList<ImageView> addingCherries = addingItemsToScreen(numOfCherries, cherry, stage, root, scene, base, radius, "Cherry");
+        
         int numOfDiamonds = (int)(Math.random()*6);
         ArrayList<ImageView> addingDiamonds = addingItemsToScreen(numOfDiamonds, diamond, stage, root, scene, base, radius, "Diamond");
 

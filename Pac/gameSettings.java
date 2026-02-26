@@ -2,6 +2,7 @@ package Pac;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -13,7 +14,7 @@ public class gameSettings {
 
     public static boolean setColor = false;
 
-    public static void settingPopup(){
+    public void settingPopup(){
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Scene scene = new Scene(root,300,200);
@@ -41,11 +42,15 @@ public class gameSettings {
         root.getChildren().add(lightMode);
         root.getChildren().add(darkMode);
 
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
+
+        stage.getIcons().add(player);
+        stage.setTitle("Settings");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        // Menu.getScene(scene);
+        
         EventHandler der = new EventHandler();
         der.deriveScene(scene);
 
