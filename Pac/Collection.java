@@ -120,6 +120,9 @@ public class Collection {
                         write.newLine();
                     }
                     write.close();
+
+                    PopUp pop = new PopUp();
+                    pop.cautionPopUp("Equipped");
                 }
                 catch(IOException r){
                     System.out.println("Something Went Wrong while equiping new skin");

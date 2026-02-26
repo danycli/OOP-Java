@@ -224,6 +224,9 @@ public class Store {
                         prices.remove(pric);
                         pricesOfItems.remove(pr);
                         diamondOnScreen.remove(dim);
+
+                        PopUp pop = new PopUp();
+                        pop.cautionPopUp("Successfuly\n  Purchased");
                         }
                         
                         try{
