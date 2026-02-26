@@ -47,7 +47,6 @@ public class Store {
         ArrayList<Button> buy = new ArrayList<>();
         ArrayList<Integer> prices = new ArrayList<>();
 
-
         Path directory = Paths.get("Pac/Images/PacSkins");
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(directory)){
             for(Path file : stream){
@@ -98,8 +97,16 @@ public class Store {
         storeTxt.setFont(new Font("Minecrafter Alt",60));
         storeTxt.setFill(Color.WHITE);
         storeTxt.setTranslateX(10);
-        storeTxt.setTranslateY(-(((images.size()/2) * 80) + 0));
+        storeTxt.setTranslateY(-(((images.size()/2) * 80) + 80));
         root.getChildren().add(storeTxt);
+
+        Image diamond = new Image("/Pac/Images/OnScreenDiamond.png");
+        ImageView totalDiamondCount = new ImageView(diamond);
+        totalDiamondCount.setFitHeight(30);
+        totalDiamondCount.setFitWidth(30);
+        totalDiamondCount.setTranslateX(165);
+        totalDiamondCount.setTranslateY(-370);
+        root.getChildren().add(totalDiamondCount);
 
         quit.setOnAction(e ->{
             stage.close();
@@ -128,6 +135,20 @@ public class Store {
                 catch(IOException b){
                     System.out.print("Something Went wrong while getting diamonds in store");
                 }
+        int counttt = diamondsTOTAL;
+        int u = 1;
+        while(counttt != 0 ){
+            counttt /=10;
+            u++;
+        }
+
+        Text countTheDiamonds = new Text(""+diamondsTOTAL);
+        countTheDiamonds.setFont(new Font("Minecrafter Alt",30));
+        countTheDiamonds.setFill(Color.WHITE);
+        countTheDiamonds.setTranslateX(totalDiamondCount.getTranslateX() + 35 + u*5);
+        countTheDiamonds.setTranslateY(-367);
+        root.getChildren().add(countTheDiamonds);
+
         for(int i = 0 ; i < images.size() ; i++){
             int highPrice = 0;
             highPrice = priceMap.get(images.get(i).getId());
@@ -147,7 +168,6 @@ public class Store {
                 price.setTranslateX(10);
                 price.setTranslateY(y_axis + 5);
 
-                Image diamond = new Image("/Pac/Images/OnScreenDiamond.png");//add diamond count
                 ImageView Diamond = new ImageView(diamond);
                 Diamond.setTranslateY(y_axis);
                 Diamond.setTranslateX(-55);
@@ -178,6 +198,7 @@ public class Store {
 
                         if(diamondsTOTAL >= prices.get(currentIndex)){
                             diamondsTOTAL -= prices.get(currentIndex);
+                            countTheDiamonds.setText(""+diamondsTOTAL);
                         try{
                             File file = new File("Pac/CollectedItems.txt");
                             file.createNewFile();

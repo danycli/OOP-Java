@@ -71,9 +71,28 @@ public class EventHandler extends Application{
         Group root = new Group();
 
         Scene scene = new Scene(root);
+        String skinName = "7Pac_Man_Favicon.png";
+        try{
+            File file = new File("Pac/stats.txt");
+            BufferedReader read = new BufferedReader(new FileReader(file));
+            String line = null;
+            int count = 0;
 
-        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
-        ImageView circle = new ImageView(player);
+            while((line = read.readLine()) != null){
+                if(line.endsWith(".png") || count == 2){
+                    skinName = line;
+                    break;
+                }
+                count++;
+            }
+            read.close();
+        }
+        catch(IOException j){
+            System.out.println("Something Went Wrong while getting the skin name");
+        }
+
+        Image skin = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/"+skinName));
+        ImageView circle = new ImageView(skin);
         circle.setRotate(rotate);
         circle.setPreserveRatio(true);
 
@@ -163,6 +182,7 @@ public class EventHandler extends Application{
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.setTitle("Pac Man");
+        Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
         stage.getIcons().add(player);
         stage.show(); 
         HIGHScore.setTranslateX(stage.getWidth() - 650);
