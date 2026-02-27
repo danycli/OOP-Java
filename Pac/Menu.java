@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -14,19 +13,22 @@ import javafx.stage.StageStyle;
 public class Menu {
     private static boolean closeGame = false;
     private static int setPop = 1;
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),30);
 
     public void ShowMenu(){
         EventHandler der = new EventHandler();
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 500,600);
-        scene2.setFill(Color.AZURE);
 
-        Button resume = MenuButtons("Resume",-90);
+        Button resume = GameOver.MenuButtons("Resume",-90);
+        resume.setFont(font);
 
-        Button settings = MenuButtons("Setting",10);
+        Button settings = GameOver.MenuButtons("Setting",10);
+        settings.setFont(font);
 
-        Button exitButton = MenuButtons("Quit Game",110);
+        Button exitButton = GameOver.MenuButtons("Quit Game",110);
+        exitButton.setFont(font);
 
 
         resume.setOnAction(e ->{
@@ -85,19 +87,5 @@ public class Menu {
     }
     public static void setSetPop(int setPop) {
         Menu.setPop = setPop;
-    }
-    private static Button MenuButtons(String text, double y){
-        Button b = new Button(text);
-        b.setTranslateY(y);
-        b.setBorder(Border.EMPTY);
-        b.setFocusTraversable(false);
-        b.setTextFill(Color.WHITE);
-        b.setFont(new Font("Minecrafter Alt",30));
-        b.setStyle("""
-                -fx-background-color: #ffffff43;
-                -fx-background-radius:20;
-                """);
-
-        return b;
     }
 }

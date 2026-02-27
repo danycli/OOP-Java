@@ -12,29 +12,31 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class PlayGame {
-    // private int setPop = 1;
-
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),30);
     public void playGame(EventHandler current){
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 500,700);
-        scene2.setFill(Color.AZURE);
 
         Text PacMan = new Text("Pac Man");
-        PacMan.setFont(new Font("Minecrafter Alt",60));
+        PacMan.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),60));
         PacMan.setFill(Color.WHITE);
         PacMan.setTranslateY(-230);
 
         Button play = GameOver.MenuButtons("Play",-130);
+        play.setFont(font);
 
         Button settings = GameOver.MenuButtons("Settings",-30);
+        settings.setFont(font);
 
         Button store = GameOver.MenuButtons("Store",70);
+        store.setFont(font);
 
         Button Collection = GameOver.MenuButtons("Collection", 170);
+        Collection.setFont(font);
 
         Button exitButton = GameOver.MenuButtons("Quit Game",270);
-
+        exitButton.setFont(font);
 
         play.setOnAction(e ->{
             stage2.close();

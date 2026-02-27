@@ -41,7 +41,7 @@ public class EventHandler extends Application{
     private long endTime;
     private long pauseTime;
     private int countDiamond;
-    
+
     @Override
     public void start(Stage arg0) throws Exception {
         PlayGame play = new PlayGame();
@@ -71,7 +71,9 @@ public class EventHandler extends Application{
         Group root = new Group();
 
         Scene scene = new Scene(root);
+
         String skinName = "7Pac_Man_Favicon.png";
+
         try{
             File file = new File("Pac/stats.txt");
             if(file.createNewFile()){
@@ -112,8 +114,8 @@ public class EventHandler extends Application{
         int y_axis = (int)(Math.random()*(1000 - CircleRadius + 1) + CircleRadius);
         circle.setTranslateX(x_axis);
         circle.setTranslateY(y_axis);
-        Text ScoreCard = new Text("Score = "+ score);
-        ScoreCard.setFont(new Font("Minecrafter Alt",50));
+        Text ScoreCard = new Text("Score "+ score);
+        ScoreCard.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),50));
         ScoreCard.setTranslateY(50);
         ScoreCard.setTranslateX(5);
         ScoreCard.setFill(Color.WHITE);
@@ -130,7 +132,7 @@ public class EventHandler extends Application{
 
         Text diamondCount = new Text(""+countDiamond);
         diamondCount.setFill(Color.WHITE);
-        diamondCount.setFont(new Font("Minecrafter Alt",40));
+        diamondCount.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),40));
         textShadow.setRadius(10);
         diamondCount.setEffect(textShadow);
         diamondCount.setTranslateX(diamond.getTranslateX()+ 55);
@@ -171,9 +173,9 @@ public class EventHandler extends Application{
         textShadow.setRadius(30);
         topRect.setEffect(textShadow);
 
-        Text HIGHScore = new Text("High Score = "+highScore);
+        Text HIGHScore = new Text("High Score "+highScore);
         HIGHScore.setFill(Color.WHITE);
-        HIGHScore.setFont(new Font("Minecrafter Alt",50));
+        HIGHScore.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),50));
         textShadow.setRadius(10);
         HIGHScore.setEffect(textShadow);
 
@@ -359,7 +361,7 @@ public class EventHandler extends Application{
                             diamondCount.setText(""+countDiamond);
                             NumofDiamondsCollected++;
                         }
-                        ScoreCard.setText("Score = "+score);
+                        ScoreCard.setText("Score "+score);
                         axisOfBait.remove(i);
                     }
                 }

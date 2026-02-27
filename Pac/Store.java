@@ -25,6 +25,8 @@ import javafx.stage.StageStyle;
 
 public class Store {
     private int diamondsTOTAL = 0;
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),30);
+
     public void store(){
         Stage stage = new Stage();
         StackPane root = new StackPane();
@@ -80,7 +82,7 @@ public class Store {
         }
 
         Text text = new Text("Items Sold Out");
-        text.setFont(new Font("Minecrafter Alt",40));
+        text.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),40));
         text.setFill(Color.WHITE);
         text.setTranslateX(10);
 
@@ -91,10 +93,11 @@ public class Store {
         int y_axis = 0;
                 
         Button quit = GameOver.MenuButtons("Back",0);
+        quit.setFont(font);
         quit.setTranslateY(((images.size()/2) * 80) + 80);
 
         Text storeTxt = new Text("Store");
-        storeTxt.setFont(new Font("Minecrafter Alt",60));
+        storeTxt.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),60));
         storeTxt.setFill(Color.WHITE);
         storeTxt.setTranslateX(10);
         storeTxt.setTranslateY(-(((images.size()/2) * 80) + 80));
@@ -145,7 +148,7 @@ public class Store {
         }
 
         Text countTheDiamonds = new Text(""+diamondsTOTAL);
-        countTheDiamonds.setFont(new Font("Minecrafter Alt",30));
+        countTheDiamonds.setFont(font);
         countTheDiamonds.setFill(Color.WHITE);
         countTheDiamonds.setTranslateX(totalDiamondCount.getTranslateX() + 35 + u*5);
         countTheDiamonds.setTranslateY(-367);
@@ -163,9 +166,10 @@ public class Store {
                     }
                 }
                 Button buyNow = GameOver.MenuButtons("Buy", y_axis);
+                buyNow.setFont(font);
 
                 Text price = new Text("" + highPrice);
-                price.setFont(new Font("Minecrafter Alt",35));
+                price.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),35));
                 price.setFill(Color.WHITE);
                 price.setTranslateX(10);
                 price.setTranslateY(y_axis + 5);

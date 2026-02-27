@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Collection {
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),30);
     public void collection(){
         Stage stage = new Stage();
         StackPane root = new StackPane();
@@ -66,10 +68,11 @@ public class Collection {
 
         int y_axis = 0;
         Button quit = GameOver.MenuButtons("Back",0);
+        quit.setFont(font);
         quit.setTranslateY(((images.size()/2) * 80) + 80);
 
         Text col = new Text("Collection");
-        col.setFont(new Font("Minecrafter Alt",60));
+        col.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),60));
         col.setFill(Color.WHITE);
         col.setTranslateY(-(((images.size()/2) * 80) + 70));
         root.getChildren().add(col);
@@ -93,10 +96,39 @@ public class Collection {
                 root.getChildren().add(man);
 
                 Button eqiuipButton = GameOver.MenuButtons("Equip",y_axis);
-                eqiuipButton.setFont(new Font("Minecrafter Alt", 20));
+                eqiuipButton.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),20));
                 eqiuipButton.setTranslateX(50);
                 root.getChildren().add(eqiuipButton);
                 eqiuipButton.setId(""+images.get(i));
+
+                try{
+                    File file = new File("Pac/stats.txt");
+                    if(file.createNewFile()){
+                    BufferedWriter write = new BufferedWriter(new FileWriter(file));
+                    write.write("Score = 0");
+                    write.newLine();
+                    write.write("Total Diamond = 0");
+                    write.newLine();
+                    write.write("7Pac_Man_Favicon.png");
+                    write.close();
+                    if(eqiuipButton.getId().equals("7Pac_Man_Favicon.png")){
+                        eqiuipButton.setText("Equiped");
+                    }
+                }else{
+                    BufferedReader read = new BufferedReader(new FileReader(file));
+                    String line = null;
+                    while((line = read.readLine()) != null){
+                        if(line.equals(eqiuipButton.getId())){
+                            eqiuipButton.setText("Equipped");
+                        }
+                    }
+                    read.close();
+                }
+                    
+                }
+                catch(IOException e){
+                    System.out.println("Something went Wrong with setting the button to equiped");
+                }
 
                 equip.add(eqiuipButton);
 
@@ -120,12 +152,23 @@ public class Collection {
                         write.newLine();
                     }
                     write.close();
-
                     PopUp pop = new PopUp();
-                    pop.cautionPopUp("Equipped");
+                    
+                    if(equip.get(currentIndex).getText().equals("Equipped")){
+                        pop.cautionPopUp("Pre Equipped");
+                    }else{
+                        pop.cautionPopUp("Equipped");
+                    }
                 }
                 catch(IOException r){
                     System.out.println("Something Went Wrong while equiping new skin");
+                }
+                for(int h = 0; h < equip.size(); h++){
+                    if(h == currentIndex){
+                        equip.get(currentIndex).setText("Equipped");
+                    }else{
+                        equip.get(h).setText("Equip");
+                    }
                 }
             });
             count++;
@@ -137,7 +180,6 @@ public class Collection {
         });
 
         Image player = new Image(getClass().getResourceAsStream("/Pac/Images/PacSkins/7Pac_Man_Favicon.png"));
-
         stage.setScene(scene);
         stage.setTitle("Store");
         stage.setAlwaysOnTop(true);

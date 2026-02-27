@@ -12,13 +12,15 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class PopUp {
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),33);
+    
     public void cautionPopUp(String Text){
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Scene scene = new Scene(root,300,200);
 
         Text text = new Text(Text);
-        text.setFont(new Font("Minecrafter Alt",33));
+        text.setFont(font);
         text.setFill(Color.WHITE);
         root.getChildren().add(text);
 

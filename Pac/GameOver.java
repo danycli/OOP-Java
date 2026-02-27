@@ -14,29 +14,33 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class GameOver {
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),30);
     public void ShowMenu(EventHandler current, int score, int numOfDiamonds, int totalDiamonds, int highScore){
         Stage stage2 = new Stage();
         StackPane root = new StackPane();
         Scene scene2 = new Scene(root, 500,700);
-        scene2.setFill(Color.AZURE);
 
         Text gameOver = new Text("Game Over");
-        gameOver.setFont(new Font("Minecrafter Alt",60));
+        gameOver.setFont(Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),60));
         gameOver.setFill(Color.WHITE);
         gameOver.setTranslateY(-230);
 
         Button playAgain = MenuButtons("Play Again",-130);
+        playAgain.setFont(font);
 
         Button stats = MenuButtons("View Stats",-30);
+        stats.setFont(font);
 
         Button store = GameOver.MenuButtons("Store",70);
+        store.setFont(font);
 
         Button Collection = GameOver.MenuButtons("Collection", 170);
+        Collection.setFont(font);
 
         Button exitButton = MenuButtons("Quit Game",270);
+        exitButton.setFont(font);
 
         gameOverstats gameStats = new gameOverstats();
-
 
         playAgain.setOnAction(e ->{
             stage2.close();
@@ -95,7 +99,6 @@ public class GameOver {
         b.setBorder(Border.EMPTY);
         b.setFocusTraversable(false);
         b.setTextFill(Color.WHITE);
-        b.setFont(new Font("Minecrafter Alt",30));
         b.setStyle("""
                 -fx-background-color: #ffffff43;
                 -fx-background-radius:20;

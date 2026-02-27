@@ -10,22 +10,21 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class gameSettings {
-
-    public static boolean setColor = false;
+    private static boolean setColor = false;
+    private Font font = Font.loadFont(getClass().getResourceAsStream("/Pac/Font/Minecrafter_Alt.ttf"),20);
 
     public void settingPopup(){
         Stage stage = new Stage();
         StackPane root = new StackPane();
         Scene scene = new Scene(root,300,200);
-        scene.setFill(Color.AZURE);
         
 
         Button darkMode = GameOver.MenuButtons("Dark Mode",-30);
-        darkMode.setFont(new Font("Minecrafter Alt",20));
+        darkMode.setFont(font);
         darkMode.setTextFill(Color.WHITE);
 
         Button lightMode = GameOver.MenuButtons("Light Mode",30);
-        lightMode.setFont(new Font("Minecrafter Alt",20));
+        lightMode.setFont(font);
         lightMode.setTextFill(Color.BLACK);
 
         darkMode.setOnAction(e ->{
