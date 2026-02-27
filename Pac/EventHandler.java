@@ -74,6 +74,15 @@ public class EventHandler extends Application{
         String skinName = "7Pac_Man_Favicon.png";
         try{
             File file = new File("Pac/stats.txt");
+            if(file.createNewFile()){
+                BufferedWriter write = new BufferedWriter(new FileWriter(file));
+                write.write("Score = 0");
+                write.newLine();
+                write.write("Total Diamond = 0");
+                write.newLine();
+                write.write("7Pac_Man_Favicon.png");
+                write.close();
+            }
             BufferedReader read = new BufferedReader(new FileReader(file));
             String line = null;
             int count = 0;
@@ -399,7 +408,7 @@ public class EventHandler extends Application{
                         allEnimies.get(i).setTranslateY(y_axis);
                     }
                     if(enemySpeed < 6){
-                        enemySpeed += 0.00008;
+                        enemySpeed += 0.0004;
                     }
                     
                     if(distance < CircleRadius + allEnimies.get(i).getLayoutBounds().getWidth() || axisOfBait.size() == 0) {
@@ -447,6 +456,8 @@ public class EventHandler extends Application{
                 write.write("Score = 0");
                 write.newLine();
                 write.write("Total Diamonds = 0");
+                write.newLine();
+                write.write("7Pac_Man_Favicon.png");
                 write.close();
             }
             BufferedReader read = new BufferedReader(new FileReader(stats));

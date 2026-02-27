@@ -3,7 +3,6 @@ package Pac;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,9 +20,13 @@ public class gameSettings {
         scene.setFill(Color.AZURE);
         
 
-        Button darkMode = MenuButtons("Dark Mode",-30,Color.WHITE);
+        Button darkMode = GameOver.MenuButtons("Dark Mode",-30);
+        darkMode.setFont(new Font("Minecrafter Alt",20));
+        darkMode.setTextFill(Color.WHITE);
 
-        Button lightMode = MenuButtons("Light Mode",30,Color.BLACK);
+        Button lightMode = GameOver.MenuButtons("Light Mode",30);
+        lightMode.setFont(new Font("Minecrafter Alt",20));
+        lightMode.setTextFill(Color.BLACK);
 
         darkMode.setOnAction(e ->{
             EventHandler.setSettingAction(1);
@@ -70,19 +73,5 @@ public class gameSettings {
         }else{
             return Color.rgb(186, 233, 153);
         }
-    }
-    private static Button MenuButtons(String text, double y,Color color){
-        Button b = new Button(text);
-        b.setTranslateY(y);
-        b.setBorder(Border.EMPTY);
-        b.setFocusTraversable(false);
-        b.setTextFill(color);
-        b.setFont(new Font("Minecrafter Alt",20));
-        b.setStyle("""
-                -fx-background-color: #ffffff43;
-                -fx-background-radius:15;
-                """);
-
-        return b;
     }
 }

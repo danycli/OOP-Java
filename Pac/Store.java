@@ -119,6 +119,8 @@ public class Store {
                     write.write("Score = 0");
                     write.newLine();
                     write.write("Total Diamonds = 0");
+                    write.newLine();
+                    write.write("7Pac_Man_Favicon.png");
                     write.close();
                 }
                 BufferedReader read = new BufferedReader(new FileReader(file));
@@ -201,7 +203,14 @@ public class Store {
                             countTheDiamonds.setText(""+diamondsTOTAL);
                         try{
                             File file = new File("Pac/CollectedItems.txt");
-                            file.createNewFile();
+                            if(file.createNewFile()){
+                                BufferedWriter write = new BufferedWriter(new FileWriter(file));
+                                 for(String l : collectedItems){
+                                    write.write(l);
+                                    write.newLine();
+                                 }
+                                 write.close();
+                            }
                             BufferedWriter write = new BufferedWriter(new FileWriter(file,true));
                             write.newLine();
                             write.write(images.get(currentIndex).getId());
@@ -236,6 +245,8 @@ public class Store {
                                 write.write("Score = 0");
                                 write.newLine();
                                 write.write("Total Diamonds = 0");
+                                write.newLine();
+                                write.write("7Pac_Man_Favicon.png");
                                 write.close();
                             }
                             BufferedWriter write = new BufferedWriter(new FileWriter(file));
